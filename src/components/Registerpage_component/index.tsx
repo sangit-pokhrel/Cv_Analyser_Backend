@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 
-import LoginForm from "./form";
+import RegistrationForm from "./form";
 
 const Registerpage = ()=>{
 
@@ -14,19 +14,19 @@ const Registerpage = ()=>{
 
   return(
     <div className="primary-bg  h-screen flex justify-evenly items-center " style={{fontFamily:"Gotham"}} >
-      <div className=" w-[90%] h-full  grid grid-cols-1 md:grid-cols-2 items-center justify-items-center p-5 ">
+      <div className=" w-[90%] h-full  md:grid grid-cols-2 items-center justify-between p-5 ">
         <div className="hidden md:flex w-[90%] h-full">
         
         <img className=" w-full h-full rounded-xl" src="/Register_page_image.jfif" alt="Login Image" />
       </div>
       <div className=" h-full ">
             <div>
-              <h1 className="font-semibold text-3xl">Sign In</h1>
-            <p className="font-thin text-gray-500 text-sm mt-0"> Seems like you have already an axxount. Let's make the Cv Better !!!</p>
+              <h1 className="font-semibold text-3xl">Create An Account</h1>
+            <p className="font-thin text-gray-500 text-sm mt-0">New to the site ? No worries registration is easy as finding job on Cv Saathi !</p>
             </div>
-            <LoginForm/>
+            <RegistrationForm/>
             <div className="flex justify-center items-center">
-              <p className="text-sm">Don't have an account ? <Link href="/Register" className="text-blue-500 underline">Register Here</Link> </p>
+              <p className="text-sm">Already have an account ? <Link href="/Login" className="text-blue-500 underline">Sign in</Link> </p>
             </div>
              
 
@@ -66,7 +66,6 @@ const Registerpage = ()=>{
           </div>
 
       </div>
-      
       </div>
     </div>
   )
