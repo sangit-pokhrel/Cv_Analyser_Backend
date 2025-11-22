@@ -1,0 +1,9 @@
+/* Primary, Secondary, Accent, Text colors */
+.primary { color: black; }
+.primary-bg { background-color: #F1F8FE; }
+
+.secondary { color: #17AEFF; }
+.secondary-bg { background-color: #F97316; }
+ 
+.cta_button{background-color: #FFB144 ;}
+
