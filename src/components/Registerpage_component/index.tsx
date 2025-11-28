@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import signInWithGoogle from "@/globals/signInFunc";
 
 import RegistrationForm from "./form";
 
@@ -13,7 +14,7 @@ const Registerpage = ()=>{
   
 
   return(
-    <div className="primary-bg  h-screen flex justify-evenly items-center " style={{fontFamily:"Gotham"}} >
+    <div className="primary-bg  h-screen flex justify-evenly items-center " >
       <div className=" w-[90%] h-full  md:grid grid-cols-2 items-center justify-between p-5 ">
         <div className="hidden md:flex w-[90%] h-full">
         
@@ -35,7 +36,7 @@ const Registerpage = ()=>{
           </div>
           <div className="flex flex-col md:flex-row justify-center items-center gap-x-1.5 mt-3">
             <div>
-                <button className="flex justify-center items-center gap-x-2 border-2 border-gray-300 rounded-4xl px-8 py-3 hover:bg-gray-200 cursor-pointer">
+                <button onClick={signInWithGoogle} className="flex justify-center items-center gap-x-2 border-2 border-gray-300 rounded-4xl px-8 py-3 hover:bg-gray-200 cursor-pointer">
                   <div>
                     <FcGoogle size={25} />
                   </div>
