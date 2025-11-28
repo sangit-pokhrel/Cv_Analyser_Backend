@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState,useRef } from "react";
+import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
@@ -60,7 +60,7 @@ type formdata={email:string,password:string};
 
                      {/* submit button */}
                    <div className="flex justify-center items-center pt-3">
-                    <button type="submit" className="cta_button px-14 py-3 rounded-md cursor-pointer ">Register Now</button>
+                    <button type="submit" className="cta_button px-14 py-3 rounded-md cursor-pointer ">Sign In</button>
                    </div>
                     </form>
                 </div>
