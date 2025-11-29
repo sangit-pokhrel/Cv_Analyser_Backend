@@ -31,11 +31,11 @@ const Navabar=()=>{
         <div >
           <p>Logo</p>
         </div>
-        <div className="md:grid grid-cols-5 gap-1 hidden ">
+        <div className="md:grid grid-cols-5 gap-1  hidden  ">
           {sections.map((section)=>{
             return(
              
-                <Link key={section.name} href={section.link}>
+                <Link className="text-center"key={section.name} href={section.link}>
                 {section.name}
               </Link>
            

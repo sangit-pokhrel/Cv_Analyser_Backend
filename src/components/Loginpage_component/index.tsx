@@ -16,7 +16,7 @@ const Loginpage = ()=>{
       <div className=" w-[90%] h-full  grid grid-cols-1 md:grid-cols-2 items-center justify-items-center p-5 ">
         <div className="hidden md:flex w-[90%] h-full">
         
-        <img className=" w-full h-full rounded-xl" src="/Register_page_image.jfif" alt="Login Image" />
+        <img className=" w-full h-full rounded-xl" src="/Register_page_Image.jfif" alt="Login Image" />
       </div>
       <div className=" h-full ">
             <div>
