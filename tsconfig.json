@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/globals/signInFunc.js"  ],
+, "src/globals/signInFunc.js", "src/app/(site)/Jobs"  ],
   "exclude": ["node_modules"]
 }
