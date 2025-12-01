@@ -70,7 +70,7 @@ const FeaturedJobsSec=()=>{
 
       {/* Mobile view  */}
       <div className="flex flex-col gap-y-10">
-        <div className="flex overflow-x-auto snap-mandatory snap-x gap-x-10 w-full " style={{scrollbarWidth:"none"}}>
+        <div className="flex overflow-x-auto snap-mandatory snap-x gap-x-4 w-full " style={{scrollbarWidth:"none"}}>
           {jobs.slice(0,5).map((job) => (
               <JobCard key={job.id} job={job} />
             ))}

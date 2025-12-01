@@ -6,11 +6,11 @@ const ResumeUploadSec =()=>{
   return(
      <div className="border border-gray-400 border-dashed flex flex-col gap-y-5 justify-center items-center p-8 rounded-xl bg-white">
           <div>
-            <BsUpload size={50} className="font-normal" />
+            <BsUpload size={50} className="font-normal text-black" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h4 className="text-xl font-semibold">Drop Your Resume Here</h4>
-            <p className="text-normal font-extralight">
+            <h4 className="text-xl font-semibold text-black">Drop Your Resume Here</h4>
+            <p className="text-normal font-extralight text-black">
               Supports the document up-to max of 5mb and supports pdf and docx
             </p>
           </div>
