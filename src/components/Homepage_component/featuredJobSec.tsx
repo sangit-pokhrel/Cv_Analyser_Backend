@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Section from "@/globals/section";
 import "@/globals/styles/style.color.css";
-import JobCard from "./jobCard";
+import JobCard from "../../globals/jobCard";
 import { jobs } from "./dummydata";
 import { MdOutlineKeyboardArrowRight,MdOutlineKeyboardArrowLeft } from "react-icons/md";
 

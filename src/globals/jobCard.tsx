@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import { Job } from "./types";
+import { Job } from "../components/Homepage_component/types";
 import { BsFileEarmarkPdf } from "react-icons/bs";
 import "@/globals/styles/style.color.css"
 
@@ -8,7 +8,7 @@ import "@/globals/styles/style.color.css"
 const JobCard = ({ job }: { job: Job }) => {
   return (
     <motion.div
-      className="shrink-0 w-[250px] sm:w-[300px] p-4 bg-white border border-gray-400 rounded-xl shadow-md snap-center"
+      className="shrink-0 w-xs  md:w-[300px]  p-4 bg-white border border-gray-400 rounded-xl shadow-md snap-center"
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.3 }}
     >
