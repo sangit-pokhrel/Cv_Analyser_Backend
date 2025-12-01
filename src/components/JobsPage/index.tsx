@@ -5,7 +5,7 @@ import { IoBagCheckOutline } from "react-icons/io5";
 import HeroSection from "./heroSection";
 import BrowseByCategory from "./browseByCategory";
 import FullWidthContainer from "@/globals/fullwidthcontainer";
-import WhySection from "./whySection";
+import WhySection from "./WhySection";
 import FeaturedJobsSec from "./featuredJobsSec";
 const JobsPage=()=>{
   return (  
