@@ -5,7 +5,9 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import "@/globals/styles/style.color.css"
-
+import {auth} from "../../firebase"
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { toast } from "sonner";
  const RegistrationForm=()=>{
 type formdata={email:string,password:string, confirmPassword:string,fullName:string,phoneNumber:Number,agreed:boolean};
   const {register,handleSubmit,formState:{errors},watch}=useForm<formdata>();
@@ -17,8 +19,18 @@ type formdata={email:string,password:string, confirmPassword:string,fullName:str
     }
     const password=watch("password");
 
-    const onSubmit=(data:formdata)=>{
-      console.log(data);
+    const onSubmit=async(data:formdata)=>{
+     try{
+        const userCredential=await createUserWithEmailAndPassword(auth,data.email,data.password);
+    
+          toast.success("User Creation Successful!");
+      
+     }
+     catch(error){
+      toast.error("User creation unsuccessfull");
+
+     }
+    
     }
   
   return(

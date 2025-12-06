@@ -6,19 +6,32 @@ import { FaRegEye } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import "@/globals/styles/style.color.css"
 import Link from "next/link";
+import {auth} from "../../firebase"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {toast} from "sonner"; 
  const LoginForm=()=>{
 type formdata={email:string,password:string};
-  const {register,handleSubmit,formState:{errors},watch}=useForm<formdata>();
+  const {register,handleSubmit,formState:{errors}}=useForm<formdata>();
    const [show,setShow]=useState(false);
   
     const handleClick=()=>{
      setShow(!show);
    
     }
-    const password=watch("password");
 
-    const onSubmit=(data:formdata)=>{
-      console.log(data);
+
+    const onSubmit=async(data:formdata)=>{
+      try{
+            const userCredential = await signInWithEmailAndPassword(auth,data.email,data.password);
+            if(userCredential){
+             window.location.href = "/Home";
+
+            }            
+      }
+      catch(error:any){
+            console.log("Login Error:",error.message);
+            toast.error("Invalid user credentials")
+      }
     }
   
   return(
@@ -55,7 +68,7 @@ type formdata={email:string,password:string};
                       {/* Aggrement checkbox */}
                       
                      <div className="flex justify-end">
-                      <Link href="" className="text-sm text-blue-500 underline">Forgot password ?</Link>
+                      <Link href="/Login/resetPassword" className="text-sm text-blue-500 underline">Forgot password ?</Link>
                      </div>
 
                      {/* submit button */}

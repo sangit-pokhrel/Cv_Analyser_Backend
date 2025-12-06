@@ -35,20 +35,20 @@ const FeaturedJobsSec=()=>{
         </div>
         {/* Desktop view  */}
          <div className=" hidden md:flex justify-end items-center mr-12 ">
-          <Link href={"/Jobs/Alljobs"} className=" cta_button flex flex-row justify-center items-center gap-x-6 px-8 py-3 rounded-lg cursor-pointer" > <p className="text-xl font-semibold">View All Jobs</p> <FaArrowRight/></Link>
+          <Link href={"/Jobs/all"} className=" cta_button flex flex-row justify-center items-center gap-x-6 px-8 py-3 rounded-lg cursor-pointer" > <p className="text-xl font-semibold">View All Jobs</p> <FaArrowRight/></Link>
         </div>
         <div className="p-4"> 
          
        <div className="hidden md:grid grid-cols-3 place-items-center justify-center  gap-y-8">
               {/* Display items */}
-      {jobs.map((job) => (
+      {currentItems.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
        </div>
 
       {/* Pagination buttons */}
-      <div className=" hidden md:flex items-center justify-center gap-2 mt-4 ">
-        <button className="Job_category_bg py-1 px-3 rounded-lg" onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}>
+      <div className=" hidden md:flex items-center justify-center gap-2 mt-4">
+        <button className="Job_category_bg py-1 px-3 rounded-lg  cursor-pointer " onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}>
           Previous
         </button>
 
@@ -62,14 +62,14 @@ const FeaturedJobsSec=()=>{
           </button>
         ))}
 
-        <button className="Job_category_bg py-1 px-3 rounded-lg" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}>
+        <button className="Job_category_bg py-1 px-3 rounded-lg cursor-pointer inline" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}>
           Next
         </button>
       </div>
       </div>
 
       {/* Mobile view  */}
-      <div className="flex flex-col gap-y-10">
+      <div className="flex md:hidden flex-col gap-y-10">
         <div className="flex overflow-x-auto snap-mandatory snap-x gap-x-4 w-full " style={{scrollbarWidth:"none"}}>
           {jobs.slice(0,5).map((job) => (
               <JobCard key={job.id} job={job} />

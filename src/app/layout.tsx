@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/globals/styles/style.color.css";
 import ThemeProvider from "@/app/context/ThemeProvider";
+import { Toaster } from "sonner";
 
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased primary-bg`} style={{fontFamily:"Gotham"}} 
       >
+        <Toaster position="top-center" />
         <ThemeProvider>
       
            {children}

@@ -1,4 +1,5 @@
 
+import AllJobsIndex from "@/components/AllJobs";
 import { Metadata } from "next";
 
 export const metadata:Metadata = {
@@ -7,9 +8,7 @@ export const metadata:Metadata = {
 }
 const AllJobsPage = ()=>{
   return(
-    <div>
-      Welcome to all jobs
-    </div>
+    <AllJobsIndex/>
   )
 }
 export default AllJobsPage;

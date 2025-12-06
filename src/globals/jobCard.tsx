@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Job } from "../components/Homepage_component/types";
 import { BsFileEarmarkPdf } from "react-icons/bs";
 import "@/globals/styles/style.color.css"
+import Link from "next/link";
 
 
 const JobCard = ({ job }: { job: Job }) => {
@@ -38,7 +39,7 @@ const JobCard = ({ job }: { job: Job }) => {
           <p><span className="text-sm font-semibold">Salary:</span> {job.salary}</p>
           <p><span className="text-sm font-semibold">No. of Openings:</span> {job.openings}</p>
         </div>
-        <a href=""><button className="cta_button_secondary w-full py-2 rounded-xl cursor-pointer"><span className="text-white text-lg font-semibold">View Details</span></button></a>
+        <Link href={`/Jobs/${job.id}`}><button className="cta_button_secondary w-full py-2 rounded-xl cursor-pointer"><span className="text-white text-lg font-semibold">View Details</span></button></Link>
      </div>
     </motion.div>
   );

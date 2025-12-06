@@ -21,7 +21,7 @@ const Loginpage = ()=>{
       <div className=" h-full ">
             <div>
               <h1 className="font-semibold text-3xl">Sign In</h1>
-            <p className="font-thin text-gray-500 text-sm mt-0"> Seems like you have already an axxount. Let's make the Cv Better !!!</p>
+            <p className="font-thin text-gray-500 text-sm mt-0"> Seems like you have already an account. Let's make the Cv Better !!!</p>
             </div>
             <LoginForm/>
             <div className="flex justify-center items-center">
