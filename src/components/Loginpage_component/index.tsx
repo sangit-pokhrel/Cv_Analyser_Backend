@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useEffect } from "react";
 import Link from "next/link";
-import signInWithGoogle from "@/globals/signInFunc";
+import signInWithGoogle,{signInWithFacebook} from "@/globals/signInFunc";
 import LoginForm from "./form";
 
 
@@ -47,7 +47,7 @@ const Loginpage = ()=>{
               <p className="text-md">OR</p>
             </div>
             <div>
-                <button className="flex justify-center items-center gap-x-2 border-2 border-gray-300 rounded-4xl px-5 py-3 hover:bg-gray-200 cursor-pointer">
+                <button onClick={signInWithFacebook} className="flex justify-center items-center gap-x-2 border-2 border-gray-300 rounded-4xl px-5 py-3 hover:bg-gray-200 cursor-pointer">
                   <div>
                     <FaFacebook size={25} />
                   </div>
