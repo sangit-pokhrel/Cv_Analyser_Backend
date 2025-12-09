@@ -27,22 +27,16 @@ const authController = require('../controllers/authController');
 const { createAccountLimiter, authLimiter } = require('../middleware/rateLimiter');
 const { requireAuth } = require('../middleware/authMiddleware');
 
-// register
 router.post('/register', createAccountLimiter, authController.register);
 
-// email verification link
 router.get('/verify-email', authController.verifyEmail);
 
-// login
 router.post('/login', authLimiter, authController.login);
 
-// refresh token endpoint (reads httpOnly cookie)
 router.post('/refresh', authController.refreshTokenHandler);
 
-// logout
 router.post('/logout', authController.logout);
 
-// revoke all (protected)
 router.post('/revoke-all', requireAuth, authController.revokeAll);
 
 module.exports = router;
