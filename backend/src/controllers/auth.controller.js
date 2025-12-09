@@ -1,52 +1,294 @@
-const { validationResult } = require('express-validator');
-const authService = require('../services/auth.service');
+// const { validationResult } = require('express-validator');
+// const authService = require('../services/auth.service');
 
-const register = async (req, res, next) => {
-  try {
+// const register = async (req, res, next) => {
+//   try {
    
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ success: false, message: 'Validation failed', errors: errors.array() });
-    }
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(422).json({ success: false, message: 'Validation failed', errors: errors.array() });
+//     }
 
-    const payload = {
-      email: req.body.email,
-      password: req.body.password,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      role: req.body.role || 'job_seeker'
-    };
+//     const payload = {
+//       email: req.body.email,
+//       password: req.body.password,
+//       firstName: req.body.firstName,
+//       lastName: req.body.lastName,
+//       role: req.body.role || 'job_seeker'
+//     };
 
-    const data = await authService.registerUser(payload);
+//     const data = await authService.registerUser(payload);
 
-    return res.status(201).json({
-      success: true,
-      message: 'Registration successful. Please verify your email.',
-      data
-    });
-  } catch (err) {
-    next(err);
-  }
+//     return res.status(201).json({
+//       success: true,
+//       message: 'Registration successful. Please verify your email.',
+//       data
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// const login = async (req, res, next) => {
+//   try {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(422).json({ success: false, message: 'Validation failed', errors: errors.array() });
+//     }
+
+//     const { email, password } = req.body;
+//     const data = await authService.loginUser({ email, password });
+
+//     return res.status(200).json({
+//       success: true,
+//       message: 'Login successful',
+//       data
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// module.exports = { register, login };
+const crypto = require('crypto');
+const { v4: uuidv4 } = require('uuid');
+const User = require('../models/User');
+const RefreshToken = require('../models/RefreshToken');
+const VerificationToken = require('../models/VerificationToken');
+const { signAccessToken, signRefreshToken, verifyRefreshToken, REFRESH_EXPIRES } = require('../utils/jwt');
+const { sendEmail, verificationEmail } = require('../utils/email');
+const { validateRegister } = require('../utils/validators');
+
+const ms = (str) => {
+  // crude parse: support number + 'd' or 'h' or 'm'
+  if (typeof str === 'number') return str;
+  const n = parseInt(str,10);
+  if (str.endsWith('d')) return n * 24 * 60 * 60 * 1000;
+  if (str.endsWith('h')) return n * 60 * 60 * 1000;
+  if (str.endsWith('m')) return n * 60 * 1000;
+  return n;
 };
 
-const login = async (req, res, next) => {
+async function register(req, res) {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ success: false, message: 'Validation failed', errors: errors.array() });
+    const { email, password, firstName, lastName, role } = req.body;
+    const errors = validateRegister({ email, password });
+    if (errors.length) return res.status(400).json({ errors });
+
+    const existing = await User.findOne({ email });
+    if (existing) return res.status(400).json({ error: 'Email already in use' });
+
+    const user = new User({ email, password, firstName, lastName, role });
+    await user.save();
+
+    // create verification token
+    const token = uuidv4();
+    const expiresAt = new Date(Date.now() + (24 * 60 * 60 * 1000)); // 24h
+    await VerificationToken.create({ user: user._id, token, type: 'email_verify', expiresAt });
+
+    // send email (non-blocking)
+    try {
+      const mail = verificationEmail({ user, token });
+      await sendEmail(mail);
+    } catch (e) {
+      console.warn('Email send failed', e.message);
     }
 
-    const { email, password } = req.body;
-    const data = await authService.loginUser({ email, password });
-
-    return res.status(200).json({
-      success: true,
-      message: 'Login successful',
-      data
-    });
+    return res.status(201).json({ message: 'Registered. Check email to verify account.' , user: user.toJSON() });
   } catch (err) {
-    next(err);
+    console.error(err);
+    return res.status(500).json({ error: 'Server error' });
   }
-};
+}
 
-module.exports = { register, login };
+async function verifyEmail(req, res) {
+  try {
+    const { token } = req.query;
+    if (!token) return res.status(400).json({ error: 'Token required' });
+
+    const record = await VerificationToken.findOne({ token, type: 'email_verify' }).populate('user');
+    if (!record) return res.status(400).json({ error: 'Invalid token' });
+    if (record.expiresAt < new Date()) return res.status(400).json({ error: 'Token expired' });
+    if (record.consumed) return res.status(400).json({ error: 'Token already used' });
+
+    const user = record.user;
+    user.isEmailVerified = true;
+    user.status = 'active';
+    await user.save();
+
+    record.consumed = true;
+    await record.save();
+
+    return res.json({ message: 'Email verified successfully' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: 'Invalid credentials' });
+
+    // simple lockout check
+    if (user.lockUntil && user.lockUntil > new Date()) {
+      return res.status(403).json({ error: 'Account temporarily locked due to failed attempts' });
+    }
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      user.failedLoginAttempts = (user.failedLoginAttempts || 0) + 1;
+      if (user.failedLoginAttempts >= 5) {
+        user.lockUntil = new Date(Date.now() + (15 * 60 * 1000)); // 15min lock
+        user.failedLoginAttempts = 0;
+      }
+      await user.save();
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+
+    // reset failed attempts
+    user.failedLoginAttempts = 0;
+    user.lockUntil = undefined;
+    user.lastLoginAt = new Date();
+    await user.save();
+
+    // create access token
+    const accessToken = signAccessToken(user);
+
+    // create refresh token record with random jti
+    const jti = uuidv4();
+    const refreshPayload = { userId: user._id.toString(), jti, tokenVersion: user.tokenVersion || 0 };
+    const refreshToken = signRefreshToken(refreshPayload);
+
+    const expiresAt = new Date(Date.now() + ms(process.env.REFRESH_TOKEN_EXP || '7d'));
+    await RefreshToken.create({
+      user: user._id,
+      token: jti,
+      createdByIp: req.ip,
+      expiresAt
+    });
+
+    // set refresh token as httpOnly cookie
+    const cookieSecure = process.env.COOKIE_SECURE === 'true';
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: cookieSecure,
+      sameSite: 'lax',
+      maxAge: expiresAt - Date.now()
+    });
+
+    return res.json({ accessToken, user: user.toJSON() });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+async function refreshTokenHandler(req, res) {
+  try {
+    const token = req.cookies.refreshToken || req.body.refreshToken;
+    if (!token) return res.status(401).json({ error: 'No refresh token provided' });
+
+    let payload;
+    try {
+      payload = verifyRefreshToken(token);
+    } catch (e) {
+      return res.status(401).json({ error: 'Invalid refresh token' });
+    }
+
+    const { jti, userId } = payload;
+    // find persisted refresh token by jti
+    const stored = await RefreshToken.findOne({ token: jti }).populate('user');
+    if (!stored || !stored.isActive) {
+      return res.status(401).json({ error: 'Refresh token revoked or expired' });
+    }
+
+    // Token rotation: revoke current stored token and issue a new one replacing it
+    stored.revokedAt = new Date();
+    stored.replacedByToken = uuidv4();
+    await stored.save();
+
+    // create new saved refresh token
+    const newJti = stored.replacedByToken;
+    const newRefreshPayload = { userId: stored.user._id.toString(), jti: newJti, tokenVersion: stored.user.tokenVersion || 0 };
+    const newRefreshToken = signRefreshToken(newRefreshPayload);
+    const expiresAt = new Date(Date.now() + ms(process.env.REFRESH_TOKEN_EXP || '7d'));
+    await RefreshToken.create({ user: stored.user._id, token: newJti, createdByIp: req.ip, expiresAt });
+
+    // issue new access token
+    const accessToken = signAccessToken(stored.user);
+
+    // set cookie
+    const cookieSecure = process.env.COOKIE_SECURE === 'true';
+    res.cookie('refreshToken', newRefreshToken, {
+      httpOnly: true,
+      secure: cookieSecure,
+      sameSite: 'lax',
+      maxAge: expiresAt - Date.now()
+    });
+
+    return res.json({ accessToken, user: stored.user.toJSON() });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+async function logout(req, res) {
+  try {
+    const token = req.cookies.refreshToken || req.body.refreshToken;
+    if (token) {
+      try {
+        const payload = verifyRefreshToken(token);
+        const jti = payload.jti || payload.jti;
+        const stored = await RefreshToken.findOne({ token: jti });
+        if (stored && stored.isActive) {
+          stored.revokedAt = new Date();
+          await stored.save();
+        }
+      } catch (e) {
+        // ignore invalid token
+      }
+    }
+
+    // clear cookie
+    res.clearCookie('refreshToken', {
+      httpOnly: true,
+      secure: process.env.COOKIE_SECURE === 'true',
+      sameSite: 'lax'
+    });
+
+    return res.json({ message: 'Logged out' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+// Revoke all refresh tokens and increment token version — forces all devices to re-login
+async function revokeAll(req, res) {
+  try {
+    const user = req.user;
+    await RefreshToken.updateMany({ user: user._id, revokedAt: null }, { revokedAt: new Date() });
+    user.tokenVersion = (user.tokenVersion || 0) + 1;
+    await user.save();
+    res.clearCookie('refreshToken');
+    return res.json({ message: 'All sessions revoked' });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+module.exports = {
+  register,
+  verifyEmail,
+  login,
+  refreshTokenHandler,
+  logout,
+  revokeAll
+};
