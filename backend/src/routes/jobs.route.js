@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/jobsController');
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const controller = require('../controllers/jobs.controller');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.get('/', controller.listJobs);
 router.get('/:id', controller.getJob);

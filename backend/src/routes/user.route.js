@@ -8,9 +8,9 @@ const {
   updateMe,
   changePassword,
   deactivateAccount
-} = require('../controllers/userController');
+} = require('../controllers/user.controller');
 
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 // Self routes
 router.get('/me', requireAuth, getMe);

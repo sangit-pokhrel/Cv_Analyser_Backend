@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/supportController');
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const ctrl = require('../controllers/support.controller');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.post('/tickets', requireAuth, ctrl.createTicket);
 
