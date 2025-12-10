@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/contactController');
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const ctrl = require('../controllers/contact.controller');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.post('/', ctrl.createContact);
 
