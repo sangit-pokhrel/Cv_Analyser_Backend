@@ -1,51 +1,53 @@
-// src/server.js
-import dotenv from "dotenv";
+// server.cjs
+
+const dotenv = require("dotenv");
 dotenv.config();
 
-import http from "http";
-import createApp from "./src/app.js";
-import { connectDB, disconnectDB } from "./src/config/db.js";
+const http = require("http");
+// Changed the variable name to 'app' for clarity
+const app = require("./src/app.js"); 
+const {connectDB, disconnectDB} = require("./src/config/db.js")
+
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 function assertEnv() {
-  const required = ["MONGO_URI", "JWT_ACCESS_SECRET"]; // add more as needed
-  const missing = required.filter(k => !process.env[k]);
-  if (missing.length) throw new Error(`Missing env vars: ${missing.join(", ")}`);
+  const required = ["MONGO_URI", "JWT_ACCESS_SECRET"];
+  const missing = required.filter((k) => !process.env[k]);
+  if (missing.length)
+    throw new Error(`Missing env vars: ${missing.join(", ")}`);
 }
 
 async function start() {
   try {
     assertEnv();
 
-    // Connect to DB (returns connection or throws)
+    // 1. Database Connection Logic (Handled here)
     await connectDB(MONGO_URI);
 
-    // Create the express app
-    const app = createApp();
+    // 2. The Express app object is imported directly. 
+    //    NO FUNCTION CALL IS MADE: const app = createApp(); is removed
+    //    The imported 'app' is used directly below.
+    
+    const server = http.createServer(app); // Uses the imported 'app' object
 
-    // Create server (allows socket.io integration later)
-    const server = http.createServer(app);
-
-    // Start listening
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT} (pid ${process.pid})`);
     });
 
-    // Graceful shutdown helper
+    // ... (Your original graceful shutdown logic remains the same below)
+    
     const shutdown = (signal, err) => {
       console.log(`\nReceived ${signal}. Closing server...`);
       if (err) console.error("Signal error:", err);
 
-      // stop accepting new connections
       server.close(async (closeErr) => {
         if (closeErr) {
           console.error("Error closing server:", closeErr);
           process.exit(1);
         }
         try {
-          // close DB connection
           await disconnectDB();
           console.log("Shutdown complete.");
           process.exit(0);
@@ -55,7 +57,6 @@ async function start() {
         }
       });
 
-      // Force exit if not closed within X ms
       setTimeout(() => {
         console.warn("Forcing shutdown after timeout.");
         process.exit(1);
@@ -65,7 +66,6 @@ async function start() {
     process.on("SIGINT", () => shutdown("SIGINT"));
     process.on("SIGTERM", () => shutdown("SIGTERM"));
     process.on("SIGUSR2", () => {
-      // for some process managers (nodemon) — re-raise to allow restarts
       shutdown("SIGUSR2");
     });
     process.on("uncaughtException", (err) => {
@@ -74,9 +74,11 @@ async function start() {
     });
     process.on("unhandledRejection", (reason) => {
       console.error("Unhandled Rejection:", reason);
-      shutdown("unhandledRejection", reason instanceof Error ? reason : undefined);
+      shutdown(
+        "unhandledRejection",
+        reason instanceof Error ? reason : undefined
+      );
     });
-
   } catch (err) {
     console.error("Failed to start server:", err);
     process.exit(1);
@@ -85,5 +87,4 @@ async function start() {
 
 start();
 
-
-export default start;
+module.exports = start;

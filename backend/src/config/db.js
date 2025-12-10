@@ -4,10 +4,7 @@ export async function connectDB(uri) {
   if (!uri) throw new Error("connectDB requires a mongo uri");
   try {
     mongoose.set("strictQuery", false);
-    const conn = await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    const conn = await mongoose.connect(uri);
     console.log(`MongoDB connected: ${conn.connection.host}`);
     return conn;
   } catch (err) {

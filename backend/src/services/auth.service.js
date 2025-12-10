@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/User');
-const { signAccessToken, signRefreshToken } = require('../utils/tokenUtil');
+const User = require('../models/user.model');
+const { signAccessToken, signRefreshToken } = require('../../utils/tokenUtils');
 const dotenv = require('dotenv');
 dotenv.config();
 

@@ -50,14 +50,16 @@
 // };
 
 // module.exports = { register, login };
+
+
 const crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid');
-const User = require('../models/User');
-const RefreshToken = require('../models/RefreshToken');
-const VerificationToken = require('../models/VerificationToken');
-const { signAccessToken, signRefreshToken, verifyRefreshToken, REFRESH_EXPIRES } = require('../utils/jwt');
-const { sendEmail, verificationEmail } = require('../utils/email');
-const { validateRegister } = require('../utils/validators');
+const User = require('../models/user.model');
+const RefreshToken = require('../models/refreshToken.model');
+const VerificationToken = require('../models/verificationToken.model');
+const { signAccessToken, signRefreshToken, verifyRefreshToken, REFRESH_EXPIRES } = require('../../utils/jwt.utils');
+const { sendEmail, verificationEmail } = require('../../utils/email.utils');
+const { validateRegister } = require('../../utils/validators.utils');
 
 const ms = (str) => {
   // crude parse: support number + 'd' or 'h' or 'm'
@@ -69,35 +71,89 @@ const ms = (str) => {
   return n;
 };
 
+// async function register(req, res) {
+//   try {
+//     const { email, password, firstName, lastName, role } = req.body;
+//     const errors = validateRegister({ email, password });
+//     if (errors.length) return res.status(400).json({ errors });
+
+//     const existing = await User.findOne({ email });
+//     if (existing) return res.status(400).json({ error: 'Email already in use' });
+
+//     const user = new User({ email, password, firstName, lastName, role });
+//     await user.save();
+
+//     // create verification token
+//     const token = uuidv4();
+//     const expiresAt = new Date(Date.now() + (24 * 60 * 60 * 1000)); // 24h
+//     await VerificationToken.create({ user: user._id, token, type: 'email_verify', expiresAt });
+
+//     // send email (non-blocking)
+//     try {
+//       const mail = verificationEmail({ user, token });
+//       await sendEmail(mail);
+//     } catch (e) {
+//       console.warn('Email send failed', e.message);
+//     }
+
+//     return res.status(201).json({ message: 'Registered. Check email to verify account.' , user: user.toJSON() });
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ error: 'Server error' });
+//   }
+// }
+
+
 async function register(req, res) {
   try {
+    console.log('[REGISTER] incoming body:', { ...req.body, password: '<<redacted>>' });
+
     const { email, password, firstName, lastName, role } = req.body;
     const errors = validateRegister({ email, password });
-    if (errors.length) return res.status(400).json({ errors });
-
-    const existing = await User.findOne({ email });
-    if (existing) return res.status(400).json({ error: 'Email already in use' });
-
-    const user = new User({ email, password, firstName, lastName, role });
-    await user.save();
-
-    // create verification token
-    const token = uuidv4();
-    const expiresAt = new Date(Date.now() + (24 * 60 * 60 * 1000)); // 24h
-    await VerificationToken.create({ user: user._id, token, type: 'email_verify', expiresAt });
-
-    // send email (non-blocking)
-    try {
-      const mail = verificationEmail({ user, token });
-      await sendEmail(mail);
-    } catch (e) {
-      console.warn('Email send failed', e.message);
+    if (errors.length) {
+      console.log('[REGISTER] validation failed:', errors);
+      return res.status(400).json({ errors });
     }
 
-    return res.status(201).json({ message: 'Registered. Check email to verify account.' , user: user.toJSON() });
+    const existing = await User.findOne({ email });
+    if (existing) {
+      console.log('[REGISTER] email exists:', email);
+      return res.status(400).json({ error: 'Email already in use' });
+    }
+
+    // create user and save
+    const user = new User({ email, password, firstName, lastName, role });
+    await user.save();
+    console.log('[REGISTER] user saved:', user._id);
+
+    // create verification token record
+    const token = uuidv4();
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    await VerificationToken.create({ user: user._id, token, type: 'email_verify', expiresAt });
+    console.log('[REGISTER] verification token stored:', token);
+
+    // Send email ASYNCHRONOUSLY (do not await) so email issues do not hang the response.
+    // We still log failures, but won't block the user response.
+    (async () => {
+      try {
+        const mail = verificationEmail({ user, token });
+        await sendEmail(mail);
+        console.log('[REGISTER] verification email sent to', user.email);
+      } catch (mailErr) {
+        console.warn('[REGISTER] failed to send verification email (non-blocking):', mailErr && mailErr.message);
+      }
+    })();
+
+    // Respond to client immediately
+    return res.status(201).json({
+      message: 'Registered. Check email to verify account.',
+      user: user.toJSON()
+    });
+
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Server error' });
+    console.error('[REGISTER] unexpected error:', err);
+    // safe fallback response
+    return res.status(500).json({ error: 'Server error during registration' });
   }
 }
 

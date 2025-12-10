@@ -2,10 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "dev": "cross-env NODE_ENV=development nodemon --watch src --watch server.js server.js"
+    "start": "nodemon server.cjs",
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --watch server.cjs server.cjs"
   },
   "keywords": [],
   "author": "",

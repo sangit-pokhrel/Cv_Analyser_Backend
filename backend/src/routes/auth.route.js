@@ -23,9 +23,9 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
-const { createAccountLimiter, authLimiter } = require('../middleware/rateLimiter');
-const { requireAuth } = require('../middleware/authMiddleware');
+const authController = require('../controllers/auth.controller');
+const { createAccountLimiter, authLimiter } = require('../middlewares/rateLimitor.middleware');
+const { requireAuth } = require('../middlewares/auth.middleware');
 
 router.post('/register', createAccountLimiter, authController.register);
 
