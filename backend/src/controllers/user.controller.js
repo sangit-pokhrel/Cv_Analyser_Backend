@@ -88,7 +88,7 @@ async function changePassword(req, res) {
     const valid = await bcrypt.compare(currentPassword, user.password);
     if (!valid) return res.status(400).json({ error: "Current password incorrect" });
 
-    const salt = await bcrypt.genSalt(12);
+    const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(newPassword, salt);
 
     await user.save();
@@ -117,11 +117,32 @@ async function deactivateAccount(req, res) {
   }
 }
 
+// DELETE /users/me/hard
+async function hardDeleteAccount(req, res) {
+  try {
+    const userId = req.user.id; // use .id, not _id
+
+    const deleted = await User.findByIdAndDelete(userId);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.json({ message: "Account permanently deleted" });
+
+  } catch (err) {
+    console.error("Hard delete error:", err);
+    return res.status(500).json({ error: "Unable to delete account" });
+  }
+}
+
+
 module.exports = {
   getMe,
   getUserById,
   listUsers,
   updateMe,
   changePassword,
-  deactivateAccount
+  deactivateAccount,
+  hardDeleteAccount
 };
