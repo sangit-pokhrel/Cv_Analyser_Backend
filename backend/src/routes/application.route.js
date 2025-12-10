@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/applicationController');
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const ctrl = require('../controllers/application.controller');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.post('/', requireAuth, permit('user'), ctrl.submitApplication);
 router.get('/', requireAuth, ctrl.listUserApplications);
