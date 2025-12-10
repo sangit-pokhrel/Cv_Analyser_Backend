@@ -71,38 +71,6 @@ const ms = (str) => {
   return n;
 };
 
-// async function register(req, res) {
-//   try {
-//     const { email, password, firstName, lastName, role } = req.body;
-//     const errors = validateRegister({ email, password });
-//     if (errors.length) return res.status(400).json({ errors });
-
-//     const existing = await User.findOne({ email });
-//     if (existing) return res.status(400).json({ error: 'Email already in use' });
-
-//     const user = new User({ email, password, firstName, lastName, role });
-//     await user.save();
-
-//     // create verification token
-//     const token = uuidv4();
-//     const expiresAt = new Date(Date.now() + (24 * 60 * 60 * 1000)); // 24h
-//     await VerificationToken.create({ user: user._id, token, type: 'email_verify', expiresAt });
-
-//     // send email (non-blocking)
-//     try {
-//       const mail = verificationEmail({ user, token });
-//       await sendEmail(mail);
-//     } catch (e) {
-//       console.warn('Email send failed', e.message);
-//     }
-
-//     return res.status(201).json({ message: 'Registered. Check email to verify account.' , user: user.toJSON() });
-//   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: 'Server error' });
-//   }
-// }
-
 
 async function register(req, res) {
   try {

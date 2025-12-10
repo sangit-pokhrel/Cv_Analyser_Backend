@@ -3,7 +3,7 @@ const UserProfile = require('../models/userProfile.model');
 
 async function getMyProfile(req, res) {
   try {
-    const profile = await UserProfile.findOne({ user: req.user._id });
+    const profile = await UserProfile.findOne({ user: req.user.id });
     return res.json({ profile });
   } catch (err) {
     console.error(err);
@@ -13,6 +13,7 @@ async function getMyProfile(req, res) {
 
 async function upsertProfile(req, res) {
   try {
+
     const payload = {
       bio: req.body.bio ? sanitizeHtml(req.body.bio) : undefined,
       skills: Array.isArray(req.body.skills) ? req.body.skills : (req.body.skills ? [req.body.skills] : []),
@@ -26,12 +27,14 @@ async function upsertProfile(req, res) {
       preferences: req.body.preferences || {}
     };
 
-    let profile = await UserProfile.findOne({ user: req.user._id });
+    let profile = await UserProfile.findOne({ user: req.user.id });
+
+
     if (profile) {
       Object.assign(profile, payload);
       await profile.save();
     } else {
-      profile = await UserProfile.create(Object.assign({ user: req.user._id }, payload));
+      profile = await UserProfile.create(Object.assign({ user: req.user.id }, payload));
     }
 
     return res.json({ profile });

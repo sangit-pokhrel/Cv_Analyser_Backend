@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const authRoutes = require('./routes/auth.route');
 const apiV1 = require('./routes/index.route');
-const profileRoutes = require('./routes/profile.route');
+// const profileRoutes = require('./routes/profile.route');
 const supportRoutes = require('./routes/support.route');
 const contactRoutes = require('./routes/contact.route');
 const cvRoutes = require('./routes/cv.route');
@@ -27,9 +27,9 @@ app.use(cors({
 
 
 
-app.use('/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1', apiV1);
-app.use('/api/v1/profiles', profileRoutes);
+// app.use('/api/v1/profiles', profileRoutes);
 app.use('/api/v1/support', supportRoutes);
 app.use('/api/v1/contact', contactRoutes);
 app.use('/api/v1/cv', cvRoutes);

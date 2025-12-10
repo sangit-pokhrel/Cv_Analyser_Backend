@@ -11,3 +11,4 @@ function validateRegister({ email, password }) {
 module.exports = {
   validateRegister
 };
+ 
