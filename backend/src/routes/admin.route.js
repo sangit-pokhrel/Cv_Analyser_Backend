@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
-const Job = require('../models/Job');
-const JobApplication = require('../models/JobApplication');
-const { requireAuth, permit } = require('../middleware/authMiddleware');
+const User = require('../models/user.model');
+const Job = require('../models/job.model');
+const JobApplication = require('../models/jobApplication.model');
+const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.get('/users', requireAuth, permit('admin'), async (req, res) => {
   try {
