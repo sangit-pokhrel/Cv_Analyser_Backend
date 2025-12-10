@@ -7,7 +7,8 @@ const {
   listUsers,
   updateMe,
   changePassword,
-  deactivateAccount
+  deactivateAccount,
+  hardDeleteAccount
 } = require('../controllers/user.controller');
 
 const { requireAuth, permit } = require('../middlewares/auth.middleware');
@@ -16,7 +17,8 @@ const { requireAuth, permit } = require('../middlewares/auth.middleware');
 router.get('/me', requireAuth, getMe);
 router.put('/me', requireAuth, updateMe);
 router.put('/me/change-password', requireAuth, changePassword);
-router.delete('/me', requireAuth, deactivateAccount);
+router.delete('/me/deactivate', requireAuth, deactivateAccount);
+router.delete('/me/delete', requireAuth, hardDeleteAccount);
 
 // Admin routes
 router.get('/', requireAuth, permit('admin'), listUsers);
