@@ -5,12 +5,12 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const authRoutes = require('./routes/auth.route');
-const apiV1 = require('./routes/indexRoutes');
-const profileRoutes = require('./routes/profileRoutes');
-const supportRoutes = require('./routes/supportRoutes');
-const contactRoutes = require('./routes/contactRoutes');
-const cvRoutes = require('./routes/cvRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+const apiV1 = require('./routes/index.route');
+const profileRoutes = require('./routes/profile.route');
+const supportRoutes = require('./routes/support.route');
+const contactRoutes = require('./routes/contact.route');
+const cvRoutes = require('./routes/cv.route');
+const adminRoutes = require('./routes/admin.route');
 
 
 const app = express();

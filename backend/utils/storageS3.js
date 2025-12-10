@@ -1,4 +1,4 @@
-// Minimal S3 uploader stub. Replace AWS credentials in env for production.
+
 const AWS = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 

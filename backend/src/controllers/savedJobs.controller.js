@@ -1,5 +1,5 @@
 
-const SavedJob = require('../models/SavedJob');
+const SavedJob = require('../models/savedJobs.model');
 async function saveJob(req, res) {
   try {
     const jobId = req.params.jobId;

@@ -1,8 +1,8 @@
 
 const sanitizeHtml = require('sanitize-html');
 const { v4: uuidv4 } = require('uuid');
-const SupportTicket = require('../models/SupportTicket');
-const SupportMessage = require('../models/SupportMessage');
+const SupportTicket = require('../models/supportTicket.model');
+const SupportMessage = require('../models/supportmessage.model');
 
 async function createTicket(req, res) {
   try {

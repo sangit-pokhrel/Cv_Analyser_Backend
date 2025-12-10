@@ -1,5 +1,5 @@
 const sanitizeHtml = require('sanitize-html');
-const UserProfile = require('../models/UserProfile');
+const UserProfile = require('../models/userProfile.model');
 
 async function getMyProfile(req, res) {
   try {

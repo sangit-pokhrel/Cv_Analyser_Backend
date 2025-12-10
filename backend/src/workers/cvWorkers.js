@@ -1,7 +1,7 @@
-// run this file separately: node src/workers/cvWorker.js
+
 require('dotenv').config();
-const cvQueue = require('../queues/cvQueue');
-const CVAnalysis = require('../models/CVAnalysis');
+const cvQueue = require('../queues/cvQueus');
+const CVAnalysis = require('../models/cvAnlalysis.model');
 
 cvQueue.process(async (job) => {
   const { analysisId } = job.data;

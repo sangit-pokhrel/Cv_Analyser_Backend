@@ -1,4 +1,4 @@
-const Job = require('../models/Job');
+const Job = require('../models/job.model');
 const sanitizeHtml = require('sanitize-html');
 
 async function createJob(req, res) {

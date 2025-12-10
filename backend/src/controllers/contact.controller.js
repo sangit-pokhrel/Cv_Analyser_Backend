@@ -1,5 +1,5 @@
 const sanitizeHtml = require('sanitize-html');
-const ContactInquiry = require('../models/ContactInquiry');
+const ContactInquiry = require('../models/contactInquiry.model');
 
 async function createContact(req, res) {
   try {

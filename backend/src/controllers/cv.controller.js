@@ -1,6 +1,6 @@
-const CVAnalysis = require('../models/CVAnalysis');
-const { uploadBufferToS3 } = require('../utils/storageS3');
-const cvQueue = require('../queues/cvQueue');
+const CVAnalysis = require('../models/cvAnlalysis.model');
+const { uploadBufferToS3 } = require('../../utils/storageS3');
+const cvQueue = require('../queues/cvQueus');
 
 // Accept multipart or JSON { cvUrl }
 async function analyzeCV(req, res) {
