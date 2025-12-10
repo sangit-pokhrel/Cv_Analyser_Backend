@@ -6,6 +6,13 @@ const cors = require('cors');
 
 const authRoutes = require('./routes/auth.route');
 const apiV1 = require('./routes/indexRoutes');
+const profileRoutes = require('./routes/profileRoutes');
+const supportRoutes = require('./routes/supportRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const cvRoutes = require('./routes/cvRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
+
 const app = express();
 
 app.use(helmet());
@@ -22,7 +29,11 @@ app.use(cors({
 
 app.use('/auth', authRoutes);
 app.use('/api/v1', apiV1);
-
+app.use('/api/v1/profiles', profileRoutes);
+app.use('/api/v1/support', supportRoutes);
+app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/cv', cvRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
 const { requireAuth } = require('./middlewares/auth.middleware');
 app.get('/protected', requireAuth, (req, res) => {
