@@ -8,8 +8,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }, // hashed
   firstName: { type: String },
   lastName: { type: String },
-  role: { type: String, enum: ['job_seeker', 'employer', 'admin'], default: 'job_seeker' },
-  status: { type: String, enum: ['active', 'pending_verification', 'disabled'], default: 'pending_verification' },
+  role: { type: String, enum: ['job_seeker', 'employer', 'admin', 'user'], default: 'job_seeker' },
+  status: { type: String, enum: ['active', 'pending_verification', 'rejected', 'deactivated', 'verified'], default: 'pending_verification' },
   resumeUrl: { type: String },
   skills: [{ type: String }],
   location: { type: String },

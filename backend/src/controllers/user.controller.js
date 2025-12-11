@@ -106,7 +106,7 @@ async function deactivateAccount(req, res) {
   try {
     const user = await User.findById(req.user._id);
 
-    user.status = "inactive";
+    user.status = "deactivated";
     await user.save();
 
     return res.json({ message: "Account deactivated" });
@@ -120,7 +120,7 @@ async function deactivateAccount(req, res) {
 // DELETE /users/me/hard
 async function hardDeleteAccount(req, res) {
   try {
-    const userId = req.user.id; // use .id, not _id
+    const userId = req.user.id; 
 
     const deleted = await User.findByIdAndDelete(userId);
 
