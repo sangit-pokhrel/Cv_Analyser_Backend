@@ -7,7 +7,7 @@ const signInWithGoogle = async () =>{
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const result = await signInWithPopup(auth, provider);
-      window.location.href = "/Home";
+      window.location.href = "/home";
     } catch (error) {
       console.log("Error during sign in with Google:", error);
     

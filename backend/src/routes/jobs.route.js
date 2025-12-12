@@ -5,8 +5,8 @@ const { requireAuth, permit } = require('../middlewares/auth.middleware');
 
 router.get('/', controller.listJobs);
 router.get('/:id', controller.getJob);
-router.post('/', requireAuth, permit('admin','user'), controller.createJob); // allow employers by role; adapt to your roles
-router.put('/:id', requireAuth, controller.updateJob);
-router.delete('/:id', requireAuth, controller.deleteJob);
+router.post('/', requireAuth, permit('admin','user'), controller.createJob);
+router.put('/:id', requireAuth, permit('admin','user'), controller.updateJob);
+router.delete('/:id', requireAuth, permit('admin','user'), controller.deleteJob);
 
 module.exports = router;

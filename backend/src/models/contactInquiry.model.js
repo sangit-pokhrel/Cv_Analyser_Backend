@@ -7,7 +7,7 @@ const contactSchema = new mongoose.Schema({
   phone: { type: String },
   subject: { type: String },
   message: { type: String },
-  inquiryType: { type: String, enum: ['general','support','partnership','feedback'], default: 'general' },
+  inquiryType: { type: String, enum: ['general','support','partnership','feedback','sales'], default: 'general' },
   status: { type: String, enum: ['new','contacted','resolved'], default: 'new' },
   attachmentUrl: { type: String }
 }, { timestamps: true });

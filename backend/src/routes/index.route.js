@@ -16,3 +16,10 @@ router.use('/cv', require('./cv.route'));
 router.use('/admin', require('./admin.route'));
 
 module.exports = router;
+
+
+
+
+
+
+
