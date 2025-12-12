@@ -1,22 +1,13 @@
+// src/components/admin/dashboard.tsx
 'use client';
 
-import { JSX, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
-
-// All the page imports required for the components
-import DashboardContent from './pages/DashboardContent';
-import MyAnalyses from './pages/MyAnalyses';
-import Applications from './pages/Applications';
-import SavedJobs from './pages/SavedJobs';
-import JobMatches from './pages/JobMatches';
-import Support from './pages/Support';
-import Skills from './pages/Skills';
-import Settings from './pages/Settings';
 
 export default function Dashboard() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<string>('Dashboard');
+  const pathname = usePathname();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const handleLogout = () => {
@@ -25,50 +16,32 @@ export default function Dashboard() {
   };
 
   const menuItems = [
-    { name: 'Dashboard', icon: '📊' },
-    { name: 'My Analyses', icon: '📝' },
-    { name: 'Applications', icon: '📋' },
-    { name: 'Saved Jobs', icon: '💼' },
-    { name: 'Job Matches', icon: '🎯' },
-    { name: 'Support', icon: '💬' },
-    { name: 'Skills', icon: '⚡' },
-    { name: 'Settings', icon: '⚙️' },
+    { name: 'Dashboard', icon: '📊', path: '/admin' },
+    { name: 'My Analyses', icon: '📝', path: '/admin/my-analyses' },
+    { name: 'Applications', icon: '📋', path: '/admin/applications' },
+    { name: 'Saved Jobs', icon: '💼', path: '/admin/saved-jobs' },
+    { name: 'Job Matches', icon: '🎯', path: '/admin/job-matches' },
+    { name: 'Support', icon: '💬', path: '/admin/support' },
+    { name: 'Skills', icon: '⚡', path: '/admin/skills' },
+    { name: 'Settings', icon: '⚙️', path: '/admin/settings' },
   ];
 
-  const renderContent = (): JSX.Element => {
-    switch (activeTab) {
-      case 'Dashboard':
-        return <DashboardContent />;
-      case 'My Analyses':
-        return <MyAnalyses />;
-      case 'Applications':
-        return <Applications />;
-      case 'Saved Jobs':
-        return <SavedJobs />;
-      case 'Job Matches':
-        return <JobMatches />;
-      case 'Support':
-        return <Support />;
-      case 'Skills':
-        return <Skills />;
-      case 'Settings':
-        return <Settings />;
-      default:
-        return <DashboardContent />;
-    }
+  const getActiveTab = () => {
+    const activeItem = menuItems.find(item => item.path === pathname);
+    return activeItem?.name || 'Dashboard';
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F0F8FF]">
+    <div className="flex min-h-screen bg-gray-50">
       <aside 
         className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 relative ${
           isSidebarCollapsed ? 'w-20' : 'w-80'
         }`}
       >
-     
+        {/* Collapse Button - Positioned on the right edge center */}
         <button
           onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-          className="absolute top-1/17 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
+          className="absolute top-1/2 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
         >
           <span className="text-xl text-gray-700">{isSidebarCollapsed ? '→' : '←'}</span>
         </button>
@@ -96,11 +69,11 @@ export default function Dashboard() {
             {menuItems.map((item) => (
               <li key={item.name}>
                 <button
-                  onClick={() => setActiveTab(item.name)}
+                  onClick={() => router.push(item.path)}
                   className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center ${
                     isSidebarCollapsed ? 'justify-center' : 'gap-3'
                   } ${
-                    activeTab === item.name
+                    pathname === item.path
                       ? 'text-blue-600 font-bold border-l-4 border-blue-600 bg-blue-50'
                       : 'text-gray-700 font-medium hover:bg-gray-50'
                   }`}
@@ -141,8 +114,8 @@ export default function Dashboard() {
       </aside>
 
       <main className="flex-1 p-6 overflow-y-auto">
-        <div className="max-w-[1600px] mx-auto scale-90 origin-top-left">
-          {renderContent()}
+        <div className="max-w-[1600px] mx-auto scale-90 origin-top-left w-[111%]">
+          
         </div>
       </main>
     </div>

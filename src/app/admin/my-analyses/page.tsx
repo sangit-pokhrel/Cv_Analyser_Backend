@@ -1,11 +1,12 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Dashboard from '@/components/admin/dashboard';
-import DashboardContent from '@/components/admin/pages/DashboardContent';
 
-export default function AdminPage() {
+import MyAnalyses from '@/components/admin/pages/MyAnalyses';
+
+export default function MyAnalysesPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,7 +14,7 @@ export default function AdminPage() {
     const adminToken = sessionStorage.getItem('adminToken');
     
     if (!adminToken) {
-      router.push('/admin/login');
+      router.push('/login');
     } else {
       setIsLoading(false);
     }
@@ -24,11 +25,11 @@ export default function AdminPage() {
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Loading Dashboard...</p>
+          <p className="text-gray-600 font-medium">Loading...</p>
         </div>
       </div>
     );
   }
 
-  return <DashboardContent />;
+  return <MyAnalyses />;
 }
