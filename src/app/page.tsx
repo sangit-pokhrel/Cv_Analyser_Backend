@@ -1,7 +1,9 @@
 import Image from "next/image";
 import "../globals/styles/style.color.css"
-import Registerpage from "@/components/Registerpage_component";
-import { Metadata } from "next";
+
+// Removed incorrect import for Metadata
+import HomeLayout from "./(site)/home/layout";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 
 export const metadata: Metadata = {
   title: "Register | Cv Saathi",
@@ -10,6 +12,6 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <Registerpage/>
+    <HomeLayout children={undefined} />
   );
 }

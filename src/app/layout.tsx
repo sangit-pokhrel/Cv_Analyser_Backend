@@ -30,17 +30,12 @@ export default function RootLayout({
     <html lang="en">
    
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased primary-bg`} style={{fontFamily:"Gotham"}} 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased primary-bg` }
       >
         <Toaster position="top-center" />
-        <ThemeProvider>
-      
-           {children}
-        
-         
-          
+        <ThemeProvider>     
+           {children}        
         </ThemeProvider>
-    
       </body>
     </html>
   );
