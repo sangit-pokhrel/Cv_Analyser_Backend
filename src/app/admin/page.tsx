@@ -1,4 +1,3 @@
-// src/app/admin/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -13,7 +12,7 @@ export default function AdminPage() {
     const adminToken = sessionStorage.getItem('adminToken');
     
     if (!adminToken) {
-      router.push('/login');
+      router.push('/admin/login');
     } else {
       setIsLoading(false);
     }

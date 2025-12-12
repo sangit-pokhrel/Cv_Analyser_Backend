@@ -1,11 +1,10 @@
-// src/components/admin/dashboard.tsx
 'use client';
 
 import { JSX, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-// Import your page components
+// All the page imports required for the components
 import DashboardContent from './pages/DashboardContent';
 import MyAnalyses from './pages/MyAnalyses';
 import Applications from './pages/Applications';
@@ -60,16 +59,16 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[#F0F8FF]">
       <aside 
         className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 relative ${
           isSidebarCollapsed ? 'w-20' : 'w-80'
         }`}
       >
-        {/* Collapse Button - Positioned on the right edge center */}
+     
         <button
           onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-          className="absolute top-1/2 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
+          className="absolute top-1/17 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
         >
           <span className="text-xl text-gray-700">{isSidebarCollapsed ? '→' : '←'}</span>
         </button>
