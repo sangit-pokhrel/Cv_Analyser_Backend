@@ -27,7 +27,7 @@ const Registerpage = ()=>{
             </div>
             <RegistrationForm/>
             <div className="flex justify-center items-center">
-              <p className="text-sm">Already have an account ? <Link href="/Login" className="text-blue-500 underline">Sign in</Link> </p>
+              <p className="text-sm">Already have an account ? <Link href="/login" className="text-blue-500 underline">Sign in</Link> </p>
             </div>
              
 

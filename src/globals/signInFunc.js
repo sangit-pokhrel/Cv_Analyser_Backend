@@ -11,7 +11,7 @@ const signInWithGoogle = async () =>{
       const result = await signInWithPopup(auth, provider);
       const token =await getIdToken(result.user,true);
       document.cookie = `firebaseToken=${token}: path=/;`;
-      window.location.href = "/Home";
+      window.location.href = "/home";
     } catch (error) {
       console.log("Error during sign in with Google:", error);
       toast.error("Google sign in unsuccessful")

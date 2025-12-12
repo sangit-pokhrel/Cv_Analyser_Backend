@@ -4,7 +4,7 @@ export default function proxy(req:NextRequest) {
   
   if (!token) {
   const loginUrl = req.nextUrl.clone();
-    loginUrl.pathname = "/Login";
+    loginUrl.pathname = "/login";
     return NextResponse.redirect(loginUrl);
   }
 
@@ -14,5 +14,5 @@ export default function proxy(req:NextRequest) {
 }
 
 export const config = {
-  matcher: ["/Home/:path*", "/Jobs/:path*"],
+  matcher: ["/home/:path*", "/jobs/:path*"],
 };

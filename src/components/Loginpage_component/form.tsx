@@ -68,7 +68,7 @@ type formdata={email:string,password:string};
                       {/* Aggrement checkbox */}
                       
                      <div className="flex justify-end">
-                      <Link href="/Login/resetPassword" className="text-sm text-blue-500 underline">Forgot password ?</Link>
+                      <Link href="/login/resetPassword" className="text-sm text-blue-500 underline">Forgot password ?</Link>
                      </div>
 
                      {/* submit button */}

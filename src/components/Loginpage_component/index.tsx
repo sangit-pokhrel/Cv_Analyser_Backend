@@ -25,7 +25,7 @@ const Loginpage = ()=>{
             </div>
             <LoginForm/>
             <div className="flex justify-center items-center">
-              <p className="text-sm">Don't have an account ? <Link href="/Register" className="text-blue-500 underline">Register Here</Link> </p>
+              <p className="text-sm">Don't have an account ? <Link href="/register" className="text-blue-500 underline">Register Here</Link> </p>
             </div>
              
 
