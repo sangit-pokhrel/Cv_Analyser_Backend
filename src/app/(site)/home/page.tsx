@@ -1,5 +1,5 @@
 import React from 'react';
-import { Metadata } from 'next';
+import Metadata  from 'next';
 import Homepage_component from '@/components/Homepage_component';
 export const metadata:Metadata = {
   

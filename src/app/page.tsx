@@ -4,6 +4,7 @@ import "../globals/styles/style.color.css"
 // Removed incorrect import for Metadata
 import HomeLayout from "./(site)/home/layout";
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+import Homepage_component from "@/components/Homepage_component";
 
 export const metadata: Metadata = {
   title: "Register | Cv Saathi",
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <HomeLayout children={undefined} />
+    <HomeLayout>
+      <Homepage_component />
+    </HomeLayout>
   );
 }
