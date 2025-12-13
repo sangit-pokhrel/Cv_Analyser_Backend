@@ -1,5 +1,5 @@
 
-import Metadata from "next";
+import type {Metadata} from "next";
 import Applications from '../../../components/user/pages/Applications';
 
 export const metadata: Metadata = {
