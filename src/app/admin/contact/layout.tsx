@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Contact Queries - CV Saathi",
-  description: "View your contact inquiries and support tickets",
+  title: "Contact Inquiries - CV Saathi User",
+  description: "Manage contact inquiries and support tickets",
 };
 
 export default function ContactInquiriesLayout({

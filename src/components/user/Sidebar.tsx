@@ -1,3 +1,6 @@
+
+
+// // src/components/admin/Sidebar.tsx
 // 'use client';
 
 // import { useState } from 'react';
@@ -19,8 +22,9 @@
 //     { name: 'Applications', icon: '📋', path: '/user/applications' },
 //     { name: 'Saved Jobs', icon: '💼', path: '/user/saved-jobs' },
 //     { name: 'Job Matches', icon: '🎯', path: '/user/job-matches' },
-//     { name: 'Support', icon: '💬', path: '/user/support' },
 //     { name: 'Skills', icon: '⚡', path: '/user/skills' },
+//     { name: 'Support', icon: '💬', path: '/user/support' },
+//     { name: 'Contact Inquiries', icon: '📧', path: '/user/contacts' },
 //     { name: 'Settings', icon: '⚙️', path: '/user/settings' },
 //   ];
 
@@ -33,7 +37,7 @@
 //       {/* Collapse Button */}
 //       <button
 //         onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-//         className="absolute top-1/17 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-blue-400 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
+//         className="absolute top-1/2 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
 //       >
 //         <span className="text-xl text-gray-700">{isSidebarCollapsed ? '→' : '←'}</span>
 //       </button>
@@ -79,7 +83,7 @@
 //         </ul>
 
 //         {!isSidebarCollapsed && (
-//           <div className="mt-4 bg-gray-50 rounded-2xl p-4">
+//           <div className="mt-8 bg-gray-50 rounded-2xl p-6">
 //             <p className="text-sm text-center mb-4 leading-relaxed">
 //               Are You Planning On Becoming<br />A Recruiter/Career Coach ?
 //             </p>
@@ -107,8 +111,7 @@
 //   );
 // }
 
-
-// src/components/admin/Sidebar.tsx
+// src/components/user/Sidebar.tsx
 'use client';
 
 import { useState } from 'react';
@@ -130,8 +133,9 @@ export default function Sidebar() {
     { name: 'Applications', icon: '📋', path: '/user/applications' },
     { name: 'Saved Jobs', icon: '💼', path: '/user/saved-jobs' },
     { name: 'Job Matches', icon: '🎯', path: '/user/job-matches' },
-    { name: 'Support', icon: '💬', path: '/user/support' },
     { name: 'Skills', icon: '⚡', path: '/user/skills' },
+    { name: 'Support', icon: '💬', path: '/user/support' },
+    { name: 'Contact Inquiries', icon: '📧', path: '/user/contacts' },
     { name: 'Settings', icon: '⚙️', path: '/user/settings' },
   ];
 
@@ -144,7 +148,7 @@ export default function Sidebar() {
       {/* Collapse Button */}
       <button
         onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-        className="absolute top-1/2 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
+        className="absolute top-1/13 -right-5 transform -translate-y-1/2 z-10 w-10 h-10 bg-white border-2 border-blue-400 rounded-full flex items-center justify-center hover:bg-gray-50 transition-all shadow-md"
       >
         <span className="text-xl text-gray-700">{isSidebarCollapsed ? '→' : '←'}</span>
       </button>
@@ -167,7 +171,18 @@ export default function Sidebar() {
         )}
       </div>
 
-      <nav className="flex-1 px-4 py-6 overflow-y-auto">
+      <nav className="flex-1 px-4 py-6 overflow-y-auto" style={{
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+        WebkitOverflowScrolling: 'touch'
+      }}>
+        <style jsx>{`
+          nav::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+          }
+        `}</style>
         <ul className="space-y-2">
           {menuItems.map((item) => (
             <li key={item.name}>
