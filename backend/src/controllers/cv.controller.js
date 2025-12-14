@@ -566,9 +566,200 @@ async function getLatestAnalysis(req, res) {
   }
 }
 
+
+/**
+ * List all CV analyses (Admin only)
+ * GET /cv/admin/analyses
+ */
+async function listAllAnalyses(req, res) {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        success: false,
+        error: 'Unauthorized'
+      });
+    }
+
+    // Admin check
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ 
+        success: false,
+        error: 'Forbidden',
+        message: 'Admin access required'
+      });
+    }
+
+    const { page = 1, limit = 20, status, userId } = req.query;
+    
+    const query = {};
+    
+    if (status && ['queued', 'processing', 'done', 'failed'].includes(status)) {
+      query.status = status;
+    }
+
+    if (userId) {
+      query.user = userId;
+    }
+
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const [docs, total] = await Promise.all([
+      CVAnalysis.find(query)
+        .populate('user', 'email firstName lastName')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(Number(limit)),
+      CVAnalysis.countDocuments(query)
+    ]);
+
+    return res.json({ 
+      success: true,
+      meta: {
+        total,
+        page: Number(page),
+        limit: Number(limit),
+        pages: Math.ceil(total / Number(limit))
+      },
+      data: docs 
+    });
+  } catch (err) {
+    console.error('❌ List All Analyses Error:', err);
+    return res.status(500).json({ 
+      success: false,
+      error: 'Unable to list analyses'
+    });
+  }
+}
+
+/**
+ * Delete CV analysis (Admin only)
+ * DELETE /cv/admin/analyses/:id
+ */
+async function deleteAnalysis(req, res) {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        success: false,
+        error: 'Unauthorized'
+      });
+    }
+
+    // Admin check
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ 
+        success: false,
+        error: 'Forbidden',
+        message: 'Admin access required'
+      });
+    }
+
+    const doc = await CVAnalysis.findById(req.params.id);
+    
+    if (!doc) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Analysis not found'
+      });
+    }
+
+    // Also delete related job matches
+    await JobMatch.deleteMany({ cvAnalysis: req.params.id });
+
+    await doc.deleteOne();
+
+    return res.json({ 
+      success: true,
+      message: 'CV analysis and related job matches deleted successfully'
+    });
+  } catch (err) {
+    console.error('❌ Delete Analysis Error:', err);
+    
+    if (err.name === 'CastError') {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Invalid analysis ID'
+      });
+    }
+    
+    return res.status(500).json({ 
+      success: false,
+      error: 'Unable to delete analysis'
+    });
+  }
+}
+
+/**
+ * Update CV analysis (Admin only)
+ * PUT /cv/admin/analyses/:id
+ */
+async function updateAnalysis(req, res) {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        success: false,
+        error: 'Unauthorized'
+      });
+    }
+
+    // Admin check
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ 
+        success: false,
+        error: 'Forbidden',
+        message: 'Admin access required'
+      });
+    }
+
+    const { status, overallScore, strengths, weaknesses, recommendations, skillsDetected } = req.body;
+
+    const doc = await CVAnalysis.findById(req.params.id);
+    
+    if (!doc) {
+      return res.status(404).json({ 
+        success: false,
+        error: 'Analysis not found'
+      });
+    }
+
+    // Update fields
+    if (status) doc.status = status;
+    if (overallScore !== undefined) doc.overallScore = overallScore;
+    if (strengths) doc.strengths = strengths;
+    if (weaknesses) doc.weaknesses = weaknesses;
+    if (recommendations) doc.recommendations = recommendations;
+    if (skillsDetected) doc.skillsDetected = skillsDetected;
+
+    await doc.save();
+
+    return res.json({ 
+      success: true,
+      message: 'CV analysis updated successfully',
+      data: doc
+    });
+  } catch (err) {
+    console.error('❌ Update Analysis Error:', err);
+    
+    if (err.name === 'CastError') {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Invalid analysis ID'
+      });
+    }
+    
+    return res.status(500).json({ 
+      success: false,
+      error: 'Unable to update analysis'
+    });
+  }
+}
+
+// Update exports
 module.exports = { 
   analyzeCV, 
   listAnalyses, 
   getAnalysis,
-  getLatestAnalysis
+  getLatestAnalysis,
+  listAllAnalyses,
+  deleteAnalysis,
+  updateAnalysis
 };
