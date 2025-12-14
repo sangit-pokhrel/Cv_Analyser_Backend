@@ -4,10 +4,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const authRoutes = require('./routes/auth.route');
 const apiV1 = require('./routes/index.route');
-
-const adminRoutes = require('./routes/admin.route');
 
 
 const app = express();
@@ -24,10 +21,8 @@ app.use(cors({
 
 
 
-app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1', apiV1);
 
-app.use('/api/v1/admin', adminRoutes);
 
 const { requireAuth } = require('./middlewares/auth.middleware');
 app.get('/protected', requireAuth, (req, res) => {
