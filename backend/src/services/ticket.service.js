@@ -1,6 +1,6 @@
 const Redis = require('ioredis');
 const SupportTicket = require('../models/supportTicket.model');
-const SupportMessage = require('../models/supportmessage.model');
+const SupportMessage = require('../models/supportMessage.model');
 
 const redis = new Redis({
   host: process.env.REDIS_HOST || 'localhost',
@@ -26,40 +26,46 @@ const CACHE_PREFIX = 'ticket:';
 /**
  * Get ticket from cache or database
  */
+/**
+ * Get ticket by ID with caching
+ */
 async function getTicketById(ticketId, populate = true) {
+  const cacheKey = `ticket:${ticketId}`;
+
   try {
     // Try cache first
-    const cacheKey = `${CACHE_PREFIX}${ticketId}`;
     const cached = await redis.get(cacheKey);
-    
     if (cached) {
       console.log(`✅ Cache hit for ticket ${ticketId}`);
       return JSON.parse(cached);
     }
-    
+
     console.log(`❌ Cache miss for ticket ${ticketId}`);
-    
-    // Fetch from database
+
+    // Fetch from DB
     let query = SupportTicket.findById(ticketId);
+    
     if (populate) {
-      query = query.populate('user', 'email firstName lastName role')
-                   .populate('assignedTo', 'email firstName lastName role');
+      query = query
+        .populate('user', 'email firstName lastName role')
+        .populate('primaryAgent', 'email firstName lastName role averageRating totalRatings')
+        .populate('assignedAgents.agent', 'email firstName lastName role');
     }
-    
+
     const ticket = await query;
-    
-    if (ticket) {
-      // Store in cache
-      await redis.setex(cacheKey, CACHE_TTL, JSON.stringify(ticket));
+
+    if (!ticket) {
+      return null; // Don't cache null
     }
-    
+
+    // Cache for 5 minutes
+    await redis.setex(cacheKey, 300, JSON.stringify(ticket));
+
     return ticket;
   } catch (error) {
-    console.error('Error getting ticket:', error);
-    // Fallback to database only
-    return await SupportTicket.findById(ticketId)
-      .populate('user', 'email firstName lastName role')
-      .populate('assignedTo', 'email firstName lastName role');
+    console.error(`Error getting ticket ${ticketId}:`, error);
+    // Return null instead of throwing to allow fallback
+    return null;
   }
 }
 
