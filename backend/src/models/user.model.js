@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
   lastLoginAt: { type: Date },
   failedLoginAttempts: { type: Number, default: 0 },
   lockUntil: { type: Date },
-  tokenVersion: { type: Number, default: 0 }
+  tokenVersion: { type: Number, default: 0 },
+  phoneNumber: { type: String },
+  profilePictureUrl: { type: String },
+  passwordResetToken: { type: String },
+  passwordResetExpires: { type: Date },
 }, {
   timestamps: true
 });
