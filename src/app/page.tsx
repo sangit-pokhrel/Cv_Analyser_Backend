@@ -2,6 +2,7 @@ import Image from "next/image";
 import "../globals/styles/style.color.css"
 import Registerpage from "@/components/Registerpage_component";
 import { Metadata } from "next";
+import CVAnalysisPage from "./(site)/Analyse/page";
 
 export const metadata: Metadata = {
   title: "Register | Cv Saathi",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <Registerpage/>
+    // <Registerpage/>
+    <CVAnalysisPage />
   );
 }

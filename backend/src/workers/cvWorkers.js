@@ -86,16 +86,23 @@
 // }
 
 // module.exports = processCVAnalysis;
-
-
 const CVAnalysis = require('../models/cvAnlalysis.model');
 const User = require('../models/user.model');
 const { performCVAnalysis } = require('../services/cvAnalysis.service');
 const { generateJobMatches } = require('../controllers/jobs.controller');
 
 /**
- * Process CV Analysis Job
- * This function is called by Bull Queue for each job
+ * Emit socket event helper
+ */
+function emitProgress(analysisId, data) {
+  if (global.io) {
+    global.io.to(`analysis-${analysisId}`).emit('analysis-progress', data);
+    console.log(`📡 Emitted to analysis-${analysisId}:`, data.message);
+  }
+}
+
+/**
+ * Process CV Analysis Job with Real-time Updates
  */
 async function processCVAnalysis(job) {
   const { analysisId, userId, cvUrl } = job.data;
@@ -108,7 +115,14 @@ async function processCVAnalysis(job) {
   console.log(`========================================\n`);
 
   try {
-    // 1. Get analysis record
+    // Step 1: Get analysis record
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 5,
+      message: 'Initializing analysis...',
+      step: 'init'
+    });
+
     const analysis = await CVAnalysis.findById(analysisId).populate('user');
     
     if (!analysis) {
@@ -117,14 +131,32 @@ async function processCVAnalysis(job) {
 
     console.log(`📄 Found analysis for user: ${analysis.user?.email || 'Unknown'}`);
 
-    // 2. Update status to processing
+    // Step 2: Update status to processing
     analysis.status = 'processing';
     await analysis.save();
     console.log(`🔄 Status updated to 'processing'`);
 
-    // 3. Perform AI analysis
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 10,
+      message: 'Downloading CV from cloud storage...',
+      step: 'download'
+    });
+
+    // Step 3: Perform AI analysis
     console.log(`🤖 Starting AI analysis...`);
-    const result = await performCVAnalysis(analysis.cvFileUrl);
+    
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 20,
+      message: 'CV downloaded. Extracting text...',
+      step: 'extract'
+    });
+
+    const result = await performCVAnalysis(analysis.cvFileUrl, (progressData) => {
+      // Callback for progress updates from AI service
+      emitProgress(analysisId, progressData);
+    });
 
     if (!result.success) {
       console.error(`❌ AI Analysis failed: ${result.error}`);
@@ -132,6 +164,14 @@ async function processCVAnalysis(job) {
       analysis.status = 'failed';
       analysis.errorMessage = result.error;
       await analysis.save();
+
+      emitProgress(analysisId, {
+        status: 'failed',
+        progress: 0,
+        message: `Analysis failed: ${result.error}`,
+        step: 'error',
+        error: result.error
+      });
       
       throw new Error(result.error);
     }
@@ -140,7 +180,14 @@ async function processCVAnalysis(job) {
     console.log(`   Score: ${result.analysis.overallScore}/100`);
     console.log(`   Skills: ${result.analysis.skillsDetected?.length || 0}`);
 
-    // 4. Save results
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 80,
+      message: 'Saving analysis results...',
+      step: 'save'
+    });
+
+    // Step 4: Save results
     analysis.status = 'done';
     analysis.analysisResult = result.analysis;
     analysis.overallScore = result.analysis.overallScore;
@@ -154,7 +201,14 @@ async function processCVAnalysis(job) {
     await analysis.save();
     console.log(`💾 Results saved to database`);
 
-    // 5. Update user skills
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 85,
+      message: 'Updating user profile with detected skills...',
+      step: 'update-profile'
+    });
+
+    // Step 5: Update user skills
     if (analysis.user && result.analysis.skillsDetected?.length > 0) {
       try {
         await User.findByIdAndUpdate(
@@ -171,7 +225,14 @@ async function processCVAnalysis(job) {
       }
     }
 
-    // 6. Generate job matches
+    emitProgress(analysisId, {
+      status: 'processing',
+      progress: 90,
+      message: 'Generating job recommendations...',
+      step: 'job-matching'
+    });
+
+    // Step 6: Generate job matches
     console.log(`🎯 Generating job matches...`);
     try {
       await generateJobMatches(analysisId);
@@ -179,6 +240,24 @@ async function processCVAnalysis(job) {
     } catch (error) {
       console.error(`❌ Job matching failed:`, error.message);
     }
+
+    // Step 7: Send completion event with full results
+    emitProgress(analysisId, {
+      status: 'done',
+      progress: 100,
+      message: 'Analysis completed successfully!',
+      step: 'complete',
+      data: {
+        analysisId: analysis._id,
+        overallScore: analysis.overallScore,
+        skillsDetected: analysis.skillsDetected,
+        strengths: analysis.strengths,
+        weaknesses: analysis.weaknesses,
+        recommendations: analysis.recommendations,
+        extractedData: analysis.extractedData,
+        analyzedAt: analysis.analyzedAt
+      }
+    });
 
     console.log(`\n✅ CV Analysis Job #${job.id} COMPLETED!\n`);
     
@@ -196,6 +275,14 @@ async function processCVAnalysis(job) {
       await CVAnalysis.findByIdAndUpdate(analysisId, {
         status: 'failed',
         errorMessage: error.message
+      });
+
+      emitProgress(analysisId, {
+        status: 'failed',
+        progress: 0,
+        message: `Analysis failed: ${error.message}`,
+        step: 'error',
+        error: error.message
       });
     } catch (updateError) {
       console.error('Failed to update status:', updateError.message);
