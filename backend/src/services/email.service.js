@@ -1,0 +1,271 @@
+const nodemailer = require('nodemailer');
+
+// Create transporter
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT, 10),
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+// Verify connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('❌ Email transporter error:', error);
+  } else {
+    console.log('✅ Email server is ready to send messages');
+  }
+});
+
+/**
+ * Send email helper
+ */
+async function sendEmail({ to, subject, html, text }) {
+  try {
+    const info = await transporter.sendMail({
+      from: `"CvSync Support" <${process.env.EMAIL_FROM}>`,
+      to,
+      subject,
+      text,
+      html,
+    });
+
+    console.log(`📧 Email sent to ${to}: ${info.messageId}`);
+    return { success: true, messageId: info.messageId };
+  } catch (error) {
+    console.error(`❌ Email send error to ${to}:`, error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
+ * Email Templates
+ */
+
+// 1. Ticket Created - User Confirmation
+function ticketCreatedUserEmail(ticket, user) {
+  return {
+    to: user.email,
+    subject: `Ticket Created: ${ticket.ticketNumber} - ${ticket.subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #2563eb;">Support Ticket Created</h2>
+        <p>Hi ${user.firstName || 'there'},</p>
+        <p>Your support ticket has been created successfully. Our team will review it shortly.</p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <p style="margin: 5px 0;"><strong>Ticket Number:</strong> ${ticket.ticketNumber}</p>
+          <p style="margin: 5px 0;"><strong>Subject:</strong> ${ticket.subject}</p>
+          <p style="margin: 5px 0;"><strong>Priority:</strong> <span style="text-transform: capitalize;">${ticket.priority}</span></p>
+          <p style="margin: 5px 0;"><strong>Status:</strong> <span style="text-transform: capitalize;">${ticket.status.replace('_', ' ')}</span></p>
+          <p style="margin: 5px 0;"><strong>Created:</strong> ${new Date(ticket.createdAt).toLocaleString()}</p>
+        </div>
+        
+        <p><strong>Your message:</strong></p>
+        <p style="background: #ffffff; padding: 15px; border-left: 4px solid #2563eb;">${ticket.description}</p>
+        
+        <p>We'll notify you as soon as an agent is assigned to your ticket.</p>
+        
+        <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+          You can view your ticket status at any time by logging into your account.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #6b7280; font-size: 12px;">
+          CvSync Support Team<br>
+          This is an automated message, please do not reply directly to this email.
+        </p>
+      </div>
+    `,
+    text: `Support Ticket Created\n\nHi ${user.firstName || 'there'},\n\nYour support ticket has been created.\n\nTicket: ${ticket.ticketNumber}\nSubject: ${ticket.subject}\nPriority: ${ticket.priority}\n\nYour message: ${ticket.description}\n\nWe'll notify you when an agent is assigned.`
+  };
+}
+
+// 2. Ticket Created - Agent Notification
+function ticketCreatedAgentEmail(ticket, user, agent) {
+  return {
+    to: agent.email,
+    subject: `New Support Ticket: ${ticket.ticketNumber} - ${ticket.subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #dc2626;">🎫 New Support Ticket</h2>
+        <p>Hi ${agent.firstName},</p>
+        <p>A new support ticket requires your attention.</p>
+        
+        <div style="background: #fef2f2; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #dc2626;">
+          <p style="margin: 5px 0;"><strong>Ticket:</strong> ${ticket.ticketNumber}</p>
+          <p style="margin: 5px 0;"><strong>Subject:</strong> ${ticket.subject}</p>
+          <p style="margin: 5px 0;"><strong>Priority:</strong> <span style="text-transform: uppercase; color: ${ticket.priority === 'urgent' ? '#dc2626' : ticket.priority === 'high' ? '#ea580c' : '#2563eb'};">${ticket.priority}</span></p>
+          <p style="margin: 5px 0;"><strong>Category:</strong> ${ticket.category}</p>
+          <p style="margin: 5px 0;"><strong>From:</strong> ${user.firstName} ${user.lastName} (${user.email})</p>
+          <p style="margin: 5px 0;"><strong>Created:</strong> ${new Date(ticket.createdAt).toLocaleString()}</p>
+        </div>
+        
+        <p><strong>Customer message:</strong></p>
+        <p style="background: #ffffff; padding: 15px; border: 1px solid #e5e7eb; border-radius: 4px;">${ticket.description}</p>
+        
+        <div style="margin: 30px 0; text-align: center;">
+          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}?action=accept" 
+             style="display: inline-block; padding: 12px 30px; background: #16a34a; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 5px;">
+            ✅ Accept Ticket
+          </a>
+          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}?action=decline" 
+             style="display: inline-block; padding: 12px 30px; background: #dc2626; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 5px;">
+            ❌ Decline
+          </a>
+        </div>
+        
+        <p style="color: #6b7280; font-size: 14px;">
+          Click "Accept" to be assigned as the primary agent for this ticket.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #6b7280; font-size: 12px;">
+          CvSync Support Team
+        </p>
+      </div>
+    `,
+    text: `New Support Ticket: ${ticket.ticketNumber}\n\nSubject: ${ticket.subject}\nPriority: ${ticket.priority}\nFrom: ${user.email}\n\n${ticket.description}\n\nLog in to accept or decline this ticket.`
+  };
+}
+
+// 3. Agent Accepted Ticket - User Notification
+function agentAcceptedEmail(ticket, user, agent) {
+  return {
+    to: user.email,
+    subject: `Agent Assigned: ${ticket.ticketNumber} - ${agent.firstName} is now helping you`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #16a34a;">✅ Agent Assigned to Your Ticket</h2>
+        <p>Hi ${user.firstName || 'there'},</p>
+        <p>Good news! An agent has been assigned to your support ticket.</p>
+        
+        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #16a34a;">
+          <p style="margin: 5px 0;"><strong>Ticket:</strong> ${ticket.ticketNumber}</p>
+          <p style="margin: 5px 0;"><strong>Subject:</strong> ${ticket.subject}</p>
+          <p style="margin: 5px 0;"><strong>Assigned Agent:</strong> ${agent.firstName} ${agent.lastName}</p>
+          <p style="margin: 5px 0;"><strong>Status:</strong> In Progress</p>
+        </div>
+        
+        <p>${agent.firstName} will review your ticket and respond shortly. You'll receive an email notification when they reply.</p>
+        
+        <div style="margin: 30px 0; text-align: center;">
+          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}" 
+             style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+            View Ticket
+          </a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #6b7280; font-size: 12px;">
+          CvSync Support Team
+        </p>
+      </div>
+    `,
+    text: `Agent Assigned!\n\nTicket: ${ticket.ticketNumber}\nAgent: ${agent.firstName} ${agent.lastName}\n\n${agent.firstName} will respond to your ticket shortly.`
+  };
+}
+
+// 4. New Message - Notification
+function newMessageEmail(ticket, message, recipient, sender) {
+  const isUserRecipient = recipient.role === 'job_seeker' || recipient.role === 'employer';
+  
+  return {
+    to: recipient.email,
+    subject: `New Reply: ${ticket.ticketNumber} - ${ticket.subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #2563eb;">💬 New Message on Your Ticket</h2>
+        <p>Hi ${recipient.firstName},</p>
+        <p>${isUserRecipient ? 'An agent' : 'The customer'} has replied to ticket <strong>${ticket.ticketNumber}</strong>.</p>
+        
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
+          <p style="margin: 5px 0; color: #6b7280; font-size: 14px;">
+            <strong>${sender.firstName} ${sender.lastName}</strong> • ${new Date(message.createdAt).toLocaleString()}
+          </p>
+          <p style="margin: 15px 0; background: white; padding: 15px; border-radius: 4px;">${message.message}</p>
+        </div>
+        
+        ${message.attachments && message.attachments.length > 0 ? `
+          <p><strong>Attachments:</strong></p>
+          <ul>
+            ${message.attachments.map(att => `<li><a href="${att.url}">${att.filename}</a></li>`).join('')}
+          </ul>
+        ` : ''}
+        
+        <div style="margin: 30px 0; text-align: center;">
+          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}" 
+             style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+            Reply to Message
+          </a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #6b7280; font-size: 12px;">
+          CvSync Support Team
+        </p>
+      </div>
+    `,
+    text: `New message on ticket ${ticket.ticketNumber}\n\nFrom: ${sender.firstName} ${sender.lastName}\n\n${message.message}`
+  };
+}
+
+// 5. Ticket Resolved - User Notification
+function ticketResolvedEmail(ticket, user) {
+  return {
+    to: user.email,
+    subject: `Ticket Resolved: ${ticket.ticketNumber} - ${ticket.subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #16a34a;">✅ Your Ticket Has Been Resolved</h2>
+        <p>Hi ${user.firstName || 'there'},</p>
+        <p>Your support ticket has been marked as resolved.</p>
+        
+        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <p style="margin: 5px 0;"><strong>Ticket:</strong> ${ticket.ticketNumber}</p>
+          <p style="margin: 5px 0;"><strong>Subject:</strong> ${ticket.subject}</p>
+          <p style="margin: 5px 0;"><strong>Resolved:</strong> ${new Date(ticket.resolvedAt).toLocaleString()}</p>
+        </div>
+        
+        <p><strong>How was your experience?</strong></p>
+        <p>We'd love to hear your feedback. Please rate your support experience:</p>
+        
+        <div style="margin: 20px 0; text-align: center;">
+          ${[5, 4, 3, 2, 1].map(rating => `
+            <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}/rate?rating=${rating}" 
+               style="display: inline-block; padding: 10px 15px; margin: 5px; background: #fbbf24; color: white; text-decoration: none; border-radius: 4px; font-size: 20px;">
+              ${'⭐'.repeat(rating)}
+            </a>
+          `).join('')}
+        </div>
+        
+        <p>If your issue is not fully resolved, you can reopen this ticket at any time.</p>
+        
+        <div style="margin: 30px 0; text-align: center;">
+          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/support/tickets/${ticket._id}" 
+             style="display: inline-block; padding: 12px 30px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+            View Ticket
+          </a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #6b7280; font-size: 12px;">
+          CvSync Support Team
+        </p>
+      </div>
+    `,
+    text: `Your ticket ${ticket.ticketNumber} has been resolved.\n\nPlease rate your experience by visiting your ticket page.`
+  };
+}
+
+module.exports = {
+  sendEmail,
+  ticketCreatedUserEmail,
+  ticketCreatedAgentEmail,
+  agentAcceptedEmail,
+  newMessageEmail,
+  ticketResolvedEmail
+};
