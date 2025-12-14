@@ -1,3 +1,123 @@
+// // const CVAnalysis = require('../models/cvAnlalysis.model');
+// // const { uploadBufferToS3 } = require('../../utils/storageS3');
+// // const cvQueue = require('../queues/cvQueus');
+
+// // // Analyze CV
+// // async function analyzeCV(req, res) {
+// //   try {
+// //     let cvUrl;
+    
+// //     if (req.file) {
+// //       // Uploaded file via multer memory storage
+// //       cvUrl = await uploadBufferToS3(
+// //         req.file.buffer, 
+// //         req.file.originalname, 
+// //         req.file.mimetype, 
+// //         'cvs'
+// //       );
+// //     } else if (req.body.cvUrl) {
+// //       cvUrl = req.body.cvUrl;
+// //     } else {
+// //       return res.status(400).json({ error: 'CV file or cvUrl required' });
+// //     }
+
+// //     // Check if user already has a pending/processing analysis
+// //     const existingAnalysis = await CVAnalysis.findOne({
+// //       user: req.user._id,
+// //       status: { $in: ['queued', 'processing'] }
+// //     });
+
+// //     if (existingAnalysis) {
+// //       return res.status(400).json({ 
+// //         error: 'You already have a CV analysis in progress',
+// //         analysisId: existingAnalysis._id
+// //       });
+// //     }
+
+// //     const record = await CVAnalysis.create({
+// //       user: req.user._id,
+// //       cvFileUrl: cvUrl,
+// //       status: 'queued'
+// //     });
+
+// //     // Enqueue background job for analysis
+// //     await cvQueue.add(
+// //       { analysisId: record._id }, 
+// //       { attempts: 3, backoff: 5000 }
+// //     );
+
+// //     return res.status(202).json({ 
+// //       analysisId: record._id, 
+// //       status: 'queued',
+// //       message: 'CV analysis queued successfully'
+// //     });
+// //   } catch (err) {
+// //     console.error(err);
+// //     return res.status(500).json({ error: 'Unable to enqueue CV analysis' });
+// //   }
+// // }
+
+// // // List user's CV analyses
+// // async function listAnalyses(req, res) {
+// //   try {
+// //     const docs = await CVAnalysis.find({ user: req.user._id })
+// //       .sort({ createdAt: -1 })
+// //       .limit(20); // Limit to last 20 analyses
+
+// //     return res.json({ data: docs });
+// //   } catch (err) {
+// //     console.error(err);
+// //     return res.status(500).json({ error: 'Unable to list analyses' });
+// //   }
+// // }
+
+// // // Get specific analysis
+// // async function getAnalysis(req, res) {
+// //   try {
+// //     const doc = await CVAnalysis.findById(req.params.id);
+    
+// //     if (!doc) return res.status(404).json({ error: 'Analysis not found' });
+    
+// //     // Authorization check
+// //     if (doc.user && req.user) {
+// //       if (doc.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+// //         return res.status(403).json({ error: 'Forbidden' });
+// //       }
+// //     }
+
+// //     return res.json({ data: doc });
+// //   } catch (err) {
+// //     console.error(err);
+// //     return res.status(500).json({ error: 'Unable to fetch analysis' });
+// //   }
+// // }
+
+// // // Get latest completed analysis for user
+// // async function getLatestAnalysis(req, res) {
+// //   try {
+// //     const doc = await CVAnalysis.findOne({
+// //       user: req.user._id,
+// //       status: 'done'
+// //     }).sort({ analyzedAt: -1 });
+
+// //     if (!doc) {
+// //       return res.status(404).json({ error: 'No completed analysis found' });
+// //     }
+
+// //     return res.json({ data: doc });
+// //   } catch (err) {
+// //     console.error(err);
+// //     return res.status(500).json({ error: 'Unable to fetch latest analysis' });
+// //   }
+// // }
+
+// // module.exports = { 
+// //   analyzeCV, 
+// //   listAnalyses, 
+// //   getAnalysis,
+// //   getLatestAnalysis
+// // };
+
 // const CVAnalysis = require('../models/cvAnlalysis.model');
 // const { uploadBufferToS3 } = require('../../utils/storageS3');
 // const cvQueue = require('../queues/cvQueus');
@@ -7,18 +127,29 @@
 //   try {
 //     let cvUrl;
     
+//     // Check if file was uploaded via multipart/form-data
 //     if (req.file) {
-//       // Uploaded file via multer memory storage
+//       console.log('File uploaded:', req.file.originalname);
+      
+//       // Upload to Cloudinary
 //       cvUrl = await uploadBufferToS3(
 //         req.file.buffer, 
 //         req.file.originalname, 
 //         req.file.mimetype, 
 //         'cvs'
 //       );
-//     } else if (req.body.cvUrl) {
+      
+//       console.log('CV uploaded to Cloudinary:', cvUrl);
+      
+//     } else if (req.body && req.body.cvUrl) {
+//       // Alternative: CV URL provided directly
 //       cvUrl = req.body.cvUrl;
+//       console.log('Using provided CV URL:', cvUrl);
+      
 //     } else {
-//       return res.status(400).json({ error: 'CV file or cvUrl required' });
+//       return res.status(400).json({ 
+//         error: 'CV file or cvUrl required. Please upload a PDF file.' 
+//       });
 //     }
 
 //     // Check if user already has a pending/processing analysis
@@ -30,30 +161,46 @@
 //     if (existingAnalysis) {
 //       return res.status(400).json({ 
 //         error: 'You already have a CV analysis in progress',
-//         analysisId: existingAnalysis._id
+//         analysisId: existingAnalysis._id,
+//         status: existingAnalysis.status
 //       });
 //     }
 
+//     // Create analysis record
 //     const record = await CVAnalysis.create({
 //       user: req.user._id,
 //       cvFileUrl: cvUrl,
 //       status: 'queued'
 //     });
 
+//     console.log('CV analysis record created:', record._id);
+
 //     // Enqueue background job for analysis
 //     await cvQueue.add(
-//       { analysisId: record._id }, 
-//       { attempts: 3, backoff: 5000 }
+//       { analysisId: record._id.toString() }, 
+//       { 
+//         attempts: 3, 
+//         backoff: {
+//           type: 'exponential',
+//           delay: 5000
+//         }
+//       }
 //     );
+
+//     console.log('CV analysis job queued:', record._id);
 
 //     return res.status(202).json({ 
 //       analysisId: record._id, 
 //       status: 'queued',
-//       message: 'CV analysis queued successfully'
+//       message: 'CV analysis queued successfully. Check back in 30-60 seconds.'
 //     });
+    
 //   } catch (err) {
-//     console.error(err);
-//     return res.status(500).json({ error: 'Unable to enqueue CV analysis' });
+//     console.error('CV Analysis Error:', err);
+//     return res.status(500).json({ 
+//       error: 'Unable to enqueue CV analysis',
+//       details: err.message 
+//     });
 //   }
 // }
 
@@ -64,9 +211,12 @@
 //       .sort({ createdAt: -1 })
 //       .limit(20); // Limit to last 20 analyses
 
-//     return res.json({ data: docs });
+//     return res.json({ 
+//       total: docs.length,
+//       data: docs 
+//     });
 //   } catch (err) {
-//     console.error(err);
+//     console.error('List Analyses Error:', err);
 //     return res.status(500).json({ error: 'Unable to list analyses' });
 //   }
 // }
@@ -76,7 +226,9 @@
 //   try {
 //     const doc = await CVAnalysis.findById(req.params.id);
     
-//     if (!doc) return res.status(404).json({ error: 'Analysis not found' });
+//     if (!doc) {
+//       return res.status(404).json({ error: 'Analysis not found' });
+//     }
     
 //     // Authorization check
 //     if (doc.user && req.user) {
@@ -87,7 +239,7 @@
 
 //     return res.json({ data: doc });
 //   } catch (err) {
-//     console.error(err);
+//     console.error('Get Analysis Error:', err);
 //     return res.status(500).json({ error: 'Unable to fetch analysis' });
 //   }
 // }
@@ -101,12 +253,15 @@
 //     }).sort({ analyzedAt: -1 });
 
 //     if (!doc) {
-//       return res.status(404).json({ error: 'No completed analysis found' });
+//       return res.status(404).json({ 
+//         error: 'No completed analysis found',
+//         message: 'Please upload and analyze your CV first'
+//       });
 //     }
 
 //     return res.json({ data: doc });
 //   } catch (err) {
-//     console.error(err);
+//     console.error('Get Latest Analysis Error:', err);
 //     return res.status(500).json({ error: 'Unable to fetch latest analysis' });
 //   }
 // }
@@ -117,42 +272,76 @@
 //   getAnalysis,
 //   getLatestAnalysis
 // };
-
 const CVAnalysis = require('../models/cvAnlalysis.model');
 const { uploadBufferToS3 } = require('../../utils/storageS3');
 const cvQueue = require('../queues/cvQueus');
 
-// Analyze CV
+/**
+ * Analyze CV
+ * POST /cv/analyze
+ * Requires authentication
+ * Accepts: multipart/form-data with 'cv' file (PDF) OR JSON with 'cvUrl'
+ */
 async function analyzeCV(req, res) {
   try {
-    let cvUrl;
-    
-    // Check if file was uploaded via multipart/form-data
-    if (req.file) {
-      console.log('File uploaded:', req.file.originalname);
-      
-      // Upload to Cloudinary
-      cvUrl = await uploadBufferToS3(
-        req.file.buffer, 
-        req.file.originalname, 
-        req.file.mimetype, 
-        'cvs'
-      );
-      
-      console.log('CV uploaded to Cloudinary:', cvUrl);
-      
-    } else if (req.body && req.body.cvUrl) {
-      // Alternative: CV URL provided directly
-      cvUrl = req.body.cvUrl;
-      console.log('Using provided CV URL:', cvUrl);
-      
-    } else {
-      return res.status(400).json({ 
-        error: 'CV file or cvUrl required. Please upload a PDF file.' 
+    // Verify user is authenticated
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Please login to analyze your CV'
       });
     }
 
-    // Check if user already has a pending/processing analysis
+    let cvUrl;
+    
+    // Option 1: File uploaded via multipart/form-data
+    if (req.file) {
+      console.log(`📄 File uploaded: ${req.file.originalname} (${req.file.size} bytes)`);
+      
+      try {
+        // Upload to Cloudinary
+        cvUrl = await uploadBufferToS3(
+          req.file.buffer, 
+          req.file.originalname, 
+          req.file.mimetype, 
+          'cvs'
+        );
+        
+        console.log(`☁️  CV uploaded to Cloudinary: ${cvUrl}`);
+      } catch (uploadError) {
+        console.error('Cloudinary upload error:', uploadError);
+        return res.status(500).json({ 
+          error: 'File upload failed',
+          message: 'Could not upload CV to storage. Please try again.',
+          details: uploadError.message
+        });
+      }
+      
+    } 
+    // Option 2: CV URL provided directly (for external URLs)
+    else if (req.body && req.body.cvUrl) {
+      cvUrl = req.body.cvUrl;
+      console.log(`🔗 Using provided CV URL: ${cvUrl}`);
+      
+      // Basic URL validation
+      try {
+        new URL(cvUrl);
+      } catch (urlError) {
+        return res.status(400).json({ 
+          error: 'Invalid URL',
+          message: 'The provided CV URL is not valid'
+        });
+      }
+    } 
+    // No file or URL provided
+    else {
+      return res.status(400).json({ 
+        error: 'CV file or URL required',
+        message: 'Please upload a PDF file or provide a CV URL'
+      });
+    }
+
+    // Check if user already has a pending or processing analysis
     const existingAnalysis = await CVAnalysis.findOne({
       user: req.user._id,
       status: { $in: ['queued', 'processing'] }
@@ -160,93 +349,198 @@ async function analyzeCV(req, res) {
 
     if (existingAnalysis) {
       return res.status(400).json({ 
-        error: 'You already have a CV analysis in progress',
+        error: 'Analysis already in progress',
+        message: 'You already have a CV analysis in progress. Please wait for it to complete.',
         analysisId: existingAnalysis._id,
-        status: existingAnalysis.status
+        status: existingAnalysis.status,
+        createdAt: existingAnalysis.createdAt
       });
     }
 
-    // Create analysis record
+    // Create new CV analysis record
     const record = await CVAnalysis.create({
       user: req.user._id,
       cvFileUrl: cvUrl,
       status: 'queued'
     });
 
-    console.log('CV analysis record created:', record._id);
+    console.log(`✅ CV analysis record created: ${record._id} for user ${req.user.email}`);
 
     // Enqueue background job for analysis
-    await cvQueue.add(
-      { analysisId: record._id.toString() }, 
-      { 
-        attempts: 3, 
-        backoff: {
-          type: 'exponential',
-          delay: 5000
+    try {
+      await cvQueue.add(
+        'analyze-cv',
+        { 
+          analysisId: record._id.toString(),
+          userId: req.user._id.toString(),
+          cvUrl: cvUrl
+        }, 
+        { 
+          attempts: 3,
+          backoff: {
+            type: 'exponential',
+            delay: 5000
+          },
+          removeOnComplete: false, // Keep completed jobs for debugging
+          removeOnFail: false
         }
-      }
-    );
+      );
 
-    console.log('CV analysis job queued:', record._id);
+      console.log(`🔄 CV analysis job queued: ${record._id}`);
+    } catch (queueError) {
+      console.error('Queue error:', queueError);
+      
+      // Update record to failed if queue fails
+      await CVAnalysis.findByIdAndUpdate(record._id, {
+        status: 'failed',
+        errorMessage: 'Failed to queue analysis job'
+      });
+      
+      return res.status(500).json({ 
+        error: 'Failed to queue analysis',
+        message: 'Could not start CV analysis. Please try again.',
+        details: queueError.message
+      });
+    }
 
+    // Return success response
     return res.status(202).json({ 
-      analysisId: record._id, 
+      success: true,
+      message: 'CV analysis queued successfully. Results will be ready in 30-60 seconds.',
+      analysisId: record._id,
       status: 'queued',
-      message: 'CV analysis queued successfully. Check back in 30-60 seconds.'
+      estimatedTime: '30-60 seconds',
+      checkStatusUrl: `/api/v1/cv/analyses/${record._id}`
     });
     
   } catch (err) {
-    console.error('CV Analysis Error:', err);
+    console.error('❌ CV Analysis Error:', err);
     return res.status(500).json({ 
-      error: 'Unable to enqueue CV analysis',
-      details: err.message 
+      error: 'Unable to process CV analysis',
+      message: 'An unexpected error occurred. Please try again.',
+      details: process.env.NODE_ENV === 'development' ? err.message : undefined
     });
   }
 }
 
-// List user's CV analyses
+/**
+ * List user's CV analyses
+ * GET /cv/analyses
+ * Requires authentication
+ */
 async function listAnalyses(req, res) {
   try {
-    const docs = await CVAnalysis.find({ user: req.user._id })
-      .sort({ createdAt: -1 })
-      .limit(20); // Limit to last 20 analyses
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Please login to view your CV analyses'
+      });
+    }
+
+    const { page = 1, limit = 20, status } = req.query;
+    
+    const query = { user: req.user._id };
+    
+    // Filter by status if provided
+    if (status && ['queued', 'processing', 'done', 'failed'].includes(status)) {
+      query.status = status;
+    }
+
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const [docs, total] = await Promise.all([
+      CVAnalysis.find(query)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(Number(limit)),
+      CVAnalysis.countDocuments(query)
+    ]);
 
     return res.json({ 
-      total: docs.length,
+      success: true,
+      meta: {
+        total,
+        page: Number(page),
+        limit: Number(limit),
+        pages: Math.ceil(total / Number(limit))
+      },
       data: docs 
     });
   } catch (err) {
-    console.error('List Analyses Error:', err);
-    return res.status(500).json({ error: 'Unable to list analyses' });
+    console.error('❌ List Analyses Error:', err);
+    return res.status(500).json({ 
+      error: 'Unable to list analyses',
+      message: 'Could not retrieve your CV analyses'
+    });
   }
 }
 
-// Get specific analysis
+/**
+ * Get specific analysis by ID
+ * GET /cv/analyses/:id
+ * Requires authentication
+ */
 async function getAnalysis(req, res) {
   try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Please login to view CV analysis'
+      });
+    }
+
     const doc = await CVAnalysis.findById(req.params.id);
     
     if (!doc) {
-      return res.status(404).json({ error: 'Analysis not found' });
+      return res.status(404).json({ 
+        error: 'Analysis not found',
+        message: 'The requested CV analysis does not exist'
+      });
     }
     
-    // Authorization check
-    if (doc.user && req.user) {
-      if (doc.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
-        return res.status(403).json({ error: 'Forbidden' });
-      }
+    // Authorization check: only owner or admin can view
+    if (doc.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ 
+        error: 'Forbidden',
+        message: 'You do not have permission to view this analysis'
+      });
     }
 
-    return res.json({ data: doc });
+    return res.json({ 
+      success: true,
+      data: doc 
+    });
   } catch (err) {
-    console.error('Get Analysis Error:', err);
-    return res.status(500).json({ error: 'Unable to fetch analysis' });
+    console.error('❌ Get Analysis Error:', err);
+    
+    if (err.name === 'CastError') {
+      return res.status(400).json({ 
+        error: 'Invalid analysis ID',
+        message: 'The provided analysis ID is not valid'
+      });
+    }
+    
+    return res.status(500).json({ 
+      error: 'Unable to fetch analysis',
+      message: 'Could not retrieve the CV analysis'
+    });
   }
 }
 
-// Get latest completed analysis for user
+/**
+ * Get latest completed analysis for user
+ * GET /cv/analyses/latest
+ * Requires authentication
+ */
 async function getLatestAnalysis(req, res) {
   try {
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ 
+        error: 'Unauthorized',
+        message: 'Please login to view your latest CV analysis'
+      });
+    }
+
     const doc = await CVAnalysis.findOne({
       user: req.user._id,
       status: 'done'
@@ -255,14 +549,20 @@ async function getLatestAnalysis(req, res) {
     if (!doc) {
       return res.status(404).json({ 
         error: 'No completed analysis found',
-        message: 'Please upload and analyze your CV first'
+        message: 'You have not completed any CV analysis yet. Please upload and analyze your CV first.'
       });
     }
 
-    return res.json({ data: doc });
+    return res.json({ 
+      success: true,
+      data: doc 
+    });
   } catch (err) {
-    console.error('Get Latest Analysis Error:', err);
-    return res.status(500).json({ error: 'Unable to fetch latest analysis' });
+    console.error('❌ Get Latest Analysis Error:', err);
+    return res.status(500).json({ 
+      error: 'Unable to fetch latest analysis',
+      message: 'Could not retrieve your latest CV analysis'
+    });
   }
 }
 
