@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const ms = require('ms'); // optional; if not installed, parse manually or use seconds
 
-const ACCESS_EXPIRES = process.env.ACCESS_TOKEN_EXP || '2d';
+const ACCESS_EXPIRES = process.env.ACCESS_TOKEN_EXP || '5h';
 const REFRESH_EXPIRES = process.env.REFRESH_TOKEN_EXP || '7d';
 const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
 const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
