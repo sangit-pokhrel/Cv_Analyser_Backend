@@ -1,141 +1,208 @@
 
+// const CVAnalysis = require('../models/cvAnlalysis.model');
+// const User = require('../models/user.model');
+// const { performCVAnalysis } = require('../services/cvAnalysis.service');
+// const { generateJobMatches } = require('../controllers/jobs.controller');
+
+
+// async function processCVAnalysis(job) {
+//   const { analysisId } = job.data;
+
+//   try {
+//     console.log(`Processing CV analysis: ${analysisId}`);
+
+//     // Get the analysis record
+//     const analysis = await CVAnalysis.findById(analysisId).populate('user');
+    
+//     if (!analysis) {
+//       throw new Error('Analysis record not found');
+//     }
+
+//     // Update status to processing
+//     analysis.status = 'processing';
+//     await analysis.save();
+
+//     // Perform CV analysis
+//     const result = await performCVAnalysis(analysis.cvFileUrl);
+
+//     if (!result.success) {
+//       // Analysis failed
+//       analysis.status = 'failed';
+//       analysis.errorMessage = result.error;
+//       await analysis.save();
+      
+//       console.error(`CV analysis failed for ${analysisId}:`, result.error);
+//       return;
+//     }
+
+//     // Update analysis with results
+//     analysis.status = 'done';
+//     analysis.analysisResult = result.analysis;
+//     analysis.overallScore = result.analysis.overallScore;
+//     analysis.strengths = result.analysis.strengths;
+//     analysis.weaknesses = result.analysis.weaknesses;
+//     analysis.recommendations = result.analysis.recommendations;
+//     analysis.skillsDetected = result.analysis.skillsDetected;
+//     analysis.extractedData = result.analysis.extractedData;
+//     analysis.analyzedAt = new Date();
+
+//     await analysis.save();
+
+//     console.log(`CV analysis completed successfully: ${analysisId}`);
+
+//     // Update user profile with detected skills (optional)
+//     if (analysis.user && result.analysis.skillsDetected.length > 0) {
+//       await User.findByIdAndUpdate(
+//         analysis.user._id,
+//         { 
+//           $addToSet: { 
+//             skills: { $each: result.analysis.skillsDetected } 
+//           } 
+//         }
+//       );
+//     }
+
+//     // Generate job matches in real-time
+//     console.log(`Generating job matches for user: ${analysis.user._id}`);
+//     await generateJobMatches(analysisId);
+
+//     console.log(`Job matching completed for analysis: ${analysisId}`);
+
+//   } catch (error) {
+//     console.error(`Error processing CV analysis ${analysisId}:`, error);
+
+//     // Update status to failed
+//     try {
+//       await CVAnalysis.findByIdAndUpdate(analysisId, {
+//         status: 'failed',
+//         errorMessage: error.message
+//       });
+//     } catch (updateError) {
+//       console.error('Failed to update analysis status:', updateError);
+//     }
+
+//     throw error; // Re-throw for Bull queue retry logic
+//   }
+// }
+
+// module.exports = processCVAnalysis;
+
+
 const CVAnalysis = require('../models/cvAnlalysis.model');
 const User = require('../models/user.model');
 const { performCVAnalysis } = require('../services/cvAnalysis.service');
 const { generateJobMatches } = require('../controllers/jobs.controller');
 
-
+/**
+ * Process CV Analysis Job
+ * This function is called by Bull Queue for each job
+ */
 async function processCVAnalysis(job) {
-  const { analysisId } = job.data;
+  const { analysisId, userId, cvUrl } = job.data;
+
+  console.log(`\n========================================`);
+  console.log(`📋 Processing CV Analysis Job #${job.id}`);
+  console.log(`Analysis ID: ${analysisId}`);
+  console.log(`User ID: ${userId}`);
+  console.log(`CV URL: ${cvUrl}`);
+  console.log(`========================================\n`);
 
   try {
-    console.log(`Processing CV analysis: ${analysisId}`);
-
-    // Get the analysis record
+    // 1. Get analysis record
     const analysis = await CVAnalysis.findById(analysisId).populate('user');
     
     if (!analysis) {
-      throw new Error('Analysis record not found');
+      throw new Error(`Analysis record not found: ${analysisId}`);
     }
 
-    // Update status to processing
+    console.log(`📄 Found analysis for user: ${analysis.user?.email || 'Unknown'}`);
+
+    // 2. Update status to processing
     analysis.status = 'processing';
     await analysis.save();
+    console.log(`🔄 Status updated to 'processing'`);
 
-    // Perform CV analysis
+    // 3. Perform AI analysis
+    console.log(`🤖 Starting AI analysis...`);
     const result = await performCVAnalysis(analysis.cvFileUrl);
 
     if (!result.success) {
-      // Analysis failed
+      console.error(`❌ AI Analysis failed: ${result.error}`);
+      
       analysis.status = 'failed';
       analysis.errorMessage = result.error;
       await analysis.save();
       
-      console.error(`CV analysis failed for ${analysisId}:`, result.error);
-      return;
+      throw new Error(result.error);
     }
 
-    // Update analysis with results
+    console.log(`✅ AI Analysis completed`);
+    console.log(`   Score: ${result.analysis.overallScore}/100`);
+    console.log(`   Skills: ${result.analysis.skillsDetected?.length || 0}`);
+
+    // 4. Save results
     analysis.status = 'done';
     analysis.analysisResult = result.analysis;
     analysis.overallScore = result.analysis.overallScore;
-    analysis.strengths = result.analysis.strengths;
-    analysis.weaknesses = result.analysis.weaknesses;
-    analysis.recommendations = result.analysis.recommendations;
-    analysis.skillsDetected = result.analysis.skillsDetected;
-    analysis.extractedData = result.analysis.extractedData;
+    analysis.strengths = result.analysis.strengths || [];
+    analysis.weaknesses = result.analysis.weaknesses || [];
+    analysis.recommendations = result.analysis.recommendations || [];
+    analysis.skillsDetected = result.analysis.skillsDetected || [];
+    analysis.extractedData = result.analysis.extractedData || {};
     analysis.analyzedAt = new Date();
-
+    
     await analysis.save();
+    console.log(`💾 Results saved to database`);
 
-    console.log(`CV analysis completed successfully: ${analysisId}`);
-
-    // Update user profile with detected skills (optional)
-    if (analysis.user && result.analysis.skillsDetected.length > 0) {
-      await User.findByIdAndUpdate(
-        analysis.user._id,
-        { 
-          $addToSet: { 
-            skills: { $each: result.analysis.skillsDetected } 
-          } 
-        }
-      );
+    // 5. Update user skills
+    if (analysis.user && result.analysis.skillsDetected?.length > 0) {
+      try {
+        await User.findByIdAndUpdate(
+          analysis.user._id,
+          { 
+            $addToSet: { 
+              skills: { $each: result.analysis.skillsDetected } 
+            } 
+          }
+        );
+        console.log(`👤 User profile updated with skills`);
+      } catch (error) {
+        console.warn(`⚠️  Could not update user skills:`, error.message);
+      }
     }
 
-    // Generate job matches in real-time
-    console.log(`Generating job matches for user: ${analysis.user._id}`);
-    await generateJobMatches(analysisId);
+    // 6. Generate job matches
+    console.log(`🎯 Generating job matches...`);
+    try {
+      await generateJobMatches(analysisId);
+      console.log(`✅ Job matching completed`);
+    } catch (error) {
+      console.error(`❌ Job matching failed:`, error.message);
+    }
 
-    console.log(`Job matching completed for analysis: ${analysisId}`);
+    console.log(`\n✅ CV Analysis Job #${job.id} COMPLETED!\n`);
+    
+    return {
+      success: true,
+      analysisId: analysisId,
+      score: result.analysis.overallScore
+    };
 
   } catch (error) {
-    console.error(`Error processing CV analysis ${analysisId}:`, error);
+    console.error(`\n❌ Job #${job.id} FAILED:`, error.message);
 
-    // Update status to failed
+    // Update to failed status
     try {
       await CVAnalysis.findByIdAndUpdate(analysisId, {
         status: 'failed',
         errorMessage: error.message
       });
     } catch (updateError) {
-      console.error('Failed to update analysis status:', updateError);
+      console.error('Failed to update status:', updateError.message);
     }
 
-    throw error; // Re-throw for Bull queue retry logic
+    throw error;
   }
 }
 
 module.exports = processCVAnalysis;
-
-
-
-// require('dotenv').config();
-// const cvQueue = require('../queues/cvQueus');
-// const CVAnalysis = require('../models/cvAnlalysis.model');
-
-// cvQueue.process(async (job) => {
-//   const { analysisId } = job.data;
-//   console.log('[CV WORKER] processing', analysisId);
-//   const record = await CVAnalysis.findById(analysisId);
-//   if (!record) throw new Error('analysis record not found');
-
-//   try {
-//     // mark processing
-//     record.status = 'processing';
-//     await record.save();
-
-//     // === PLACEHOLDER: call your ML/NLP function here ===
-//     // Simulated analysis:
-//     await new Promise(r => setTimeout(r, 2000)); // simulate processing time
-
-//     const fakeResult = {
-//       overallScore: Math.floor(Math.random() * 41) + 60, // 60-100
-//       strengths: ['clear structure','relevant keywords'],
-//       weaknesses: ['missing quantification','short summary'],
-//       recommendations: ['Add metrics', 'Include technical keywords'],
-//       skillsDetected: ['nodejs', 'mongodb']
-//     };
-
-//     record.analysisResult = fakeResult;
-//     record.overallScore = fakeResult.overallScore;
-//     record.strengths = fakeResult.strengths;
-//     record.weaknesses = fakeResult.weaknesses;
-//     record.recommendations = fakeResult.recommendations;
-//     record.skillsDetected = fakeResult.skillsDetected;
-//     record.status = 'done';
-//     record.analyzedAt = new Date();
-//     await record.save();
-
-//     console.log('[CV WORKER] done', analysisId);
-//     return { ok: true };
-//   } catch (err) {
-//     console.error('[CV WORKER] failed', err);
-//     record.status = 'failed';
-//     await record.save();
-//     throw err;
-//   }
-// });
-
-// cvQueue.on('completed', (job) => console.log('Job completed', job.id));
-// cvQueue.on('failed', (job, err) => console.log('Job failed', job.id, err.message));
-// console.log('CV worker started, listening for jobs...');
