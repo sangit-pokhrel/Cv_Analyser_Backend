@@ -6,14 +6,13 @@ import Sidebar from '@/components/user/Sidebar';
 
 export default function UserLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
-  // Don't check auth for login page
   const isLoginPage = pathname === '/user/login';
 
   useEffect(() => {
@@ -22,15 +21,18 @@ export default function UserLayout({
       return;
     }
 
-    const userToken = sessionStorage.getItem('userToken');
+    // Check cookie
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('accessToken='))
+      ?.split('=')[1];
     
-    if (!userToken) {
-      router.push('/user/login');
+    if (!token || token.length < 200 || token.length > 240) {
+      router.replace('/user/login');
     } else {
       setIsLoading(false);
     }
-  }, [router, isLoginPage]);
-
+  }, [pathname, router, isLoginPage]);
 
   if (isLoginPage) {
     return <>{children}</>;
@@ -41,7 +43,7 @@ export default function UserLayout({
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Loading Dashboard...</p>
+          <p className="text-gray-600 font-medium">Loading...</p>
         </div>
       </div>
     );

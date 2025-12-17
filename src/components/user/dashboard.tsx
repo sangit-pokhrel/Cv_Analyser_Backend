@@ -8,12 +8,17 @@ export default function Dashboard() {
   const router = useRouter();
   const pathname = usePathname();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-
-  const handleLogout = () => {
-    sessionStorage.removeItem('userToken');
+ const handleLogout = () => {
+    // Clear cookie
+    document.cookie = 'accessToken=; path=/; max-age=0';
+    // Clear session storage
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('userData');
+    // Redirect to login
     router.push('/user/login');
   };
 
+  
   const menuItems = [
     { name: 'Dashboard', icon: '📊', path: '/user' },
     { name: 'My Analyses', icon: '📝', path: '/user/my-analyses' },

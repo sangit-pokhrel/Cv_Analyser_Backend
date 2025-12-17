@@ -4,20 +4,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Applications from '@/components/user/pages/Applications';
-
+import { useAuth } from '@/hooks/useAuth';
 export default function ApplicationsPage() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading } = useAuth();
 
-  useEffect(() => {
-    const userToken = sessionStorage.getItem('userToken');
-    
-    if (!userToken) {
-      router.push('/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
+
 
   if (isLoading) {
     return (

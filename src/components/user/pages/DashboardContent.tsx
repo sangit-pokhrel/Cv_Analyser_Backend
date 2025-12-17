@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import Link from 'next/link';
 
 ChartJS.register(
   CategoryScale,
@@ -157,14 +158,13 @@ export default function DashboardContent() {
               <span className="text-xl">➕</span>
               New Analysis
             </button>
-            <button className="w-full bg-[#FDF7F2] rounded-xl p-4 text-left hover:-translate-y-0.5 hover:border-[#B8B8B8] font-medium border border-[#E5E5E5] transition-shadow flex items-center gap-3">
-              <span className="text-xl">📊</span>
-              View Reports
-            </button>
+        
+            <Link href="/user/support" className="block">
             <button className="w-full bg-[#FDF7F2] rounded-xl p-4 text-left hover:-translate-y-0.5 hover:border-[#B8B8B8] font-medium border border-[#E5E5E5] transition-shadow flex items-center gap-3">
               <span className="text-xl">🙋</span>
               Get Help
             </button>
+            </Link>
           </div>
         </div>
       </div>

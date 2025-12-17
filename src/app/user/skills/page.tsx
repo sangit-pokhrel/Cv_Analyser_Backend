@@ -4,21 +4,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Skills from '@/components/user/pages/Skills';
-
+import { useAuth } from '@/hooks/useAuth';
 
 export default function SkillsPage() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading} = useAuth();
 
-  useEffect(() => {
-    const userToken = sessionStorage.getItem('userToken');
-    
-    if (!userToken) {
-      router.push('/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
 
   if (isLoading) {
     return (

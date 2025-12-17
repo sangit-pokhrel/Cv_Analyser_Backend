@@ -3,22 +3,14 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useAuth } from '@/hooks/useAuth';
 import MyAnalyses from '@/components/user/pages/MyAnalyses';
 
 export default function MyAnalysesPage() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+ const { isLoading } = useAuth();
 
-  useEffect(() => {
-    const userToken = sessionStorage.getItem('userToken');
-    
-    if (!userToken) {
-      router.push('/user/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
+
 
   if (isLoading) {
     return (
@@ -33,3 +25,4 @@ export default function MyAnalysesPage() {
 
   return <MyAnalyses />;
 }
+
