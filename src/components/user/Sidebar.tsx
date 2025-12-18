@@ -2,22 +2,46 @@
 
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import api from '@/lib/baseapi';
+import { toast } from 'react-toastify';
 
 export default function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const handleLogout = () => {
-    // Clear cookie
-    document.cookie = 'accessToken=; path=/; max-age=0';
-    // Clear session storage
-    sessionStorage.removeItem('userId');
-    sessionStorage.removeItem('userData');
-    // Redirect to login
-    router.push('/user/login');
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      
+      // Call logout API
+      await api.post('/user/logout');
+      
+      // Clear session storage
+      sessionStorage.removeItem('adminToken');
+      
+      // Clear cookies by setting them to expire
+      document.cookie = 'accessToken=; path=/; max-age=0';
+      document.cookie = 'refreshToken=; path=/; max-age=0';
+      
+      toast.success('Logged out successfully');
+      
+      // Redirect to login
+      router.push('/user/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Even if API call fails, still logout locally
+      sessionStorage.removeItem('adminToken');
+      document.cookie = 'accessToken=; path=/; max-age=0';
+      document.cookie = 'refreshToken=; path=/; max-age=0';
+      router.push('/user/login');
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
+
 
   const menuItems = [
     { name: 'Dashboard', icon: '📊', path: '/user' },

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Sidebar from '@/components/user/Sidebar';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function UserLayout({
   children,
@@ -11,28 +12,32 @@ export default function UserLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const isLoginPage = pathname === '/user/login';
 
-  useEffect(() => {
-    if (isLoginPage) {
-      setIsLoading(false);
-      return;
-    }
+  // useEffect(() => {
+  //   if (isLoginPage) {
+  //     setIsLoading(false);
+  //     return;
+  //   }
 
-    // Check cookie
-    const token = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('accessToken='))
-      ?.split('=')[1];
+  //   // Check cookie
+  //   const token = document.cookie
+  //     .split('; ')
+  //     .find(row => row.startsWith('accessToken='))
+  //     ?.split('=')[1];
     
-    if (!token || token.length < 200 || token.length > 240) {
-      router.replace('/user/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [pathname, router, isLoginPage]);
+  //   if (!token || token.length < 200 || token.length > 240) {
+  //     router.replace('/user/login');
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // }, [pathname, router, isLoginPage]);
+
+  const {isLoading, isAuthenticated} = useAuth();
+
+
 
   if (isLoginPage) {
     return <>{children}</>;

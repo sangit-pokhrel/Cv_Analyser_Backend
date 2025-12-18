@@ -1,5 +1,5 @@
-import ContactInquiries from '@/components/user/pages/Contact';
+import Contact from '@/components/admin/pages/Contact';
 
 export default function ContactInquiriesPage() {
-  return <ContactInquiries />;
+  return <Contact />;
 }

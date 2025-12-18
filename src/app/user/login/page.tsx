@@ -118,57 +118,222 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/baseapi';
+import { useAuth } from '@/hooks/useAuth';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
+const baseURL = 'http://localhost:5000/api/v1';
 export default function UserLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const {isLoading, isAuthenticated, setIsLoading, setIsAuthenticated} = useAuth();
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const [attemptsLeft, setAttemptsLeft] = useState<number | null>(null);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [blockInfo, setBlockInfo] = useState<any>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    // Check if already logged in
-    const token = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('accessToken='))
-      ?.split('=')[1];
 
-    if (token && token.length >= 200 && token.length <= 240) {
-      router.replace('/user');
-      return;
-    }
-    setIsCheckingAuth(false);
-  }, [router]);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setError('');
+  //   setIsLoading(true);
 
-    try {
-      const { data } = await api.post('/auth/login', {
-        email,
-        password,
-      });
+  //   try {
+  //     const { data } = await api.post('/auth/login', {
+  //       email,
+  //       password,
+  //     });
 
-      if (data.accessToken && data.user) {
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${60 * 60 * 5}`;
-        sessionStorage.setItem('userId', data.user._id);
-        sessionStorage.setItem('userData', JSON.stringify(data.user));
-        router.replace('/user');
-      } else {
-        setError('Invalid response from server');
+  //     if (data.accessToken && data.user) {
+  //       document.cookie = `accessToken=${data.accessToken}; path=/; max-age=${60 * 60 * 5}`;
+  //       sessionStorage.setItem('userId', data.user._id);
+  //       sessionStorage.setItem('userData', JSON.stringify(data.user));
+  //       setIsAuthenticated(true)
+  //       router.replace('/user');
+  //     } else {
+  //       setError('Invalid response from server');
+  //     }
+  //   } catch (err: any) {
+  //     console.error('Login error:', err);
+  //     setError(err.response?.data?.message || 'Login failed. Please try again.');
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+    const handleLogin = async (e: React.FormEvent) => {
+      e.preventDefault();
+      
+      setError('');
+      setIsLoading(true);
+      setAttemptsLeft(null);
+  
+      try {
+        console.log('🔐 Step 1: Attempting login...');
+        
+        // Step 1: Login WITHOUT storing cookies yet
+        const loginResponse = await axios.post(`${baseURL}/auth/login`, {
+          email,
+          password
+        }, {
+          withCredentials: false
+        });
+  
+        console.log('✅ Step 2: Login successful');
+  
+        // Get the access token from response
+        const accessToken = loginResponse.data.accessToken;
+        
+        if (!accessToken) {
+          setError('No access token received');
+          setIsLoading(false);
+          return;
+        }
+  
+        console.log('✅ Step 3: Access token received');
+  
+        // Step 2: Verify the role using the token BEFORE storing anything
+        const verifyResponse = await axios.get(`${baseURL}/users/me`, {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+  
+        console.log('✅ Step 4: User verification response:', verifyResponse.data);
+  
+        const user = verifyResponse.data.user || verifyResponse.data;
+        console.log(user)
+        // Step 3: Check if user is admin BEFORE storing
+        if(user.role == 'user' || 'job_seeker' || 'admin' || 'csr' && user.isEmailVerified == 'verified' && user.status == 'verified' ){
+          // Step 4: NOW store everything - user is verified
+        
+        // Store access token in cookie
+        document.cookie = `accessToken=${accessToken}; path=/; max-age=${15 * 60}`; 
+        
+        // Store refresh token if provided
+        if (loginResponse.data.refreshToken) {
+          document.cookie = `refreshToken=${loginResponse.data.refreshToken}; path=/; max-age=${7 * 24 * 60 * 60}`; 
+        }
+        
+        // Store session flag
+        sessionStorage.setItem('adminToken', 'adminisloggedin');
+        
+        console.log('✅ Step 6: Tokens stored in cookies and session storage');
+  
+        toast.success('Login successful! Redirecting...');
+        
+        // Step 5: Redirect
+        setTimeout(() => {
+          console.log('🔄 Step 7: Redirecting to /user');
+          // window.location.href = '/user';
+          router.push("/user")
+        }, 500);
+        }
+        else{
+          toast.success("Please check your role and account status before logging in . ")
+          setIsLoading(false)
+          return
+        }
+
+
+        console.log('✅ Step 5: User role verified');
+  
+        
+  
+      } catch (err: any) {
+        console.error('❌ Login error:', err.response?.data);
+        
+        const errorData = err.response?.data;
+        
+        // Check if blocked
+        if (errorData?.isBlocked) {
+          setIsBlocked(true);
+          setBlockInfo({
+            blockedUntil: errorData.blockedUntil,
+            blockedBy: errorData.blockedBy
+          });
+          setError(errorData.message || 'Account blocked due to too many failed attempts');
+        } 
+        // Show attempts left
+        else if (errorData?.attemptsLeft !== undefined) {
+          setAttemptsLeft(errorData.attemptsLeft);
+          setError(errorData.message || `Invalid credentials. ${errorData.attemptsLeft} attempts remaining.`);
+        } 
+        // Generic error
+        else {
+          setError(errorData?.error || errorData?.message || 'Invalid email or password');
+        }
+        
+        setIsLoading(false);
       }
-    } catch (err: any) {
-      console.error('Login error:', err);
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+  
+    const formatTimeRemaining = () => {
+      if (!blockInfo?.blockedUntil) return 'Permanently blocked';
+      
+      const now = new Date().getTime();
+      const blockedUntil = new Date(blockInfo.blockedUntil).getTime();
+      const timeLeft = blockedUntil - now;
+      
+      if (timeLeft <= 0) {
+        setIsBlocked(false);
+        return '';
+      }
+      
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      
+      return `${hours}h ${minutes}m`;
+    };
 
-  if (isCheckingAuth) {
+
+
+      if (isBlocked) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="bg-white rounded-2xl p-8 shadow-lg max-w-md w-full text-center">
+          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-4xl">🚫</span>
+          </div>
+          <h1 className="text-2xl font-bold mb-2 text-red-600">Access Blocked</h1>
+          <p className="text-gray-600 mb-4">
+            Too many failed login attempts. Admin access has been temporarily blocked.
+          </p>
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-4">
+            <p className="text-red-600 font-bold">
+              {blockInfo?.blockedUntil ? `Time Remaining: ${formatTimeRemaining()}` : 'Permanently Blocked'}
+            </p>
+            {blockInfo?.blockedBy === 'admin' && (
+              <p className="text-red-600 text-sm mt-2">
+                Blocked by administrator
+              </p>
+            )}
+          </div>
+          <p className="text-sm text-gray-500 mb-4">
+            Please contact system administrator if you need immediate access.
+          </p>
+          <button
+            onClick={() => {
+              setIsBlocked(false);
+              setError('');
+              setPassword('');
+            }}
+            className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+          >
+            ← Back to Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">

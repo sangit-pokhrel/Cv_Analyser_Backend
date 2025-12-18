@@ -1,84 +1,52 @@
-"use client";
-import React from "react";
-import { useState } from "react";
-import { FaRegEyeSlash } from "react-icons/fa6";
-import { FaRegEye } from "react-icons/fa6";
-import { useForm } from "react-hook-form";
-import "@/globals/styles/style.color.css"
-import Link from "next/link";
-import {auth} from "../../firebase"
-import { signInWithEmailAndPassword } from "firebase/auth";
-import {toast} from "sonner"; 
- const LoginForm=()=>{
-type formdata={email:string,password:string};
-  const {register,handleSubmit,formState:{errors}}=useForm<formdata>();
-   const [show,setShow]=useState(false);
-  
-    const handleClick=()=>{
-     setShow(!show);
-   
-    }
+"use client"
 
+import { useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
-    const onSubmit=async(data:formdata)=>{
-      try{
-            const userCredential = await signInWithEmailAndPassword(auth,data.email,data.password);
-            if(userCredential){
-             window.location.href = "/Home";
+export function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false)
 
-            }            
-      }
-      catch(error:any){
-            console.log("Login Error:",error.message);
-            toast.error("Invalid user credentials")
-      }
-    }
-  
-  return(
-     <div >
-                  <form className=" flex flex-col  mt-3" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex flex-col gap-y-1">
-                      
-                    
+  return (
+    <form className="space-y-4">
+      {/* Email Field */}
+      <div className="space-y-1.5">
+        <label htmlFor="email" className="text-sm font-medium text-gray-700">
+          Email
+        </label>
+        <Input id="email" type="email" className="w-full focus:ring-2 focus:ring-blue-200" placeholder=""  />
+      </div>
 
-                    {/* Email */}
+      {/* Password Field */}
+      <div className="space-y-1.5">
+        <label htmlFor="password" className="text-sm font-medium text-gray-700">
+          Password
+        </label>
+        <div className="relative">
+          <Input id="password" type={showPassword ? "text" : "password"} className="w-full pr-10 focus:ring-2 focus:ring-blue-200" placeholder="" />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          >
+            {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+          </button>
+        </div>
+      </div>
 
-                    <div >
-                      <label htmlFor="Email" className="ml-1">Email</label>
-                    <input {...register("email",{required:true})} id="Email" className=" mt-1 w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 bg-white focus:ring-blue-200" type="email"  />
-                    {errors.email && <span className=" text-red-500">This field is required</span>}
-                    </div>
+      {/* Forgot Password Link */}
+      <div className="flex justify-end">
+        <Link href="/forgot-password" className="text-xs text-blue-500 hover:underline">
+          Forgot Password?
+        </Link>
+      </div>
 
-                    {/* Password  */}
-
-                     <div>
-                      <div className="relative" >
-                      <label htmlFor="Password" className="ml-1">Password</label>
-                    <input {...register("password",{required:true,minLength:8})} id="Password" className=" mt-1 w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 bg-white focus:ring-blue-200" type={show?"text":"password"} />
-                    {errors.password && <span className=" text-red-500">This field is required and should be at least 8 characters</span>}
-                     <div onClick={handleClick}>
-                      {!show ? <FaRegEyeSlash className=" absolute top-10 right-1   cursor-pointer"/> : <FaRegEye className=" absolute top-10 right-1  cursor-pointer"/>}
-                    </div>
-                    </div>
-                   
-                     </div>
-                     
-                    </div>
-
-                      {/* Aggrement checkbox */}
-                      
-                     <div className="flex justify-end">
-                      <Link href="/login/resetPassword" className="text-sm text-blue-500 underline">Forgot password ?</Link>
-                     </div>
-
-                     {/* submit button */}
-                   <div className="flex justify-center items-center pt-3">
-                    <button type="submit" className="cta_button px-14 py-3 rounded-md cursor-pointer ">Sign In</button>
-                   </div>
-                    </form>
-                </div>
-  );
+      {/* Sign In Button */}
+      <Button type="submit" className="w-full bg-[#FFB347] hover:bg-[#ffa52e] text-black font-medium">
+        Sign In
+      </Button>
+    </form>
+  )
 }
-
-
-export default LoginForm;

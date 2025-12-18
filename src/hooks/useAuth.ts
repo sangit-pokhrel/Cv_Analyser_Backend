@@ -22,5 +22,5 @@ export const useAuth = () => {
     }
   }, [router]);
 
-  return { isLoading, isAuthenticated };
+  return { isLoading, isAuthenticated, setIsAuthenticated, setIsLoading };
 };
