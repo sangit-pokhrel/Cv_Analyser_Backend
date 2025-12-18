@@ -151,8 +151,8 @@ const SuccessStoriesSection = () => {
     <Section>
       <div className="flex flex-col gap-y-4">
         <div>
-          <h1 className="font-bold text-4xl secondary">Success Stories</h1>
-          <p className="font-extralight text-sm">
+          <h1 className="font-bold text-4xl secondary text-center">Success Stories</h1>
+          <p className="font-extralight text-sm text-center">
             Every story here represents a journey challenges overcome, goals
             acheived and creers transformed
           </p>

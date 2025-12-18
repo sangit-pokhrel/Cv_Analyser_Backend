@@ -9,8 +9,8 @@ const GetPreminumNowSection = () => {
           <p className="text-center text-sm font-extralight">If interviews make you nervous, you're not alone. Many talented individuals struggle to express their skills clearly under pressure. Our platform provides structured guidance, proven strategies, and personalized tips to help you communicate confidentl;y and professionally. With the right preparation, your next interview can be the  stepping stone to the career you've been aming for.</p>
           <div className="flex justify-center items-center">
             
-            <button className="px-24 py-4 cta_button rounded-xl ">
-           <span className="font-bold text-white text-2xl">Get Premium Now</span>
+            <button className=" px-14 md:px-24 py-4 cta_button rounded-xl cursor-pointer ">
+           <span className="font-bold text-white whitespace-nowrap text-sm md:text-2xl">Get Premium Now</span>
           </button>
           
           </div>

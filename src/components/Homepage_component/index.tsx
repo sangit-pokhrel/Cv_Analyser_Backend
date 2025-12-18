@@ -12,7 +12,13 @@ const Homepage_component = () => {
   return (
     <Container>
       <div>
-        
+         <div className="flex justify-start items-center mb-6 ">
+          <Badge
+            icon={<RiGeminiLine className="inline mr-1 mb-1 text-blue-500" />}
+          >
+            1000+ Jobs Available
+          </Badge>
+        </div>
 
         <HeroSection />
 
