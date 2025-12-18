@@ -26,6 +26,25 @@ export default function Skills() {
     fetchProfile();
   }, []);
 
+
+  // Check current user
+fetch('http://localhost:5000/api/v1/auth/me', {
+  headers: {
+    'Authorization': 'Bearer ' + document.cookie.split('accessToken=')[1].split(';')[0]
+  }
+})
+.then(r => r.json())
+.then(d => console.log('Current user:', d.user._id));
+
+// Check saved jobs
+fetch('http://localhost:5000/api/v1/saved-jobs', {
+  headers: {
+    'Authorization': 'Bearer ' + document.cookie.split('accessToken=')[1].split(';')[0]
+  }
+})
+.then(r => r.json())
+.then(d => console.log('Saved jobs:', d.data));
+
   const fetchProfile = async () => {
     try {
       setLoading(true);

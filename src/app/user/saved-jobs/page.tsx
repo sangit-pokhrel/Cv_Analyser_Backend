@@ -5,22 +5,14 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import SavedJobs from '@/components/user/pages/SavedJobs';
+import { useAuth } from '@/hooks/useAuth';
 
 
 
 export default function SavedJobsPage() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading} = useAuth();
 
-  useEffect(() => {
-    const userToken = sessionStorage.getItem('userToken');
-    
-    if (!userToken) {
-      router.push('/user/login');
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
 
   if (isLoading) {
     return (
