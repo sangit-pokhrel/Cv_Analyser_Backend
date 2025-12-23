@@ -1,0 +1,91 @@
+{
+  "info": {
+    "_postman_id": "6ec3aa0e-383e-46be-a988-bc706b6e6fbd",
+    "name": "Hospital Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Create",
+          "id": "378ec7dc-9a04-4fb7-a477-21c484844e55",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"appointment_date\": \"2024-08-06\",\r\n  \"appointment_time\": \"14:00:00\",\r\n  \"appointment_status\": \"Completed\",\r\n  \"appointment_remark\": \"Visit Successfull\",\r\n  \"doctor_name\": \"Sangit Pokhrel\",\r\n  \"patient_name\": \"Sangit\",\r\n  \"doctor_id\": 1,\r\n  \"patient_id\": 321\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/appointments/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "appointments",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d80fb31a-fd4a-436a-a65e-3664913cbc61"
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "CRUD",
+          "id": "b33df9bd-682f-4c37-b634-5c69c0ebdde8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"email_pat\": \"john.doe@example.com\",\r\n    \"contact_num\": 1234567890,\r\n    \"password\": \"securepassword\",\r\n    \"department\": \"Cardiology\",\r\n    \"degree\": \"MD\",\r\n    \"address_1\": \"123 Main St\",\r\n    \"address_2\": \"Apt 4B\",\r\n    \"city\": \"Metropolis\",\r\n    \"state\": \"NY\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/patients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "90cc303e-8387-44bb-ab7e-fea581f858ef"
+    }
+  ]
+}

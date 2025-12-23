@@ -187,7 +187,7 @@ dotenv.config();
 const http = require("http");
 const socketIo = require("socket.io");
 const app = require("./src/app.js");
-const { connectDB, disconnectDB } = require("./src/config/db.js");
+const { connectDB, disconnectDB } = require("./src/config/db.cjs");
 
 const PORT = parseInt(process.env.PORT, 10) || 5000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -262,9 +262,9 @@ async function start() {
       cvQueue = require("./src/queues/cvQueus");
       const processCVAnalysis = require("./src/workers/cvWorkers");
       cvQueue.process("analyze-cv", 1, processCVAnalysis);
-      console.log("✅ CV Analysis Worker started");
+      console.log("CV Analysis Worker started");
     } catch (queueError) {
-      console.warn("⚠️  CV Analysis Queue could not start:", queueError.message);
+      console.warn("CV Analysis Queue could not start:", queueError.message);
       cvQueue = null;
     }
 
@@ -274,19 +274,19 @@ async function start() {
       ticketQueue = require("./src/queues/ticketQueue");
       const processTicketEmail = require("./src/workers/ticketWorker");
       ticketQueue.process("send-email", 3, processTicketEmail); // Process 3 emails concurrently
-      console.log("✅ Ticket Email Worker started");
+      console.log("Ticket Email Worker started");
     } catch (queueError) {
-      console.warn("⚠️  Ticket Email Queue could not start:", queueError.message);
+      console.warn("Ticket Email Queue could not start:", queueError.message);
       ticketQueue = null;
     }
 
     // 5. Start Server
-    server.listen(PORT, () => {
-      console.log(`✅ Server listening on port ${PORT} (pid ${process.pid})`);
-      console.log(`\n🚀 API Ready at: http://localhost:${PORT}/api/v1`);
-      console.log(`📊 Health Check: http://localhost:${PORT}/health`);
-      console.log(`🔌 WebSocket: ws://localhost:${PORT}`);
-      console.log(`🎫 Ticket Socket: ws://localhost:${PORT}/tickets\n`);
+    server.listen(PORT,'0.0.0.0', () => {
+      console.log(`Server listening on port ${PORT} (pid ${process.pid})`);
+      console.log(`API Ready at: http://localhost:${PORT}/api/v1`);
+      console.log(`Health Check: http://localhost:${PORT}/health`);
+      console.log(`WebSocket: ws://localhost:${PORT}`);
+      console.log(`Ticket Socket: ws://localhost:${PORT}/tickets\n`);
     });
 
     // 6. Graceful Shutdown

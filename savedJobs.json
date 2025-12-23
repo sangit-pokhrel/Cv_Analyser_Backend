@@ -1,0 +1,460 @@
+{
+  "info": {
+    "name": "CV Analyzer - Saved Jobs API",
+    "description": "Complete collection for testing Saved Jobs endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Save access token to environment",
+                  "if (pm.response.code === 200) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('accessToken', jsonData.accessToken);",
+                  "    pm.environment.set('userId', jsonData.user._id);",
+                  "    console.log('Token saved:', jsonData.accessToken);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Saved Jobs",
+      "item": [
+        {
+          "name": "Save a Job",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201 or 200', function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test('Response has saved object', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('saved');",
+                  "    pm.expect(jsonData.saved).to.have.property('_id');",
+                  "    pm.expect(jsonData.saved).to.have.property('job');",
+                  "    pm.expect(jsonData.saved).to.have.property('user');",
+                  "    pm.expect(jsonData.saved).to.have.property('savedAt');",
+                  "});",
+                  "",
+                  "// Save the saved job ID for later use",
+                  "if (pm.response.code === 201) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('savedJobId', jsonData.saved._id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "{{jobId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Saved Jobs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has data array', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData.data).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Response has meta object with pagination', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('meta');",
+                  "    pm.expect(jsonData.meta).to.have.property('total');",
+                  "    pm.expect(jsonData.meta).to.have.property('page');",
+                  "    pm.expect(jsonData.meta).to.have.property('limit');",
+                  "    pm.expect(jsonData.meta).to.have.property('pages');",
+                  "});",
+                  "",
+                  "pm.test('Each saved job has required fields', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    if (jsonData.data.length > 0) {",
+                  "        const firstJob = jsonData.data[0];",
+                  "        pm.expect(firstJob).to.have.property('_id');",
+                  "        pm.expect(firstJob).to.have.property('job');",
+                  "        pm.expect(firstJob).to.have.property('savedAt');",
+                  "        pm.expect(firstJob.job).to.have.property('title');",
+                  "        pm.expect(firstJob.job).to.have.property('companyName');",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Saved Jobs - Page 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Current page is 2', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.meta.page).to.equal(2);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs?page=2&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Saved Job",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has success message', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success', true);",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "{{jobId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Try to Save Same Job Again (Should be idempotent)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Message indicates already saved', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.message).to.include('already saved');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "{{jobId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "Save Job - No Auth Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Error message present', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('error');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "{{jobId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save Job - Invalid Job ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error indicates invalid ID', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.include('Invalid');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/invalid-id-format",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "invalid-id-format"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save Job - Non-existent Job",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Error indicates job not found', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.include('not found');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/507f1f77bcf86cd799439011",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "507f1f77bcf86cd799439011"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Job - Not in Saved List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Error indicates not found', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.include('not found');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/saved-jobs/507f1f77bcf86cd799439011",
+              "host": ["{{baseUrl}}"],
+              "path": ["saved-jobs", "507f1f77bcf86cd799439011"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "jobId",
+      "value": "694210835deed3e497a5e43d",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "savedJobId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

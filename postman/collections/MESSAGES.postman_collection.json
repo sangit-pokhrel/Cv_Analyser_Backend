@@ -1,0 +1,138 @@
+{
+  "info": {
+    "_postman_id": "a56e6a53-837e-43ab-88ba-56da78b2e3a2",
+    "name": "MESSAGES",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "messages",
+      "id": "5aa69dbc-46b0-4940-bcf8-fe5c5cba2f0c",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"message\":\"helo how u doing\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/messages/send/65e1491fb57a5dcf13a1a2ee",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "messages",
+            "send",
+            "65e1491fb57a5dcf13a1a2ee"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get messages",
+      "id": "3e9f9dd0-f89a-4979-ab58-d4005ad95ca2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"message\":\"helo how u doing\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/messages/65e1d8569b33d22a12ed7fa6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "messages",
+            "65e1d8569b33d22a12ed7fa6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://api.schoolworkspro.com/modules/st5009cem-software-development/currentBatches?success:true",
+      "id": "189dfb08-db20-4589-992a-9819f8203438",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://maps.app.goo.gl/6SjLQMKsZiEFpyZAA",
+          "protocol": "https",
+          "host": [
+            "maps",
+            "app",
+            "goo",
+            "gl"
+          ],
+          "path": [
+            "6SjLQMKsZiEFpyZAA"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "fffff",
+      "id": "b756b82f-7fee-408e-876c-5d263007fa15",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\":\"Admin123$\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.hotel-kings.com/api/user/login",
+          "protocol": "https",
+          "host": [
+            "api",
+            "hotel-kings",
+            "com"
+          ],
+          "path": [
+            "api",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

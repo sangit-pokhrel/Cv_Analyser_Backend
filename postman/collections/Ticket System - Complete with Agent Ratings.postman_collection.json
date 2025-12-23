@@ -1,0 +1,2064 @@
+{
+  "info": {
+    "_postman_id": "8c07f904-3e4f-4f68-b303-3eb5484165df",
+    "name": "Ticket System - Complete with Agent Ratings",
+    "description": "Complete ticket system with multi-agent assignment, email notifications, and agent performance ratings",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication & Setup",
+      "item": [
+        {
+          "name": "Register Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('admin_token', response.token);",
+                  "        console.log('✅ Admin registered and token saved');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d0d4740d-fe43-4f30-9773-f9a4a2b33eda"
+              }
+            }
+          ],
+          "id": "b5bdb539-e55f-4519-8d68-9fe1af848b02",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"AdminPass123!\",\n  \"firstName\": \"Admin\",\n  \"lastName\": \"User\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register User 1 (Job Seeker)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('user_token', response.token);",
+                  "        console.log('✅ User 1 registered');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d6632812-a916-4282-bbc1-36bef4ff27c0"
+              }
+            }
+          ],
+          "id": "ea87e8b4-338a-4a10-a814-2c502c7c7aef",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"UserPass123!\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"role\": \"job_seeker\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register User 2 (Job Seeker)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('user2_token', response.token);",
+                  "        console.log('✅ User 2 registered');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "467dbcee-89ab-4e5a-8edc-4fad77244156"
+              }
+            }
+          ],
+          "id": "b3b83665-7900-4bfc-9320-533e7fdaa79f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"jane.smith@example.com\",\n  \"password\": \"UserPass123!\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"role\": \"job_seeker\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register CSR Agent 1 (Sarah)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('csr_token', response.token);",
+                  "    }",
+                  "    if (response.user && response.user._id) {",
+                  "        pm.collectionVariables.set('agent_id', response.user._id);",
+                  "        console.log('✅ CSR Agent 1 (Sarah) registered - ID:', response.user._id);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "91e52715-76cf-4235-ab26-ccf5c391a457"
+              }
+            }
+          ],
+          "id": "d10b2eef-8db2-4ee8-8b69-001dbe055f17",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sarah@company.com\",\n  \"password\": \"CsrPass123!\",\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Johnson\",\n  \"role\": \"csr\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Creates CSR agent who will receive ticket notifications"
+          },
+          "response": []
+        },
+        {
+          "name": "Register CSR Agent 2 (Mike)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('agent2_token', response.token);",
+                  "        console.log('✅ CSR Agent 2 (Mike) registered');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "9c195eaf-7154-4149-95c7-c3057c050dbf"
+              }
+            }
+          ],
+          "id": "b963c578-8f23-439a-876f-3f0f3e9a9eca",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"mike@company.com\",\n  \"password\": \"CsrPass123!\",\n  \"firstName\": \"Mike\",\n  \"lastName\": \"Wilson\",\n  \"role\": \"csr\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Sales Agent (Emma)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('sales_token', response.token);",
+                  "        console.log('✅ Sales Agent (Emma) registered');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "e334e671-1042-4067-9909-1a382cea24b0"
+              }
+            }
+          ],
+          "id": "542f6216-4c49-461f-aa22-4614734b5798",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"emma@company.com\",\n  \"password\": \"SalesPass123!\",\n  \"firstName\": \"Emma\",\n  \"lastName\": \"Davis\",\n  \"role\": \"sales\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('user_token', response.token);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "b4701007-dfea-415b-be72-28df7fccb9af"
+              }
+            }
+          ],
+          "id": "3dba1a52-c7cc-4dc7-b37b-081568dd4c72",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"UserPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login CSR Agent",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.token) {",
+                  "        pm.collectionVariables.set('csr_token', response.token);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "959851eb-3b81-4120-bcec-25767513a7fc"
+              }
+            }
+          ],
+          "id": "3ba3559c-15ec-4130-b6ed-a46bcae58567",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sarah@company.com\",\n  \"password\": \"CsrPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a8e30840-98de-4f36-b59f-c6e88d504af3",
+      "description": "Create all test accounts: Admin, Users, and Agents"
+    },
+    {
+      "name": "2. User - Create & Manage Tickets",
+      "item": [
+        {
+          "name": "Create Ticket - CV Upload Issue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.ticket && response.ticket._id) {",
+                  "        pm.collectionVariables.set('ticket_id', response.ticket._id);",
+                  "        console.log('✅ Ticket created:', response.ticket.ticketNumber);",
+                  "        console.log('📧 Check emails:');",
+                  "        console.log('   - User confirmation');",
+                  "        console.log('   - All agents notified');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "b53d685b-8e04-4f0b-ba1a-7b13a5c00ac7"
+              }
+            }
+          ],
+          "id": "c31e56ca-9237-4d45-9cef-ed038c74a54e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Unable to upload my CV - Getting Error 500\",\n  \"description\": \"Hi, I'm trying to upload my CV but I keep getting a server error (Error 500). I've tried different PDF files but the same issue persists. This is blocking me from applying to jobs. Please help!\",\n  \"category\": \"technical\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            },
+            "description": "✉️ **Emails Sent:**\n1. User confirmation\n2. Notification to all agents (Sarah, Mike, Emma)\n\n📋 **Ticket Status:** open → pending_assignment"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Ticket - Account Issue",
+          "id": "df79f73d-926e-4e12-aa7a-f7be7b24e382",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user2_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Cannot reset my password\",\n  \"description\": \"I tried to reset my password but didn't receive the reset email. Checked spam folder as well.\",\n  \"category\": \"account\",\n  \"priority\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            },
+            "description": "Create ticket from different user"
+          },
+          "response": []
+        },
+        {
+          "name": "List My Tickets",
+          "id": "7165cf2f-6a97-4a5c-872e-769ceabe2011",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/tickets?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "open",
+                  "disabled": true
+                },
+                {
+                  "key": "priority",
+                  "value": "high",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "technical",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get all tickets created by current user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Ticket Details",
+          "id": "1c9f1f7d-7003-4c3b-907a-3c712728e9aa",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "Shows ticket + all messages (cached)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Message (Text Only)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    console.log('✅ Message added');",
+                  "    console.log('📧 Email sent to assigned agent(s)');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "2a6e005f-0a6a-4565-bcd5-f23d336e79d5"
+              }
+            }
+          ],
+          "id": "94823f33-7370-42b1-97da-5e78d7872786",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"I've also tried clearing my browser cache and using incognito mode, but still getting the same 500 error. The error appears right after selecting the file.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "✉️ Sends email to assigned agent(s)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Message with Attachments",
+          "id": "5299aead-641b-4c20-a51b-c78cc9ad3bb4",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "message",
+                  "value": "Here's a screenshot of the error message I'm getting",
+                  "type": "text"
+                },
+                {
+                  "key": "attachments",
+                  "description": "Select image or PDF (max 5 files, 10MB each)",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "📎 Upload files with message\n✉️ Email includes download links"
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 5 Stars",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('⭐ Ticket rated:', response.ticket.rating, 'stars');",
+                  "    console.log('👤 Agent:', response.agent.firstName, response.agent.lastName);",
+                  "    console.log('📊 Agent avg rating:', response.agent.averageRating);",
+                  "    console.log('📈 Total ratings:', response.agent.totalRatings);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "66203354-378e-4d48-bcd2-bec290ac7280"
+              }
+            }
+          ],
+          "id": "65175cb1-354d-4a70-95a7-a958754a2c59",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"feedback\": \"Excellent support! Sarah was very helpful and resolved my issue quickly. She explained the problem clearly and the fix worked perfectly. Highly recommend!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            },
+            "description": "⭐ **Rate Primary Agent (1-5 stars)**\n\n✅ Updates agent's profile:\n- Adds rating to agent.agentRatings[]\n- Recalculates agent.averageRating\n- Increments agent.totalRatings\n\n⚠️ Can only rate resolved/closed tickets\n⚠️ Can only rate once per ticket"
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 4 Stars",
+          "id": "39e28d62-aae4-4617-adc9-9be0b053ebc7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"feedback\": \"Good service. Issue resolved but took a bit longer than expected.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 3 Stars",
+          "id": "1fe41ae9-f788-4e7b-96f7-00c23d2e7294",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 3,\n  \"feedback\": \"Issue eventually fixed but communication could be better.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reopen Ticket",
+          "id": "44a4f7d7-597c-43cb-b587-f0b8d0243aa8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"The issue came back. Getting the same 500 error again when uploading CV.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/reopen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "reopen"
+              ]
+            },
+            "description": "Reopens closed ticket. Increments reopenedCount."
+          },
+          "response": []
+        }
+      ],
+      "id": "1858b0be-b424-40c0-998d-70707faf86bc",
+      "description": "User ticket management and rating system"
+    },
+    {
+      "name": "3. Multi-Agent - Accept/Decline",
+      "item": [
+        {
+          "name": "List Pending Tickets (Agent 1)",
+          "id": "1071d461-82f0-4c38-a73a-70761fb16b74",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/pending-my-response?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "pending-my-response"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Shows tickets where this agent is in pendingAgents[] list"
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Ticket (Agent 1 - Becomes Primary)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('✅ Ticket accepted');",
+                  "    console.log('👤 Role:', response.role);",
+                  "    console.log('📧 Email sent to customer');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "bc6848d9-8685-4649-9b4a-847c28dc6eb8"
+              }
+            }
+          ],
+          "id": "14246945-a125-4948-9f42-f72c71431075",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/accept",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "accept"
+              ]
+            },
+            "description": "✅ **First agent to accept becomes PRIMARY**\n\n📧 Email sent to customer:\n\"Agent Sarah has been assigned to your ticket\"\n\n📊 Status: pending_assignment → in_progress\n\n👤 Agent added to assignedAgents[] with:\n- status: 'accepted'\n- role: 'primary'"
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Ticket (Agent 2 - Becomes Collaborator)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('✅ Ticket accepted as collaborator');",
+                  "    console.log('👥 Multiple agents on ticket now');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d0ae5e03-ccae-4f76-b244-c82e392b01d0"
+              }
+            }
+          ],
+          "id": "929abd7c-1a9e-4373-b3e2-9421e2b71330",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent2_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/accept",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "accept"
+              ]
+            },
+            "description": "✅ **Additional agents become COLLABORATORS**\n\n👥 Allows multiple agents to work together\n\n📊 Agent added to assignedAgents[] with:\n- status: 'accepted'\n- role: 'collaborator'"
+          },
+          "response": []
+        },
+        {
+          "name": "Decline Ticket (Agent)",
+          "id": "b0554842-2a63-4e4f-9069-8436cf2ebe93",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sales_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/decline",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "decline"
+              ]
+            },
+            "description": "❌ Agent declines ticket\n\n- Removed from pendingAgents[]\n- Added to assignedAgents[] with status 'declined'\n- No email sent"
+          },
+          "response": []
+        }
+      ],
+      "id": "0d2dbfad-246d-4bac-87a2-8793ea27b21b",
+      "description": "Multi-agent assignment workflow"
+    },
+    {
+      "name": "4. Staff - Manage All Tickets",
+      "item": [
+        {
+          "name": "List All Tickets",
+          "id": "067f6a56-4b4b-4553-a513-9ea819c07ae5",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets?page=1&limit=20&status=in_progress",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "in_progress"
+                },
+                {
+                  "key": "priority",
+                  "value": "urgent",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "technical",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "TKT-000001",
+                  "description": "Search by ticket number or subject",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "View all tickets with filters"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Statistics (Global)",
+          "id": "7f2ef0b4-bd34-4769-8fe1-cfecd0217b86",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "stats"
+              ]
+            },
+            "description": "📊 Returns:\n- Tickets by status\n- Tickets by priority\n- Tickets by category\n- Avg response time\n- Avg resolution time\n- Avg rating"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Ticket Status/Priority",
+          "id": "216e209b-3c57-4840-ac2c-f5af61fe8466",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"waiting_customer\",\n  \"priority\": \"urgent\",\n  \"tags\": [\"cv-upload\", \"bug\", \"server-error\"],\n  \"internalNotes\": \"Checked server logs. Found CORS issue in upload API. Deploying fix now. ETA: 10 mins.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "Update ticket properties (staff only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Internal Note (Staff Only)",
+          "id": "ef3f0d60-2926-47a9-95b7-9eeb842e7b58",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Checked backend logs. Found CORS issue in CV upload endpoint. Deploying fix. Customer should not see this note.\",\n  \"isInternal\": \"true\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "🔒 Internal notes:\n- NOT visible to customer\n- NOT sent via email\n- Only visible to staff"
+          },
+          "response": []
+        },
+        {
+          "name": "Reply to Customer (Agent)",
+          "id": "fc24b7b2-52fe-4620-b34a-93107c989add",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Hi John! I've identified the issue. It was a CORS configuration problem on our server. I've deployed a fix just now. Can you please try uploading your CV again and let me know if it works? Thanks!\",\n  \"status\": \"waiting_customer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "✉️ Sends email to customer with agent's reply"
+          },
+          "response": []
+        },
+        {
+          "name": "Resolve Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    console.log('✅ Ticket resolved');",
+                  "    console.log('📧 Email sent to customer with satisfaction survey');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "33cbea9d-7324-44ec-a647-1bb385a9f4b0"
+              }
+            }
+          ],
+          "id": "0a1dc53c-4f41-418e-9f41-545ca1b0e882",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "✅ Marks ticket as resolved\n\n✉️ **Email sent to customer with:**\n- Ticket summary\n- Satisfaction survey (rate 1-5 stars)\n- Option to reopen\n\n📊 Calculates:\n- resolutionTime\n- Sets resolvedAt timestamp"
+          },
+          "response": []
+        },
+        {
+          "name": "Manual Assign to Agent (Admin)",
+          "id": "77f4cf54-0dff-4d95-90f5-48afb0c75c39",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agentEmail\": \"sarah@company.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/assign",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "assign"
+              ]
+            },
+            "description": "Admin can manually assign without agent acceptance"
+          },
+          "response": []
+        },
+        {
+          "name": "Bulk Update Tickets",
+          "id": "581457b8-0bc4-4aca-bc17-028d7345c4de",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketIds\": [\"{{ticket_id}}\"],\n  \"updates\": {\n    \"status\": \"resolved\",\n    \"priority\": \"low\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/bulk-update",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "bulk-update"
+              ]
+            },
+            "description": "Update multiple tickets at once"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Ticket (Admin Only)",
+          "id": "064bce70-5007-47bb-947a-0aaf4ab2bdf5",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "⚠️ Deletes ticket + all messages permanently"
+          },
+          "response": []
+        }
+      ],
+      "id": "233547f5-4094-4219-921f-c163f37c7ff9",
+      "description": "Staff ticket management"
+    },
+    {
+      "name": "5. Agent Management & Ratings",
+      "item": [
+        {
+          "name": "List All Agents (with Stats)",
+          "id": "cbb322fe-03b6-46a7-80fd-5bb7a7ad22d4",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "role",
+                  "value": "csr",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "sarah",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "📊 Shows all agents with:\n- Total tickets assigned\n- Open/In Progress/Resolved counts\n- Average rating ⭐\n- Total ratings received"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Agents (Autocomplete)",
+          "id": "13d972e1-b2c1-4a58-bc31-89714e892202",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/search?q=sarah",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "sarah",
+                  "description": "Min 2 characters"
+                }
+              ]
+            },
+            "description": "Quick search by email/name (for assignment)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Details (Full Profile)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('👤 Agent:', response.agent.firstName, response.agent.lastName);",
+                  "    console.log('⭐ Average Rating:', response.ratings.average);",
+                  "    console.log('📊 Total Ratings:', response.ratings.total);",
+                  "    console.log('📈 Breakdown:');",
+                  "    console.log('   5⭐:', response.ratings.breakdown['5']);",
+                  "    console.log('   4⭐:', response.ratings.breakdown['4']);",
+                  "    console.log('   3⭐:', response.ratings.breakdown['3']);",
+                  "    console.log('   2⭐:', response.ratings.breakdown['2']);",
+                  "    console.log('   1⭐:', response.ratings.breakdown['1']);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d571c359-f48d-4158-82f9-0c0070205bc0"
+              }
+            }
+          ],
+          "id": "056df488-a962-480c-8a93-8c9e9499cad5",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}"
+              ]
+            },
+            "description": "📊 **Complete Agent Profile:**\n\n**Ticket Stats:**\n- By status (open, in_progress, resolved)\n- By priority (low, medium, high, urgent)\n- By category\n- Avg response time\n- Avg resolution time\n\n**⭐ Rating Stats:**\n- Average rating (1-5)\n- Total ratings received\n- Breakdown (5⭐, 4⭐, 3⭐, 2⭐, 1⭐)\n- Last 10 ratings with:\n  - Rating value\n  - Customer feedback\n  - Ticket number\n  - Date rated\n\n**Recent Tickets:**\n- Last 10 tickets handled"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Reviews (Paginated)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('📝 Total Reviews:', response.meta.total);",
+                  "    console.log('⭐ Agent Rating:', response.agent.averageRating);",
+                  "    response.reviews.forEach((review, i) => {",
+                  "        console.log(`${i+1}. ${review.rating}⭐ - ${review.feedback}`);",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "cdfa76fa-0363-4c5f-bb58-9431701c77d9"
+              }
+            }
+          ],
+          "id": "2d7a0371-3e95-48e3-a11d-50fda75e8c22",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}/reviews?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "rating",
+                  "value": "5",
+                  "description": "Filter: 1, 2, 3, 4, or 5",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "📝 **All Reviews for Agent:**\n\n- Paginated list\n- Filter by rating (1-5)\n- Sorted by most recent\n- Includes:\n  - Rating (1-5 stars)\n  - Customer feedback text\n  - Ticket number & subject\n  - Customer name\n  - Date rated"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Reviews - 5 Stars Only",
+          "id": "06e8746f-e0b0-4ab5-860c-5fccc7d112f9",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}/reviews?rating=5&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "rating",
+                  "value": "5"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Filter to show only 5-star reviews"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Rating",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('🏆 Agent Leaderboard (by rating):');",
+                  "    response.leaderboard.forEach((agent, i) => {",
+                  "        console.log(`${i+1}. ${agent.firstName} ${agent.lastName}: ${agent.averageRating}⭐ (${agent.totalRatings} ratings)`);",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d2d0f6d9-c368-47b8-95fd-bc6c740eb1f0"
+              }
+            }
+          ],
+          "id": "e8df9179-9553-4c39-9c36-8cf1e4fe7330",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=month&metric=rating",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "month",
+                  "description": "all, today, week, month"
+                },
+                {
+                  "key": "metric",
+                  "value": "rating",
+                  "description": "rating, resolved, response, total"
+                }
+              ]
+            },
+            "description": "🏆 **Performance Leaderboard**\n\n**Sort by:**\n- rating: Average rating (best rated agents)\n- resolved: Most tickets resolved\n- response: Fastest response time\n- total: Most tickets handled\n\n**Period:**\n- all: All time\n- today: Last 24 hours\n- week: Last 7 days\n- month: Last 30 days"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Resolved Tickets",
+          "id": "ae46bc38-a034-4c26-b0bf-1f7c137f6bca",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=week&metric=resolved",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "week"
+                },
+                {
+                  "key": "metric",
+                  "value": "resolved"
+                }
+              ]
+            },
+            "description": "Most productive agents this week"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Response Time",
+          "id": "dce364ce-ee37-470f-8c9c-f301a831b63f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=all&metric=response",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "all"
+                },
+                {
+                  "key": "metric",
+                  "value": "response"
+                }
+              ]
+            },
+            "description": "Fastest responding agents"
+          },
+          "response": []
+        }
+      ],
+      "id": "9bbef4d9-b421-4a7d-9003-1df47b66768f",
+      "description": "Agent profiles, ratings, reviews, and leaderboard"
+    },
+    {
+      "name": "6. Complete Email Flow Test",
+      "item": [
+        {
+          "name": "STEP 1 - User Creates Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('ticket_id', response.ticket._id);",
+                  "    console.log('📧 CHECK EMAILS:');",
+                  "    console.log('1. ✉️ User confirmation (john.doe@example.com)');",
+                  "    console.log('2. ✉️ Agent notification (sarah@company.com)');",
+                  "    console.log('3. ✉️ Agent notification (mike@company.com)');",
+                  "    console.log('4. ✉️ Agent notification (emma@company.com)');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "f95c3423-0047-4383-85b6-c0d9dfb56170"
+              }
+            }
+          ],
+          "id": "70421989-1f5e-43bb-b164-e70dbb91cda8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Email Flow Test - Please Check Your Inbox\",\n  \"description\": \"This ticket is created to test the complete email notification system. All agents should receive notification emails.\",\n  \"category\": \"general\",\n  \"priority\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            },
+            "description": "Creates ticket → Sends emails to user + all agents"
+          },
+          "response": []
+        },
+        {
+          "name": "STEP 2 - Agent Accepts Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log('📧 CHECK EMAIL:');",
+                  "console.log('✉️ User notified that agent accepted (john.doe@example.com)');",
+                  "console.log('Subject: \"Agent Assigned: ...\"');"
+                ],
+                "type": "text/javascript",
+                "id": "64340516-0fe9-4cf7-99a9-adb732bbb90b"
+              }
+            }
+          ],
+          "id": "fa628b30-60d5-445d-933b-5ca8ff1a58b2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/accept",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "accept"
+              ]
+            },
+            "description": "Agent accepts → User gets email"
+          },
+          "response": []
+        },
+        {
+          "name": "STEP 3 - Agent Replies",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log('📧 CHECK EMAIL:');",
+                  "console.log('✉️ User notified of new message');",
+                  "console.log('Subject: \"New Reply: ...\"');"
+                ],
+                "type": "text/javascript",
+                "id": "415a68ed-e52e-4510-8a90-a1f996be253c"
+              }
+            }
+          ],
+          "id": "725226e7-1e2a-4f42-978c-ed9404413cae",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Hi John! Thank you for reporting this. I've checked and everything looks good. Let me know if you need anything else!\",\n  \"status\": \"waiting_customer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "Agent replies → User gets email"
+          },
+          "response": []
+        },
+        {
+          "name": "STEP 4 - User Replies Back",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log('📧 CHECK EMAIL:');",
+                  "console.log('✉️ Agent notified of customer reply');",
+                  "console.log('Sent to: sarah@company.com');"
+                ],
+                "type": "text/javascript",
+                "id": "18ac0849-45de-4100-bb5b-667e6a9f88a1"
+              }
+            }
+          ],
+          "id": "42227623-cd46-4202-9e81-4a871a89fc53",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Thanks Sarah! Everything is working perfectly now. Appreciate your help!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "User replies → Agent gets email"
+          },
+          "response": []
+        },
+        {
+          "name": "STEP 5 - Agent Resolves Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log('📧 CHECK EMAIL:');",
+                  "console.log('✉️ User gets satisfaction survey');",
+                  "console.log('Subject: \"Ticket Resolved: ...\"');",
+                  "console.log('Contains: 5-star rating buttons');"
+                ],
+                "type": "text/javascript",
+                "id": "919f61bc-30c5-414a-ab06-f64bfece0aea"
+              }
+            }
+          ],
+          "id": "f05c3384-c0c0-40da-84a5-a83890592822",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "Resolves ticket → User gets survey email"
+          },
+          "response": []
+        },
+        {
+          "name": "STEP 6 - User Rates Agent",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('⭐ RATING SAVED TO AGENT PROFILE');",
+                  "    console.log('Agent:', response.agent.firstName, response.agent.lastName);",
+                  "    console.log('Average Rating:', response.agent.averageRating);",
+                  "    console.log('Total Ratings:', response.agent.totalRatings);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "fed050c7-02d9-4916-944e-30faded32104"
+              }
+            }
+          ],
+          "id": "172408d5-3b27-4a3d-825f-4bde7119b4a8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"feedback\": \"Excellent support! Sarah was very helpful and professional. Issue resolved quickly!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            },
+            "description": "⭐ Rates agent → Updates agent profile"
+          },
+          "response": []
+        }
+      ],
+      "id": "77043505-6961-4eaa-942d-ad8ed47c6a81",
+      "description": "🧪 Complete workflow test: Create → Accept → Reply → Resolve → Rate"
+    }
+  ],
+  "variable": [
+    {
+      "id": "eee011bb-18a9-4c31-8450-5b6343564136",
+      "key": "base_url",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "id": "4cc7421c-1a4a-4ee8-acd7-d92a74e2535d",
+      "key": "user_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "5038fbb1-2835-4ecd-ab53-8a928786e4a5",
+      "key": "user2_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "e6a081bf-7cbd-4fbf-8049-203c8beb1788",
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "4a853ddf-89dc-472d-9142-2d468feb00af",
+      "key": "csr_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "a8185532-dd6b-4acb-a5de-8c8b646fc7e4",
+      "key": "agent2_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "54c3696f-d90c-4a45-81bd-1f44a3649b3b",
+      "key": "sales_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "6899f44b-c192-44ae-a47e-d1d455adb948",
+      "key": "ticket_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "ef5a872b-186c-4b83-97a7-490d20e673aa",
+      "key": "agent_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "62d9164c-616e-42e1-ae68-58ba3837022a",
+      "key": "message_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

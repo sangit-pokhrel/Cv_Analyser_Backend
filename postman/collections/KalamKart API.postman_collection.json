@@ -1,0 +1,2126 @@
+{
+  "info": {
+    "_postman_id": "95a1362e-c445-4271-9f2d-91fab913497e",
+    "name": "KalamKart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Register",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "9464fb96-d52d-47f3-ad24-58994d0bf7fb"
+                  }
+                }
+              ],
+              "id": "698e051e-a22b-46d5-b1e6-bd289d0b442f",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Aarambha Timalsena\",\r\n  \"email\": \"thisisaarambha@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/users/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "users",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "ab79f43f-bacf-49f8-a751-1c215657fb7b"
+                  }
+                }
+              ],
+              "id": "d438bf6e-0a00-4842-a245-bda4c29442ca",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n\"email\": \"thisisaarambha@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/users/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "users",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Google Login (Send ID Token)",
+              "id": "7131d08a-f53e-4836-9e87-86c895838415",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": ""
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "cd6849d2-2283-481a-9f75-53bbcae2bb48"
+        },
+        {
+          "name": "Cart",
+          "item": [
+            {
+              "name": "Add to Cart",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('user');\r",
+                      "    pm.expect(responseData).to.have.property('items');\r",
+                      "    pm.expect(responseData).to.have.property('createdAt');\r",
+                      "    pm.expect(responseData).to.have.property('updatedAt');\r",
+                      "    pm.expect(responseData).to.have.property('__v');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the product object within the items array\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData.items).to.be.an('array');\r",
+                      "    \r",
+                      "    responseData.items.forEach(function(item) {\r",
+                      "        pm.expect(item).to.have.property('product').that.is.an('object');\r",
+                      "        pm.expect(item.product).to.have.property('_id').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('name').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('image').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('description').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('category').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('price').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('stock').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('numReviews').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('rating').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('reviews').that.is.an('array');\r",
+                      "        pm.expect(item.product).to.have.property('__v').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('createdAt').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('updatedAt').that.is.a('string');\r",
+                      "    });\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"User is a non-empty string\", function () {\r",
+                      "  const responseData = pm.response.json();\r",
+                      "  \r",
+                      "  pm.expect(responseData).to.be.an('object');\r",
+                      "  pm.expect(responseData.user).to.be.a('string').and.to.have.lengthOf.at.least(1, \"User should not be empty\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "fff70f50-8c1c-4093-a8f1-38b695104b93"
+                  }
+                }
+              ],
+              "id": "fecd30a5-110d-41b2-bc11-42e0cdae2651",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productId\": \"68537b8ac9762edf4ba5c9c3\",\r\n  \"quantity\": 40\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/cart",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cart"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "View Cart",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields - user and items\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('user');\r",
+                      "    pm.expect(responseData).to.have.property('items');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the structure of the product object within the items array\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData.items).to.be.an('array');\r",
+                      "    responseData.items.forEach(function(item) {\r",
+                      "        pm.expect(item).to.be.an('object');\r",
+                      "        pm.expect(item.product).to.be.an('object');\r",
+                      "        pm.expect(item.product).to.include.all.keys('_id', 'name', 'image', 'description', 'category', 'price', 'stock', 'numReviews', 'rating', 'reviews', '__v', 'createdAt', 'updatedAt');\r",
+                      "    });\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Price and stock of the product are non-negative integers\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.items).to.be.an('array');\r",
+                      "    responseData.items.forEach(function(item) {\r",
+                      "        pm.expect(item.product.price).to.be.a('number').and.to.be.at.least(0, \"Price should be non-negative\");\r",
+                      "        pm.expect(item.product.stock).to.be.a('number').and.to.be.at.least(0, \"Stock should be non-negative\");\r",
+                      "    });\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "d76f94a5-c0d7-4e28-aa9d-07d25e0de800"
+                  }
+                }
+              ],
+              "id": "a7e59c2d-910e-4888-b43b-c1741ed683b1",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/cart",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cart"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Quantity in Cart",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('user');\r",
+                      "    pm.expect(responseData).to.have.property('items');\r",
+                      "    pm.expect(responseData).to.have.property('createdAt');\r",
+                      "    pm.expect(responseData).to.have.property('updatedAt');\r",
+                      "    pm.expect(responseData).to.have.property('__v');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the items array and its structure\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData.items).to.exist.and.to.be.an('array');\r",
+                      "\r",
+                      "    responseData.items.forEach(function(item) {\r",
+                      "        pm.expect(item).to.be.an('object');\r",
+                      "        pm.expect(item.product).to.exist.and.to.be.an('object');\r",
+                      "        pm.expect(item.product.name).to.exist.and.to.be.a('string');\r",
+                      "        pm.expect(item.product.price).to.exist.and.to.be.a('number');\r",
+                      "        pm.expect(item.quantity).to.exist.and.to.be.a('number');\r",
+                      "    });\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the product object within the items array\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData.items).to.be.an('array').that.is.not.empty;\r",
+                      "    responseData.items.forEach(function(item) {\r",
+                      "        pm.expect(item).to.have.property('product').that.is.an('object');\r",
+                      "        pm.expect(item.product).to.have.property('_id').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('name').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('image').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('description').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('category').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('price').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('stock').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('numReviews').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('rating').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('reviews').that.is.an('array');\r",
+                      "        pm.expect(item.product).to.have.property('__v').that.is.a('number');\r",
+                      "        pm.expect(item.product).to.have.property('createdAt').that.is.a('string');\r",
+                      "        pm.expect(item.product).to.have.property('updatedAt').that.is.a('string');\r",
+                      "    });\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "b048fc28-2811-4e13-aa65-aa3206c3dc6c"
+                  }
+                }
+              ],
+              "id": "e4e9e3cb-6a02-44b1-a4e2-855b7e6a6abb",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productId\": \"6837da3523ee07d781b91791\",\r\n  \"quantity\": 50\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/cart",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cart"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove Item from Cart",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate response schema for _id, user, items, createdAt, and updatedAt fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('user');\r",
+                      "    pm.expect(responseData).to.have.property('items');\r",
+                      "    pm.expect(responseData).to.have.property('createdAt');\r",
+                      "    pm.expect(responseData).to.have.property('updatedAt');\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "6a1e2391-bc2a-4cda-809c-c8e9de8c8801"
+                  }
+                }
+              ],
+              "id": "5208681f-5cb0-48b5-ad76-8ab308b8fe53",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/cart/6837da3523ee07d781b9178e",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cart",
+                    "6837da3523ee07d781b9178e"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Clear Cart (Full Reset)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the response schema for _id, user, items array with product and quantity, createdAt, updatedAt, and __v properties\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('user');\r",
+                      "    pm.expect(responseData).to.have.property('items').that.is.an('array').and.not.empty;\r",
+                      "    responseData.items.forEach(function (item) {\r",
+                      "        pm.expect(item).to.have.property('product').that.is.an('object');\r",
+                      "        pm.expect(item).to.have.property('quantity');\r",
+                      "    });\r",
+                      "    pm.expect(responseData).to.have.property('createdAt');\r",
+                      "    pm.expect(responseData).to.have.property('updatedAt');\r",
+                      "    pm.expect(responseData).to.have.property('__v');\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "845fc66f-5caa-4029-b34d-45017d7c6e58"
+                  }
+                }
+              ],
+              "id": "632c83d4-28c0-4da0-8307-762e6a441ec5",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/cart/clear",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cart",
+                    "clear"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "8307174a-835e-4fd4-83dd-56ca5cb2b82a"
+        },
+        {
+          "name": "Wishlist",
+          "item": [
+            {
+              "name": "Add to Wishlist",
+              "id": "4fa1985a-33a8-4b6a-822f-c6c26e6098e3",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"productIds\": [\"6837da3523ee07d781b9178e\"]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/wishlist",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "wishlist"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "View Wishlist",
+              "id": "d149c13a-4f0e-4a94-9c65-66352025d423",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/wishlist",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "wishlist"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove from Wishlist",
+              "id": "87913d0e-4522-47a5-80a4-f8b8c59dc78c",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/wishlist/68357b0e79da1b792df1d468",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "wishlist",
+                    "68357b0e79da1b792df1d468"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "ae1e6d34-8d11-4e92-8cdd-6460472bb89e"
+        },
+        {
+          "name": "Orders",
+          "item": [
+            {
+              "name": "Place Order",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "013e9017-6ea6-416a-aeca-9998039140a8",
+                    "exec": [
+                      "pm.test(\"Response status code is 201\", function () {\r",
+                      "    pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData.message).to.exist;\r",
+                      "    pm.expect(responseData.orderId).to.exist;\r",
+                      "    pm.expect(responseData.totalAmount).to.exist;\r",
+                      "    pm.expect(responseData.discount).to.exist;\r",
+                      "    pm.expect(responseData.couponCode).to.exist;\r",
+                      "    pm.expect(responseData.createdAt).to.exist;\r",
+                      "    pm.expect(responseData.updatedAt).to.exist;\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"OrderId is a non-empty string\", function () {\r",
+                      "  const responseData = pm.response.json();\r",
+                      "\r",
+                      "  pm.expect(responseData).to.be.an('object');\r",
+                      "  pm.expect(responseData.orderId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"OrderId should be a non-empty string\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Total amount should be a number\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    pm.expect(responseData.totalAmount).to.be.a('number');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Discount should be a number\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    pm.expect(responseData.discount).to.be.a('number');\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Created at should be a string\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    pm.expect(responseData.createdAt).to.be.a('string');\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "id": "e74bc75a-fe12-45ff-97ca-d9f289311b1b",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"deliveryAddress\": \"New Road, Kathmandu\",\r\n  \"phone\": \"9812345678\",\r\n  \"paymentMethod\": \"COD\",          \r\n  \"couponCode\": \"SAVE10\"   \r\n      \r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/orders/place",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "place"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "View My Orders",
+              "id": "06b261ce-8cd2-444b-b4fe-7d145c70cc57",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/orders/my-orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "my-orders"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Invoice",
+              "id": "ef85d30f-7495-4168-9bc1-6f0e6ebcfbe4",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/orders/invoice/683a811c495cd510830e0c34",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "invoice",
+                    "683a811c495cd510830e0c34"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "f5157202-fd19-4e15-8a6a-c0dcf86e23a4"
+        },
+        {
+          "name": "Products",
+          "item": [
+            {
+              "name": "View All Products",
+              "id": "e28df1d0-59dd-4aec-bcfc-be56f789a504",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "View Product by ID",
+              "id": "f4e07eee-c303-4fc6-becc-772b36ea02fe",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/products/6837da3523ee07d781b91791",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "products",
+                    "6837da3523ee07d781b91791"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "2858c617-e6f0-4a41-aa39-138bec959e06"
+        },
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "View All Categories",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Content-Type header is application/json\", function () {\r",
+                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the schema for each category object\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('array');\r",
+                      "    responseData.forEach((category) => {\r",
+                      "        pm.expect(category).to.be.an('object');\r",
+                      "        pm.expect(category._id).to.be.a('string');\r",
+                      "        pm.expect(category.name).to.be.a('string');\r",
+                      "        pm.expect(category.image).to.exist;\r",
+                      "        pm.expect(category.__v).to.be.a('number');\r",
+                      "    });\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "ee8fd4f3-024f-4293-9f25-3128cb238651"
+                  }
+                }
+              ],
+              "id": "cc907ae7-8bae-43de-81c1-638392b2b9be",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/categories",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "categories"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "36cb1d95-15f3-476c-b1cc-2bdcf981ecee"
+        },
+        {
+          "name": "Coupons",
+          "item": [
+            {
+              "name": "Apply Coupon (View by Code)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Validate the response schema for required fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('code');\r",
+                      "    pm.expect(responseData).to.have.property('discountPercentage');\r",
+                      "    pm.expect(responseData).to.have.property('expiresAt');\r",
+                      "    pm.expect(responseData).to.have.property('isActive');\r",
+                      "    pm.expect(responseData).to.have.property('createdAt');\r",
+                      "    pm.expect(responseData).to.have.property('updatedAt');\r",
+                      "    pm.expect(responseData).to.have.property('__v');\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "ca4871a7-b067-4589-b87d-66c03be453c3"
+                  }
+                }
+              ],
+              "id": "78f3a469-5b7d-4634-9a98-44e8c028d966",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/coupons/SAVE10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "coupons",
+                    "SAVE10"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "45b7fc23-f166-4a2c-913a-5d241aed14b9"
+        },
+        {
+          "name": "OTP",
+          "item": [
+            {
+              "name": "Send OTP",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "  const responseData = pm.response.json();\r",
+                      "  \r",
+                      "  pm.expect(responseData).to.be.an('object');\r",
+                      "  pm.expect(responseData.message).to.exist;\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Message is a non-empty string\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Content-Type header is application/json\", function () {\r",
+                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "12989b75-ea8c-4d09-a5e5-3ed9df10b0a5"
+                  }
+                }
+              ],
+              "id": "739fe2a9-8cf3-4795-8492-a0ec9b64936d",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"thisisaarambha@gmail.com\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/otp/send-otp",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "otp",
+                    "send-otp"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify OTP",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData).to.have.property('_id');\r",
+                      "    pm.expect(responseData).to.have.property('name');\r",
+                      "    pm.expect(responseData).to.have.property('email');\r",
+                      "    pm.expect(responseData).to.have.property('token');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Email is in a valid format\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "    \r",
+                      "    pm.expect(responseData).to.be.an('object');\r",
+                      "    pm.expect(responseData.email).to.match(/^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)*(\\.[a-z]{2,})$/, \"Email format is not valid\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Token is a non-empty string\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "ff466ccb-54c1-426a-a949-51cd42d2483d"
+                  }
+                }
+              ],
+              "id": "586b207a-b222-485a-be92-8dbf3df5e60e",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"thisisaarambha@gmail.com\",\r\n  \"otp\": \"117960\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/otp/verify-otp",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "otp",
+                    "verify-otp"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "3aa4019d-16e6-4485-a10b-513e9c37673e"
+        },
+        {
+          "name": "Reviews",
+          "item": [
+            {
+              "name": "Add Review",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 400\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(400);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Response has the required fields\", function () {\r",
+                      "  const responseData = pm.response.json();\r",
+                      "  \r",
+                      "  pm.expect(responseData).to.be.an('object');\r",
+                      "  pm.expect(responseData.message).to.exist.and.to.be.a('string');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Message is a non-empty string\", function () {\r",
+                      "  const responseData = pm.response.json();\r",
+                      "  \r",
+                      "  pm.expect(responseData).to.be.an('object');\r",
+                      "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      "pm.test(\"Content-Type header is application/json\", function () {\r",
+                      "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "id": "248a26f3-be6c-4591-adfb-c3d755ff471d"
+                  }
+                }
+              ],
+              "id": "11ff3d80-64be-40e5-8c66-d31c02ef363c",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"rating\": 5,\r\n  \"comment\": \"Excellent quality product\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6837da3523ee07d781b91791"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "View Reviews by Product ID",
+              "id": "9f072bf2-d5ee-46a6-b144-c64b09556faa",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6837da3523ee07d781b91791"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE Review by Product ID & Review ID",
+              "id": "1682b998-f543-432a-a9f4-f6901429ad03",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791/683a909e16e83b5d0c08f685",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6837da3523ee07d781b91791",
+                    "683a909e16e83b5d0c08f685"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "5a20930e-1bcb-4cb9-8c2c-72e88e2ca4f4"
+        },
+        {
+          "name": "Payments",
+          "item": [
+            {
+              "name": "Esewa Success Simulation",
+              "id": "6bd0bb35-a398-405f-8871-f9a5245dd907",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/payments/esewa/success?oid=683a8ddf16e83b5d0c08f668",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "payments",
+                    "esewa",
+                    "success"
+                  ],
+                  "query": [
+                    {
+                      "key": "oid",
+                      "value": "683a8ddf16e83b5d0c08f668"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "eSewa Failure Simulation",
+              "id": "17543b42-c268-4fa2-bba5-6e6817cb2b58",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/payments/esewa/failure",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "payments",
+                    "esewa",
+                    "failure"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Khalti Payment Simulation",
+              "id": "cd644983-3b73-4a46-9a77-b18cbed9a93d",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"token\": \"test_local\",\r\n  \"amount\": 2500,\r\n  \"orderId\": \"683a8ddf16e83b5d0c08f668\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/payments/khalti/verify",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "payments",
+                    "khalti",
+                    "verify"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "63bf5ccb-6269-4a3e-aeb2-9d4b284b8e8e"
+        },
+        {
+          "name": "My profile",
+          "item": [
+            {
+              "name": "Get My Profile",
+              "id": "231c866c-46af-4a15-a57e-82af78e6fbd6",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/users/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "users",
+                    "profile"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update My Profile",
+              "id": "ab61d448-ea44-4fe5-909e-9757f3de31b3",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{userToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Aarambha Timalsena \"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/users/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "users",
+                    "profile"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Upload image profile",
+              "id": "18c12372-3f16-4d6d-b09f-7ae63ec77930",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ODczODQxMTY0Y2Y1MjA0YzUxMTJkNyIsIm5hbWUiOiJBYXJhbWJoYSBUaW1hbHNlbmEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1Mzc0MDA2NCwiZXhwIjoxNzU0MzQ0ODY0fQ.dB3-22vRXIHVYdhSQ-VcDjSgtC_fwVMEhh3idiyVvtI",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "profileImage",
+                      "type": "file",
+                      "src": "/C:/Users/Lenovo/Pictures/1262b723-845d-4a91-973a-44308e24a125.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/users/profile/upload",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "users",
+                    "profile",
+                    "upload"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "932d8c79-4d2d-475a-8160-e5bd0feb922b"
+        }
+      ],
+      "id": "18ad6c33-8af0-4957-aed1-274283c14201"
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Login admin",
+          "item": [
+            {
+              "name": "Login Admin",
+              "id": "f4af3c3e-5a48-4b59-a58f-13f3f70e37ff",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"timalsenaaarambha75@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "f7e3d424-55a1-4213-84c1-8156c028ccfc"
+        },
+        {
+          "name": "Stats",
+          "item": [
+            {
+              "name": "Get Admin Stats",
+              "id": "dca4f9a2-b24b-4320-be96-4705b5a3e998",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "stats"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "5cde4bfa-e0c8-4522-9e46-745e1e5788a3"
+        },
+        {
+          "name": "Manage Products",
+          "item": [
+            {
+              "name": "Add Product",
+              "id": "04d7dc78-a682-4406-a8fc-ff0e27ed6c7c",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Luxor Permanent Marker\",\r\n  \"description\": \"Bold, waterproof marker for all surfaces\",\r\n  \"category\": \"Art Supplies\",\r\n  \"price\": 50,\r\n  \"stock\": 100,\r\n  \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1748251470/Luxor_permanent_marker_mbiuhk.png\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Product",
+              "id": "4f8a8b04-4b6f-4b99-aef7-848da0e8680a",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"price\": 60,\r\n  \"stock\": 420,\r\n  \"description\": \"Bold, waterproof marker \"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/products/6838848552c4b34dbd085dcb",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    "6838848552c4b34dbd085dcb"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Product",
+              "id": "86dea12c-5f83-40e8-b0eb-7aa2a981e007",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/products/6838848552c4b34dbd085dcb",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "products",
+                    "6838848552c4b34dbd085dcb"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "7bbb13f0-8f24-4a57-8978-f97980bc7bc9"
+        },
+        {
+          "name": "Manage Categories",
+          "item": [
+            {
+              "name": "Add Category",
+              "id": "fd585a9a-8cb7-4478-a5bb-a0ce801633d4",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"categories\": [\r\n    { \"name\": \"Notebooks\",\r\n       \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749802922/notebooks_j6gyqn.jpg\"\r\n     },\r\n    { \"name\": \"Pens\",\r\n      \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749802971/pens_n66xfs.jpg\"\r\n     },\r\n    { \"name\": \"Markers\",\r\n      \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749803011/markers_i30iq6.jpg\"\r\n     },\r\n    { \"name\": \"Geometry Tools\",\r\n      \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749803061/Geometry_znqnyd.jpg\"\r\n     },\r\n    { \"name\": \"Art Supplies\",\r\n      \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749803082/Art_supplies_u9lhcr.jpg\"\r\n     },\r\n    { \"name\": \"Folders & Files\",\r\n       \"image\": \"https://res.cloudinary.com/djv58awy8/image/upload/v1749803133/Folder_and_file_w7yjfu.jpg\"\r\n     },\r\n    { \"name\": \"Stationery Sets\",\r\n        \"image\":\"https://res.cloudinary.com/djv58awy8/image/upload/v1749801037/Stationery_Sets_az35ll.jpg\" }\r\n  ]\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/categories/bulk",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "categories",
+                    "bulk"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "e896f38c-43ce-4308-83f8-cfc74db19396"
+        },
+        {
+          "name": "Manage Coupons",
+          "item": [
+            {
+              "name": "Add coupns",
+              "id": "066de6da-ad82-4fd0-a35e-6490b32dca80",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"code\": \"SAVE10\",\r\n  \"discountPercentage\": 10,\r\n  \"expiresAt\": \"2025-12-31\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/coupons",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "coupons"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Coupon",
+              "id": "26f92607-14ab-481d-b61b-45af4bf5ea65",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/admin/coupons/SAVE10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "admin",
+                    "coupons",
+                    "SAVE10"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "0389c542-1f05-4567-bce9-05f0f269fefc"
+        },
+        {
+          "name": "Manage Order",
+          "item": [
+            {
+              "name": "View All Orders",
+              "id": "4c235f3f-a541-424d-ae0b-918893fa45f0",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/orders/admin/all",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "admin",
+                    "all"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Order Status",
+              "id": "d2fffca4-99fd-42d1-95b3-397f6e1376b1",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderId\": \"683a811c495cd510830e0c34\",\r\n  \"status\": \"Shipped\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/orders/admin/status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "admin",
+                    "status"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mark Order as Paid",
+              "id": "cc3b7fba-9747-485d-bdce-b5171958c255",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{adminToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderId\": \"683a811c495cd510830e0c34\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/orders/admin/mark-paid",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders",
+                    "admin",
+                    "mark-paid"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "dfd9c34c-fe1e-4b86-815d-e0e93dc27759"
+        }
+      ],
+      "id": "ec3c5222-b1ea-4328-8919-ca2fa0a11f8b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ],
+        "id": "b81dc360-bb98-40c1-8d29-c483f1329cb5"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ],
+        "id": "ad6bf669-bfcb-4c23-a21d-dda12c45be1d"
+      }
+    }
+  ]
+}

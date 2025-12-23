@@ -1,0 +1,30 @@
+{
+  "info": {
+    "_postman_id": "697b8364-9938-4fc7-a338-aa44428244b4",
+    "name": "USERS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "get users",
+      "id": "b65c3f83-68c7-46ae-9cfd-28f9f11bffa8",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

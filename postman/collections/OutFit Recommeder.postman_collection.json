@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "2683f1dd-c6ce-4c8c-a4db-03a4bbf1abe1",
+    "name": "OutFit Recommeder",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Items",
+      "id": "1ba485f2-cdcb-415b-ab1e-d0bbe6c0e31b",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Recommend",
+      "id": "09f4d98f-4fd6-486f-a93c-45fef7ae75d9",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"seed_item_id\": 114,\r\n  \"occasion\": \"office professional wear\",\r\n  \"strictness\": \"balanced\",\r\n  \"n_results\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/recommend",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "recommend"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stats",
+      "id": "f2130de7-e816-4cc0-bb48-2beb1ca08f1e",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Complete Outfits",
+      "id": "cbf8c5b3-172c-4b87-9297-97f10893a193",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"occasion\": \"office professional wear\",\r\n  \"vibe\": \"elegant sophisticated style\",\r\n  \"preferred_colors\": [\"white\", \"black\", \"gray\"],\r\n  \"avoid_recently_worn\": true,\r\n  \"n_outfits\": 5\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/complete-outfits",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "complete-outfits"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Images",
+      "id": "f1b47f75-a158-4a53-b9ca-0a15559133c5",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

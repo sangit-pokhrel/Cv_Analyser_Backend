@@ -1,0 +1,490 @@
+{
+  "info": {
+    "_postman_id": "7c2cbe11-92fe-46ab-8dbe-2c41dbf0884b",
+    "name": "Ghar Sewa Full CRUD Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Service",
+      "id": "f3698d0a-3b89-41f5-acdf-9aecd143660f",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Electrician\",\n  \"description\": \"Handles electrical tasks\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/services",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "services"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Services",
+      "id": "17341e47-4b2b-4a69-9faa-63be7f0a482d",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/services",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "services"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Service by ID",
+      "id": "b9c71ada-881e-4c13-afb7-cc6fceaaf758",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/services/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "services",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Service",
+      "id": "7ab02f28-d16d-4a8e-a58b-2bb3b51470e7",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Electrician\",\n  \"description\": \"Handles electrical tasks\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/services/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "services",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Service",
+      "id": "2508029a-aa6e-4fb7-b7a6-d7a4ebd7cd76",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/services/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "services",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Provider",
+      "id": "f81545a3-4055-491f-9bc5-1ccda0edce2f",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"role\": \"Electrician\",\n  \"rating\": 4.5,\n  \"image\": \"https://example.com/image.jpg\",\n  \"minAmount\": 500\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/providers",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "providers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Providers",
+      "id": "f3c61a56-cfce-4c22-8b83-3fbf02bff649",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/providers",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "providers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Provider by ID",
+      "id": "342d8f1c-cbe1-4a60-bce9-d4ac8950e6ca",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/providers/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "providers",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Provider",
+      "id": "564ba156-f92b-41bc-b3a9-0d64a627c872",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"role\": \"Electrician\",\n  \"rating\": 4.5,\n  \"image\": \"https://example.com/image.jpg\",\n  \"minAmount\": 500\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/providers/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "providers",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Provider",
+      "id": "a622abd6-7e7b-4afa-b74f-748618f1e127",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/providers/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "providers",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Review",
+      "id": "f604bad2-2664-47e7-b701-9481152d8047",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"provider_id_placeholder\",\n  \"rating\": 5,\n  \"comment\": \"Excellent service\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/reviews",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Reviews",
+      "id": "4f8b4f53-5471-49ef-8ec2-354001d9ecf0",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/reviews",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Review by ID",
+      "id": "506f1521-2a4f-4a3d-85ee-a78b27770e82",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/reviews/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "reviews",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Review",
+      "id": "84c7e963-514c-4735-96fb-d77b9f3a02fd",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"provider_id_placeholder\",\n  \"rating\": 5,\n  \"comment\": \"Excellent service\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/reviews/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "reviews",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Review",
+      "id": "7f05c3b5-9661-47a7-9313-9e9cda1dfee7",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/reviews/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "reviews",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Booking",
+      "id": "f519d5cd-df54-4a00-8d60-7d5694309b6d",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"provider_id_placeholder\",\n  \"service\": \"service_id_placeholder\",\n  \"email\": \"test@example.com\",\n  \"house\": \"123\",\n  \"street\": \"Main St\",\n  \"fullAddress\": \"123 Main St, City\",\n  \"date\": \"2025-08-10T00:00:00.000Z\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/bookings",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "bookings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Bookings",
+      "id": "2d7f4f77-e84e-4b54-8b79-b1c2d4994968",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/bookings",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "bookings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Booking by ID",
+      "id": "9447fe58-5429-4988-a39a-80a56c085efb",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/bookings/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "bookings",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Booking",
+      "id": "924c279d-6e3e-4275-b2c4-564f92102c5a",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"provider_id_placeholder\",\n  \"service\": \"service_id_placeholder\",\n  \"email\": \"test@example.com\",\n  \"house\": \"123\",\n  \"street\": \"Main St\",\n  \"fullAddress\": \"123 Main St, City\",\n  \"date\": \"2025-08-10T00:00:00.000Z\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/bookings/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "bookings",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Booking",
+      "id": "2a472336-8bc4-4872-b46b-53acb43828d4",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/bookings/{{id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "bookings",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get Id by role",
+      "id": "72e8c8c7-a12b-457f-9cfa-9a6a61c6c7d1",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "053f541d-04f6-4ada-93c9-ebb716228f5a",
+      "key": "base_url",
+      "value": "localhost:3000",
+      "type": "default"
+    }
+  ]
+}

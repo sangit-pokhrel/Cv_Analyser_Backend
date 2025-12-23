@@ -1,0 +1,374 @@
+{
+  "info": {
+    "_postman_id": "65da0c90-e9b5-4d2d-8bcb-784d1e89e51f",
+    "name": "Individual-6th Sem",
+    "description": "Contact- Only one request within 5 minutes to prevent some attacks and the unwanted users from one ip",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "id": "864af0f1-cc7e-4161-90ee-7a1ad22b51d3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"fullName\": \"Sangit Pokhrel\",\r\n    \"email\": \"heypsycho339@gmail.com\",\r\n    \"phone\": \"9868619395\",\r\n    \"password\":\"admin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "id": "e1fa6e2f-8371-4aad-9f3b-f6ca0147724b",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"heypsycho339@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Contact",
+      "id": "f19e036b-31c6-46d5-8e93-7cbaa93b3f6c",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Ram Bahadur\",\r\n  \"email\": \"ram@example.com\",\r\n  \"phone\": \"+9779801234567\",\r\n  \"subject\": \"Inquiry about rice prediction\",\r\n  \"message\": \"Hello, I wanted to know how accurate the rice yield predictions are for Dang district.\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/contacts",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "contacts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "OpenAi",
+      "id": "c6c8e504-35dc-49eb-9e0e-cc4d3641d00a",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cropData\": {\r\n    \"cropStage\": \"vegetative\",\r\n    \"daysFromGermination\": 45,\r\n    \"soilMoisture\": \"moderate\",\r\n    \"humidity\": 62,\r\n    \"ph\": 6.8,\r\n    \"phosphorus\": 28,\r\n    \"nitrogen\": 40,\r\n    \"organicContent\": 2.5,\r\n    \"waterSource\": \"rainwater\"\r\n  },\r\n  \"location\": {\r\n    \"lat\": 27.7000,\r\n    \"lng\": 85.3333,\r\n    \"name\": \"Kathmandu, Nepal\"\r\n  }\r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/crop/analysis",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "crop",
+            "analysis"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Predict",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d06cbe85-b1f0-4f08-a9fc-f8a379ea7946",
+            "exec": [
+              "// Visualization Script",
+              "// Visualization Script",
+              "const template = `",
+              "<style>",
+              "  .container { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 12px; }",
+              "  .header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }",
+              "  .card { background:#f7fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; min-width: 220px; }",
+              "  .card .label { color:#4a5568; font-size:12px; text-transform:uppercase; letter-spacing:.06em; }",
+              "  .card .value { font-size:28px; font-weight:700; color:#1a202c; }",
+              "  #chart { width: 100%; height: 320px; }",
+              "  .axis-label { font-size: 12px; fill: #4a5568; }",
+              "  .tooltip { position: absolute; background: rgba(0,0,0,0.8); color: #fff; padding: 6px 8px; border-radius: 4px; font-size: 12px; pointer-events: none; z-index: 10; }",
+              "  .footer { margin-top: 8px; color:#718096; font-size:11px; }",
+              "  .legend { font-size: 12px; color: #4a5568; margin-top: 6px; }",
+              "  svg text { font-family: inherit; }",
+              "</style>",
+              "<div class=\"container\">",
+              "  <div class=\"header\">",
+              "    <div style=\"font-weight:600; font-size:18px;\">Model Feature Importances</div>",
+              "    <div class=\"card\">",
+              "      <div class=\"label\">Predicted Yield (MT/ha)</div>",
+              "      <div class=\"value\" id=\"yieldValue\">—</div>",
+              "    </div>",
+              "  </div>",
+              "  <div id=\"chart\"></div>",
+              "  <div class=\"legend\">Bar tooltip shows: feature, importance (0–1), and unit if available.</div>",
+              "  <div class=\"footer\">Rendered from latest response</div>",
+              "</div>",
+              "<div id=\"tooltip\" class=\"tooltip\" style=\"display:none;\"></div>",
+              "<script>",
+              "(function() {",
+              "  function render(data) {",
+              "    // Fallbacks",
+              "    const items = Array.isArray(data.items) ? data.items : [];",
+              "    const units = data.units || {};",
+              "",
+              "    // Update card value",
+              "    var yieldEl = document.getElementById('yieldValue');",
+              "    if (yieldEl) {",
+              "      var y = (typeof data.predictedYield === 'number') ? data.predictedYield : NaN;",
+              "      yieldEl.textContent = isFinite(y) ? y.toFixed(3) : 'N/A';",
+              "    }",
+              "",
+              "    // Basic D3-like chart without external libs (vanilla SVG)",
+              "    const container = document.getElementById('chart');",
+              "    container.innerHTML = '';",
+              "    const width = container.clientWidth || 720;",
+              "    const height = 320;",
+              "    const margin = { top: 10, right: 20, bottom: 70, left: 60 };",
+              "    const innerW = width - margin.left - margin.right;",
+              "    const innerH = height - margin.top - margin.bottom;",
+              "",
+              "    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');",
+              "    svg.setAttribute('width', width);",
+              "    svg.setAttribute('height', height);",
+              "    container.appendChild(svg);",
+              "",
+              "    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');",
+              "    g.setAttribute('transform', 'translate(' + margin.left + ',' + margin.top + ')');",
+              "    svg.appendChild(g);",
+              "",
+              "    // Scales",
+              "    const values = items.map(d => d.importance);",
+              "    const maxVal = Math.max(1e-6, Math.max.apply(null, values.concat([0])));",
+              "",
+              "    function xScale(i) {",
+              "      const step = innerW / items.length;",
+              "      return i * step + step * 0.1; // add padding",
+              "    }",
+              "    function barWidth() {",
+              "      const step = innerW / items.length;",
+              "      return step * 0.8;",
+              "    }",
+              "    function yScale(v) {",
+              "      return innerH - (v / maxVal) * innerH;",
+              "    }",
+              "",
+              "    // Axes (simple ticks 0..maxVal)",
+              "    // Y axis line",
+              "    const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');",
+              "    yAxis.setAttribute('x1', 0);",
+              "    yAxis.setAttribute('y1', 0);",
+              "    yAxis.setAttribute('x2', 0);",
+              "    yAxis.setAttribute('y2', innerH);",
+              "    yAxis.setAttribute('stroke', '#cbd5e0');",
+              "    g.appendChild(yAxis);",
+              "",
+              "    // Y ticks and labels (0 to 1 with 5 ticks)",
+              "    const ticks = 5;",
+              "    for (let t = 0; t <= ticks; t++) {",
+              "      const tv = (maxVal / ticks) * t;",
+              "      const ty = yScale(tv);",
+              "      const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');",
+              "      tick.setAttribute('x1', 0);",
+              "      tick.setAttribute('y1', ty);",
+              "      tick.setAttribute('x2', innerW);",
+              "      tick.setAttribute('y2', ty);",
+              "      tick.setAttribute('stroke', '#edf2f7');",
+              "      g.appendChild(tick);",
+              "",
+              "      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');",
+              "      label.setAttribute('x', -8);",
+              "      label.setAttribute('y', ty + 4);",
+              "      label.setAttribute('text-anchor', 'end');",
+              "      label.setAttribute('class', 'axis-label');",
+              "      label.textContent = tv.toFixed(2);",
+              "      g.appendChild(label);",
+              "    }",
+              "",
+              "    // X axis labels",
+              "    const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');",
+              "    xAxis.setAttribute('x1', 0);",
+              "    xAxis.setAttribute('y1', innerH);",
+              "    xAxis.setAttribute('x2', innerW);",
+              "    xAxis.setAttribute('y2', innerH);",
+              "    xAxis.setAttribute('stroke', '#cbd5e0');",
+              "    g.appendChild(xAxis);",
+              "",
+              "    items.forEach((d, i) => {",
+              "      const x = xScale(i);",
+              "      const y = yScale(d.importance);",
+              "      const h = innerH - y;",
+              "",
+              "      const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');",
+              "      bar.setAttribute('x', x);",
+              "      bar.setAttribute('y', y);",
+              "      bar.setAttribute('width', Math.max(1, barWidth()));",
+              "      bar.setAttribute('height', h);",
+              "      bar.setAttribute('fill', '#4F46E5');",
+              "      bar.setAttribute('opacity', '0.9');",
+              "      bar.style.cursor = 'pointer';",
+              "      g.appendChild(bar);",
+              "",
+              "      // Tooltip",
+              "      const tooltip = document.getElementById('tooltip');",
+              "      const unit = units[d.feature] ? (' ' + units[d.feature]) : '';",
+              "      const ttText = d.feature + '\\nImportance: ' + d.importance.toFixed(4) + (unit ? ('\\nUnit: ' + units[d.feature]) : '');",
+              "",
+              "      bar.addEventListener('mousemove', function(evt) {",
+              "        tooltip.style.display = 'block';",
+              "        tooltip.textContent = ttText;",
+              "        tooltip.style.left = (evt.pageX + 10) + 'px';",
+              "        tooltip.style.top = (evt.pageY - 28) + 'px';",
+              "      });",
+              "      bar.addEventListener('mouseleave', function() {",
+              "        tooltip.style.display = 'none';",
+              "      });",
+              "",
+              "      // X label (rotate for readability)",
+              "      const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');",
+              "      lbl.setAttribute('x', x + barWidth() / 2);",
+              "      lbl.setAttribute('y', innerH + 14);",
+              "      lbl.setAttribute('text-anchor', 'end');",
+              "      lbl.setAttribute('transform', 'rotate(-35 ' + (x + barWidth()/2) + ' ' + (innerH + 14) + ')');",
+              "      lbl.setAttribute('class', 'axis-label');",
+              "      lbl.textContent = d.feature + (units[d.feature] ? ' (' + units[d.feature] + ')' : '');",
+              "      g.appendChild(lbl);",
+              "    });",
+              "",
+              "    // Axis titles",
+              "    const yTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');",
+              "    yTitle.setAttribute('x', -innerH/2);",
+              "    yTitle.setAttribute('y', -42);",
+              "    yTitle.setAttribute('transform', 'rotate(-90)');",
+              "    yTitle.setAttribute('class', 'axis-label');",
+              "    yTitle.textContent = 'Importance (0–1)';",
+              "    g.appendChild(yTitle);",
+              "",
+              "    const xTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');",
+              "    xTitle.setAttribute('x', innerW/2);",
+              "    xTitle.setAttribute('y', innerH + 52);",
+              "    xTitle.setAttribute('text-anchor', 'middle');",
+              "    xTitle.setAttribute('class', 'axis-label');",
+              "    xTitle.textContent = 'Features' ;",
+              "    g.appendChild(xTitle);",
+              "  }",
+              "",
+              "  pm.getData(function (err, value) {",
+              "    if (err) { return; }",
+              "    render(value);",
+              "  });",
+              "})();",
+              "</script>`;",
+              "",
+              "function createPayload() {",
+              "  const res = pm.response.json ? pm.response.json() : {};",
+              "  const fi = Array.isArray(res.feature_importances) ? res.feature_importances : [];",
+              "  // Keep order as-is",
+              "  const items = fi.map(x => ({ feature: String(x.feature || ''), importance: Number(x.importance || 0) }));",
+              "  const units = res.feature_units || {};",
+              "  const predictedYield = Number(res.predicted_yield_MT_per_HA);",
+              "  return { items, units, predictedYield };",
+              "}",
+              "",
+              "pm.visualizer.set(template, createPayload());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "9ee38d28-bf5a-47c8-acae-b0b5a6c8a783",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"land_area\": 1.5,\r\n  \"unit\": \"Hectares\",\r\n  \"region\": \"Dang\",\r\n  \"location\": \"Ward-3\",\r\n  \"rice_type\": \"Improved\",\r\n  \"humidity\": 72.5,\r\n  \"soil_ph\": 6.4,\r\n  \"phosphorus\": 25,\r\n  \"nitrogen\": 240,\r\n  \"organic\": 3.2,\r\n  \"water_source\": \"Irrigation\",\r\n  \"season_rain_sum\": 450,\r\n  \"season_rain_mean\": 56.25,\r\n  \"season_tmean\": 29.8,\r\n  \"season_tmax\": 33.5,\r\n  \"season_tmin\": 24.1,\r\n  \"year\": 2024\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/predict",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "predict"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "d10b3551-ba29-431d-aae2-968102e86c95",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

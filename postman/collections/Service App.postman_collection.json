@@ -1,0 +1,109 @@
+{
+  "info": {
+    "_postman_id": "49169074-cebf-400d-b152-f39e54e08b19",
+    "name": "Service App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Resgister",
+          "id": "02c01e2d-edaa-46c8-ae81-34bc5e653613",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"johndoe5@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"phoneNumber\": \"3423433333\",\r\n  \"profileImg\": \"https://example.com/profile.jpg\",\r\n  \"balance\": 100,\r\n  \"region\": \"New York\",\r\n  \"latitude\": 40.7128,\r\n  \"longitude\": -74.0060,\r\n  \"budget\": 500\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "id": "8230137e-1dd1-4b3b-b7f3-f25d8a3e6f12",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"sangit@gmail.com\",\r\n    \"password\": \"sangit@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "id": "09e428dc-5bab-4aaa-9ede-9d0b41b02ad9",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZDUxNWQ5MDY0NThhNDc4YzkzY2JhZCIsImlhdCI6MTc0MjAxOTIzNiwiZXhwIjoxNzQyMDIyODM2fQ.jnG8ZqylfMghWGeCOxC2LO1sapn16g1WyeB5dbOXCXs",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "935ad82f-4b0a-46ef-8ab2-8a14a7accdca"
+    }
+  ]
+}

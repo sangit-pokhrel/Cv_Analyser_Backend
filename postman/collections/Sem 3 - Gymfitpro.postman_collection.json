@@ -1,0 +1,803 @@
+{
+  "info": {
+    "_postman_id": "c901caf2-1822-41c3-9930-4a760443fafc",
+    "name": "Sem 3 - Gymfitpro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get All Users",
+          "id": "076d3631-3709-45f3-8a74-32fa29ef1a34",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/user/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create A User",
+          "id": "9c793d00-3cd6-40a5-8859-5567d76a0376",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 1,\n    \"emailAddress\": \"adamya@getintoto.com\",\n    \"password\": \"admin123\",\n    \"firstName\": \"Adamya\",\n    \"lastName\": \"Neupane\",\n    \"userType\": \"Gym\",\n    \"timeSlotStart\": \"19:09:48\",\n    \"timeSlotEnd\": \"19:09:48\",\n    \"adminUser\": false,\n    \"staffUser\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/user/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Individual User",
+          "id": "600eefff-7f7c-4c12-94d9-b98e9ca27e1c",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/user/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a User",
+          "id": "d3a023a2-36c8-41a6-b70f-3b9ae20bfaf4",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 1,\n    \"emailAddress\": \"adamya@gmail.com\",\n    \"password\": \"admin123\",\n    \"firstName\": \"Adamya\",\n    \"lastName\": \"Neupane\",\n    \"userType\": \"Gym\",\n    \"timeSlotStart\": \"19:09:48\",\n    \"timeSlotEnd\": \"19:09:48\",\n    \"adminUser\": false,\n    \"staffUser\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/user/update/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "update",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a User",
+          "id": "33e6eafe-4ab7-45bd-a7cf-0a537ef9b92b",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/user/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "f4663d27-39fd-4ec1-99ba-cef66aecebfc"
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "Create an Attendance",
+          "id": "969fc7ba-30a7-4818-a93b-c9664acd8dc4",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userEmailAddress\" : \"adamya@getintoto.com\",\n    \"attendanceDate\" : \"12/12/2024\" ,\n    \"status\" : \"Present\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/attendance/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "attendance",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Attendance",
+          "id": "f6a2392f-ea47-431e-a04f-f4e730e15277",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/attendance/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "attendance",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Attendance",
+          "id": "0becda81-ccd0-4ad0-afba-964672fc9b03",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/attendance/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "attendance",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Attendance",
+          "id": "77688f23-7197-4afe-a94a-0e021edd3df2",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/attendance/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "attendance",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "45b64824-74ff-4d52-b05a-5f0e95e40b97"
+    },
+    {
+      "name": "Complaint",
+      "item": [
+        {
+          "name": "Get All Complaints",
+          "id": "d2b18884-c842-42a7-a547-3d07053445cc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/complaint/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "complaint",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Complaint",
+          "id": "ef8012cf-fe16-4a5b-acd4-2c8d213f352e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userEmailAddress\": \"adamya@getintoto.com\",\n    \"complaintDate\": \"12/12/2024\",\n    \"description\": \"I am complaining about the water in the gym.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/complaint/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "complaint",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Complaint",
+          "id": "37507413-aa80-4b02-a772-55d488dff507",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/complaint/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "complaint",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a complaint",
+          "id": "f46dc1ad-9c25-4a90-bd8c-886dc5616670",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/complaint/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "complaint",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "628e265e-03fd-4647-9779-448d796931d0"
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Get All Inventory",
+          "id": "811272c7-ee62-4196-b99a-a96f603c8ec7",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/inventory/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "inventory",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Inventory",
+          "id": "c60fa412-8ad7-43f1-b33b-3db1c8bc5972",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\" : 1,\n    \"name\" : \"Inventory Item 1\",\n    \"type\" : \"Supplement\",\n    \"brand\" : \"Some Popular Brand\",\n    \"description\" : \"Get This item.\",\n    \"quantity\" : 55,\n    \"price\" : 5500\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/inventory/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "inventory",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Inventory",
+          "id": "3ad4185a-acdd-4b9f-bda8-b3816817700e",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/inventory/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "inventory",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete an Inventory",
+          "id": "5eb1cd42-c299-4ab8-820e-171eae7c28f1",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/inventory/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "inventory",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "cf3a81ab-42d0-4312-a462-7c8c71ccc0b2"
+    },
+    {
+      "name": "Workout Session",
+      "item": [
+        {
+          "name": "Get All Workout Session",
+          "id": "ffd3ebf0-913e-4215-a018-e7568a26ead9",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/workout-session/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "workout-session",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Workout Session",
+          "id": "8466318f-9b15-4d0e-8599-c97df7de7582",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userEmailAddress\" : \"adamya@gmail.com\", \n    \"sessionDate\" : \"2024/12/12\",\n    \"content\" : \"All my workouts\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/workout-session/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "workout-session",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Workout Session",
+          "id": "1aee44e6-ee16-40e9-9e02-d337dca64c4c",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/workout-session/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "workout-session",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a workout Session",
+          "id": "f111ead0-e987-4537-b8fa-fc681a7c4d17",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/workout-session/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "workout-session",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a0ea2104-6e2d-4fbb-a36e-4cfd308434e0"
+    },
+    {
+      "name": "Trainer",
+      "item": [
+        {
+          "name": "Get All Trainer",
+          "id": "7df68841-96bc-4288-b421-07c3d522f70b",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/trainer/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "trainer",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Trainer",
+          "id": "2b0af485-3f10-4e70-8569-455a7bb02bfe",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\" : \"Adamya\",\n    \"lastName\" : \"Neupane\", \n    \"email\" : \"adamya@gmail.com\", \n    \"phoneNumber\" : 123, \n    \"specialization\": \"Fitness\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/trainer/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "trainer",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Trainer",
+          "id": "d3f33cb7-61bc-4098-bcd0-2e5d21f64d45",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/trainer/get/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "trainer",
+                "get",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Trainer",
+          "id": "4a0fc666-13ac-4c7e-9666-66aec6d519a0",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/trainer/delete/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "trainer",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e7060bb1-b5df-44ec-8d81-4a0fe2244095"
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Get All Payment",
+          "id": "c783a15f-5585-467b-b1be-71e8c5c5089c",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/payment/list",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "payment",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Payment",
+          "id": "b6b98722-6f04-4534-9220-717531024508",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userEmailAddress\" : \"adamya@getintoto.com\", \n    \"paymentDate\" : \"2024-12-12\", \n    \"paymentUntil\" : \"2025-12-12\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/payment/create",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "payment",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Payment",
+          "id": "83035852-4b55-43cc-a437-15368670c328",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/payment/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "payment",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Payment",
+          "id": "3b29445c-a53f-499c-b884-a4b7a576d0b3",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/payment/1",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "payment",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b635ff21-ee02-491f-9732-d0d6075b6c2b"
+    }
+  ]
+}

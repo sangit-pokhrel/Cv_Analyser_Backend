@@ -1,0 +1,677 @@
+{
+  "info": {
+    "_postman_id": "b7bc940f-8cfb-4be1-a4c7-6452a814e151",
+    "name": "Hotel Management College",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login Register",
+      "item": [
+        {
+          "name": "Login",
+          "id": "7f812ebe-ad3e-4708-90ff-5e3d75219945",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "id": "8c955cf4-9370-4ebb-9277-4008d0df0a4c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"sikeop\",\r\n    \"email\": \"sikeop@example.com\",\r\n    \"password\": \"sikeop123\",\r\n    \"dateOfBirth\": \"2003-11-05\",\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"User\",\r\n    \"phoneNumber\": \"123-456-7890\",\r\n    \"role\": \"Admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5a40188f-0d32-4f00-acb0-40a8b8f582e8"
+    },
+    {
+      "name": "User Add",
+      "item": [
+        {
+          "name": "Add user",
+          "id": "9168c299-8682-4baa-9da5-accac0d0f4e3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john.email@example.com\",\r\n  \"password\": \"securePassword123\",\r\n  \"isAdmin\": false,\r\n  \"role\": \"user\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/user/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "user",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List User",
+          "id": "d976e36d-84cc-4e17-848b-3af4c05a77ed",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NTc1NSwiZXhwIjoxNzIxMDYyMTU1fQ.XBUt_tPYWS3BHgBWGiViIg-eWOLyyOLL5F7J4VN6Pco",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/user/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "user",
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "id": "a30029f0-f384-4055-b5c2-6dab89b4d98c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NTc1NSwiZXhwIjoxNzIxMDYyMTU1fQ.XBUt_tPYWS3BHgBWGiViIg-eWOLyyOLL5F7J4VN6Pco",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"username\": \"sangit@example.com\",\r\n        \"email\": \"sangit@example.com\",\r\n        \"password\": \"$2a$10$7o5R9GxyImEiwowP.qhk1e3vHDqfAEPCpYZzCckayT/sFF2C6OnyG\",\r\n        \"dateOfBirth\": \"2003-11-05\",\r\n        \"firstName\": \"Admin\",\r\n        \"lastName\": \"User\",\r\n        \"phoneNumber\": \"123-456-7890\",\r\n        \"role\": \"Admin\",\r\n        \"enabled\": true,\r\n        \"authorities\": [],\r\n        \"accountNonExpired\": true,\r\n        \"credentialsNonExpired\": true,\r\n        \"accountNonLocked\": true,\r\n        \"admin\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/user/admin/edit-user/19",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "user",
+                "admin",
+                "edit-user",
+                "19"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "id": "24df8f39-e9ba-4551-b683-e2cdf7a7dfdd",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/user/admin/user/12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "user",
+                "admin",
+                "user",
+                "12"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "3adadc50-9754-4740-8b5e-6765d3273ecb"
+    },
+    {
+      "name": "Room Add",
+      "item": [
+        {
+          "name": "Add Room",
+          "id": "faf7a3c2-c425-46a5-904b-ac7a8e3ed7b9",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"roomNumber\": 102,\r\n  \"type\": \"AC_ROOM\",  \r\n  \"price\": 150.00,\r\n  \"isAvailable\": true,\r\n  \"imageUrls\": [\r\n    \"http://example.com/images/room101-1.jpg\",\r\n    \"http://example.com/images/room101-2.jpg\"\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/rooms",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "rooms"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Room",
+          "id": "5d0a6d86-643b-41b1-8376-c92a9e03c008",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/rooms",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "rooms"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Room",
+          "id": "e32d0542-73c5-4e01-9b75-639698e12171",
+          "request": {
+            "method": "PUT",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Room",
+          "id": "0bbf3ce1-f303-4365-9173-f35a1ce74ec3",
+          "request": {
+            "method": "DELETE",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "id": "4f6d9dff-70e0-4c7f-828e-b51de6121845"
+    },
+    {
+      "name": "Menu Add",
+      "item": [
+        {
+          "name": "Add Menu",
+          "id": "8521e0ea-5a65-49cb-b848-7e5e11b84662",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDkwMTU2MiwiZXhwIjoxNzIwOTg3OTYyfQ.fDBghqYBXmriJ0rNZ6RMuBf4Skl_Joc5fs6H0vDuroE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Veg Salad\",\r\n    \"price\": \"400\",\r\n    \"category\": \"SALAD\",\r\n    \"type\":\"VEGETARIAN\",\r\n    \"image\":\"http://www.youtube.com\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/menu/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "menu",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Menu",
+          "id": "4819c955-1bf4-419b-8a67-b7aa31320274",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5naXRAZ21haWwuY29tIiwiaWF0IjoxNzIxMDU4NzQwLCJleHAiOjE3MjExNDUxNDB9.HF3cJXuxoz_6nmUgTHPTiMUYs1jJ99D5q5Jv0xfSfW4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/menu",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "menu"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Menu",
+          "id": "012f9c35-d40e-4480-978f-a1b4a82c6393",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Veg Salad French\",\r\n    \"price\": \"400\",\r\n    \"category\": \"SALAD\",\r\n    \"type\":\"VEGETARIAN\",\r\n    \"image\":\"https://images.pexels.com/photos/18939401/pexels-photo-18939401/free-photo-of-cars-and-motorbikes-on-street-at-sunset-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/menu/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "menu",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "9ec81b0c-8f40-4164-84b0-b47caccaa1e6",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/menu/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "menu",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "39ed74f2-e533-42bd-bceb-cd5bfd9834b9"
+    },
+    {
+      "name": "Room Reservation Add",
+      "item": [
+        {
+          "name": "Add RoomReservation",
+          "id": "a71ea5f6-b043-4995-b6fe-4a454ed1cca2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"roomNumber\": 101,\r\n  \"checkInDate\": \"2023-07-20\",\r\n  \"checkOutDate\": \"2023-07-25\",\r\n  \"type\": \"THREE_SINGLE_BED_ROOM_AC\", \r\n  \"status\": \"CONFIRMED\",  \r\n  \"email\": \"customer@example.com\",\r\n  \"phone\": \"+1234567890\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/reservations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List RoomReservation",
+          "id": "f0f25cc5-1603-49d2-8503-1af45122d88d",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update RoomReservations",
+          "id": "9a1b9f32-84ca-421a-9ba8-e524d7f360ec",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"roomNumber\": 201,\r\n  \"checkInDate\": \"2023-07-20\",\r\n  \"checkOutDate\": \"2023-07-25\",\r\n  \"type\": \"THREE_SINGLE_BED_ROOM_AC\", \r\n  \"status\": \"BOOKED\",  \r\n  \"email\": \"booked@example.com\",\r\n  \"phone\": \"+1234567890\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/reservations/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservations",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete RoomReservation",
+          "id": "34c63c03-4510-48de-9887-ef4be09509b0",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyMDk3NjU5NiwiZXhwIjoxNzIxMDYyOTk2fQ.fmlsya8TXvvjZK0Q0ueapC1UW7JxGUV5hm1CNGLFAw4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/reservations/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "reservations",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d28868fa-55d2-45e9-99cf-a7fe7d754839"
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "Add order",
+          "id": "b9679dc4-db32-4918-b6f5-2684c34e947c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5naXRAZ21haWwuY29tIiwiaWF0IjoxNzIxMDU4NzQwLCJleHAiOjE3MjExNDUxNDB9.HF3cJXuxoz_6nmUgTHPTiMUYs1jJ99D5q5Jv0xfSfW4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"items\": [\r\n        {\r\n            \"menuItem\": 3,\r\n            \"name\": \"Veg Salad\",\r\n            \"price\": 400,\r\n            \"quantity\": 1,\r\n            \"category\": \"SALAD\"\r\n        }\r\n    ],\r\n    \"status\": \"Pending\",\r\n    \"deliveryType\": \"RoomService\",\r\n    \"room\": \"201\",\r\n    \"table\": \"\",\r\n    \"address\": \"\",\r\n    \"email\": \"\",\r\n    \"phone\": \"\",\r\n    \"totalPrice\": 400\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/orders/place-order",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "orders",
+                "place-order"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5bec4d70-725f-470a-b127-9730de9df939"
+    }
+  ]
+}

@@ -1,0 +1,1316 @@
+{
+  "info": {
+    "_postman_id": "4efda8e4-9fbf-41a7-90ed-d31326d66389",
+    "name": "Clinic FINAL – ALL APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "USERS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "8e8d3a9a-6c0a-4623-a4bd-d56cb56aa73b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/users",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "5e281df0-c5f0-4058-969e-687ae274c612",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/users",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "12536dbe-ef31-4d7c-8c5d-f67b1be1f4e5",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/users/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "ae3ed441-f49a-4896-8e8e-4e73cb9c8a06",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/users/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "63cbb27f-4dfb-46d3-b8e6-c159e4403889",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/users/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "050e4114-a97a-4538-b4e6-21c9c66aede6"
+    },
+    {
+      "name": "PATIENTS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "74e281eb-f86d-4a82-970a-91d420d6bb1f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/patients",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "bccd5088-60ee-4fc2-9b3b-fb267f80d598",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/patients",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "04ea301e-93e8-49b0-8dc7-7bb7ff31b342",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/patients/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "patients",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "f504725c-5eb1-40fe-8623-8a873295cf27",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/patients/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "patients",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "d86ef4a3-e72d-4ad1-9323-08e224f4e027",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/patients/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "patients",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "26e417ed-e154-4aeb-87d3-cd697c2c27ea"
+    },
+    {
+      "name": "DOCTORS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "65c792ac-49f7-47d0-a8d1-f7a4fa6b0ef1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/doctors",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "doctors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "55d9da72-dfee-4340-9c7f-db066ec3de73",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/doctors",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "doctors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "21057ba9-79b3-4714-840d-f02270a1fe6f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/doctors/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "doctors",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "3951dcb5-dbac-4b3d-a36b-21c74e9b719b",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/doctors/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "doctors",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "d04f978f-cd54-43b5-9967-b6226c299d06",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/doctors/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "doctors",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4c0d959b-f1b7-4204-b69d-92336f8fb24e"
+    },
+    {
+      "name": "APPOINTMENTS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "6e9f2c80-1cb4-470c-b209-97b16add73a2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/appointments",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "6447654e-e1d4-4665-b280-56e0a97ca415",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/appointments",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "d95fa6c4-8f46-4271-9b9c-e003e0c51287",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/appointments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "appointments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "a3f60ab4-70fd-4e28-97f6-79cc976ad280",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/appointments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "appointments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "630aaac4-01f0-4313-b805-37436ee854b7",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/appointments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "appointments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "18179609-6e9e-4a85-b209-5111233e5773"
+    },
+    {
+      "name": "CONSULTATIONS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "157eccc1-9439-4e33-acb9-3ba197f24187",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/consultations",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "consultations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "9b0f8575-feb1-4266-b5fa-8bc1e4a556a5",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/consultations",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "consultations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "aebd6d39-4fa3-4797-b334-bbb63a9d2404",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/consultations/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "consultations",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "3cf0dc0e-f979-47fd-a119-fa0a85ee5fea",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/consultations/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "consultations",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "77c346bd-d170-4aac-afb1-351f6802703e",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/consultations/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "consultations",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "73833783-a3d0-4ea2-bba9-18db6d58d743"
+    },
+    {
+      "name": "PRESCRIPTIONS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "22d28e55-1c05-4fa7-9462-fefe4c198fbb",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/prescriptions",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "612445d2-d709-4e2e-a7a4-a4859711df73",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/prescriptions",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "4b9e2c25-f205-4fed-ae5e-86cf2b8b705b",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/prescriptions/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "62bd34ec-267e-47ba-a21b-30f832d1f0bd",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/prescriptions/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "00011039-f56d-46cb-a438-564bf8d9b3da",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/prescriptions/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e0e3d0b0-1689-4517-b0bd-f4e6e9ef785c"
+    },
+    {
+      "name": "LABS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "351b4995-f752-49a5-831e-df53cd41acca",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/labs",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "labs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "ee473193-0f4c-4855-976d-e2c330c7564f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/labs",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "labs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "27b76899-996b-4b5f-b726-ae38d0814f29",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/labs/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "labs",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "d5e466fa-b840-4568-8706-319143e4d2b3",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/labs/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "labs",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "3e4c4743-a527-4036-8daf-824094636217",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/labs/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "labs",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "f1dc445e-4080-4838-a077-f92cd3354f49"
+    },
+    {
+      "name": "INVENTORY",
+      "item": [
+        {
+          "name": "Create",
+          "id": "94d61bc8-0dca-438b-bb58-816ef197b581",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/inventory",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "75e18868-60b6-4e19-bf0a-cd8f81b260ec",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/inventory",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "0a021bb5-49a7-4a89-b747-c01800c42811",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/inventory/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "inventory",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "ee4fa5b9-d978-4a1c-b78a-412739aded25",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/inventory/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "inventory",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "13837fe8-d574-4f5b-824a-5724d968227b",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/inventory/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "inventory",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "cd09e240-af0f-4ee8-aaa5-efcb5b786e27"
+    },
+    {
+      "name": "INVOICES",
+      "item": [
+        {
+          "name": "Create",
+          "id": "d5e76897-5457-40b2-b00e-21687a85f9a4",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/invoices",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "invoices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "26745195-2a22-43d6-8c82-00f0479ab77f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/invoices",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "invoices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "15c658ea-d9ab-4ae8-949c-4f0cab48203f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/invoices/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "2d45d511-1790-450c-a040-15d5915ec174",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/invoices/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "afab5588-ff75-4813-b9db-68400e8c0da3",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/invoices/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "89d71581-2b62-472a-9358-d9a06c23f9f3"
+    },
+    {
+      "name": "PAYMENTS",
+      "item": [
+        {
+          "name": "Create",
+          "id": "71ed6416-1955-42eb-9338-6f5f1776ee4a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/payments",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "id": "35c40e2e-a992-4f65-8663-90310dd9539f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/payments",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One",
+          "id": "5b8446b3-9f2f-4941-bb46-b1858e8ca5a7",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/payments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "1d8a2717-6c76-4bc6-a346-f9c0202c2dd2",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/payments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "6f0ea9d9-022e-44d2-9298-b70d90d4a2fb",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base}}/api/payments/{{id}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "dd630932-b2e5-47fc-a4e0-5d5483ab9e5b"
+    }
+  ],
+  "variable": [
+    {
+      "id": "8c69148c-0901-4ed8-8990-d4837de5e50a",
+      "key": "base",
+      "value": "http://localhost:5000"
+    },
+    {
+      "id": "b5016639-df2e-47ef-93f4-2e037e9c3a91",
+      "key": "token",
+      "value": ""
+    },
+    {
+      "id": "7cdb00be-eec2-4157-a969-4e531c11d502",
+      "key": "id",
+      "value": ""
+    }
+  ]
+}

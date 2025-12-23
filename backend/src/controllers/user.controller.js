@@ -326,6 +326,33 @@ async function updateMe(req, res) {
 }
 
 // PUT /users/me/change-password
+// async function changePassword(req, res) {
+//   try {
+//     const { currentPassword, newPassword } = req.body;
+
+//     if (!currentPassword || !newPassword)
+//       return res.status(400).json({ error: "Both passwords required" });
+
+//     const user = await User.findById(req.user._id);
+
+//     const valid = await bcrypt.compare(currentPassword, user.password);
+//     if (!valid) return res.status(400).json({ error: "Current password incorrect" });
+
+//     const salt = await bcrypt.genSalt(10);
+//     user.password = await bcrypt.hash(newPassword, salt);
+
+//     await user.save();
+
+//     return res.json({ message: "Password changed successfully" });
+
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ error: "Unable to change password" });
+//   }
+// }
+
+
+// PUT /users/me/change-password
 async function changePassword(req, res) {
   try {
     const { currentPassword, newPassword } = req.body;
@@ -333,14 +360,22 @@ async function changePassword(req, res) {
     if (!currentPassword || !newPassword)
       return res.status(400).json({ error: "Both passwords required" });
 
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "New password must be at least 6 characters" });
+    }
+
     const user = await User.findById(req.user._id);
 
-    const valid = await bcrypt.compare(currentPassword, user.password);
-    if (!valid) return res.status(400).json({ error: "Current password incorrect" });
+    // Verify current password
+    const valid = await user.comparePassword(currentPassword);
+    if (!valid) {
+      return res.status(400).json({ error: "Current password incorrect" });
+    }
 
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(newPassword, salt);
-
+    // Set new password (will be hashed by pre-save hook)
+    user.password = newPassword;
+    
+    // Save user (pre-save hook will hash the password)
     await user.save();
 
     return res.json({ message: "Password changed successfully" });
@@ -350,6 +385,7 @@ async function changePassword(req, res) {
     return res.status(500).json({ error: "Unable to change password" });
   }
 }
+
 
 // DELETE /users/me (soft delete)
 async function deactivateAccount(req, res) {

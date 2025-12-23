@@ -1,0 +1,2807 @@
+{
+  "info": {
+    "_postman_id": "9f5fdbde-d87d-4a8c-8eac-9a104b427ec7",
+    "name": "Auth API - Register & Login (CV-Analyser) Copy",
+    "description": "Postman collection for /api/v1/auth register and login endpoints with sample payloads.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "id": "7af7fee4-b557-4893-9136-c6dbd27dd38f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"StrongPass123\",\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"role\": \"job_seeker\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "id": "9dbd685f-ab9c-495b-8a0e-c62e7bc6e142",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh",
+          "id": "fb9efc26-f80c-4cb4-b9a0-fd2ecf49c62c",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"email\": \"testuser@example.com\",\n  \"password\": \"StrongPass123\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "id": "b6f6a58d-6b96-4bb0-a833-a9cdb4dbbd7a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"email\": \"testuser@example.com\",\n  \"password\": \"StrongPass123\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "02dbb363-c932-4357-abdf-26b8128ce5d2"
+    },
+    {
+      "name": "User Profille",
+      "item": [
+        {
+          "name": "Get/Put My Profile",
+          "id": "bc38a49e-27c4-42e9-821b-1fd2add47920",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "As admin listing users",
+          "id": "5440ae2d-a030-4d58-a17a-cdf4b0b12fd2",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "As Admin get User by Id",
+          "id": "18a49de0-afb3-47de-b133-98c17167194a",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "As user change pass",
+          "id": "2b130033-c8ba-47c2-b5b0-1022721d8033",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"currentPassword\": \"StrongPass123\",\r\n    \"newPassword\": \"WeakPass321\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/me/change-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate",
+          "id": "ce9d9856-53d9-4d63-a732-c1b05459089d",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/delete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "delete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "02caf65e-e124-4d8c-abf7-2a17d740eb7e",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/delete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "delete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create user",
+          "id": "dacf5c95-f978-494d-8d76-7b386c59f452",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"john.seeker@example.com\",\r\n  \"password\": \"SecurePass123!\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Seeker\",\r\n  \"role\": \"job_seeker\",\r\n  \"status\": \"active\",\r\n  \"headline\": \"Senior Software Engineer\",\r\n  \"location\": \"New York, NY\",\r\n  \"skills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\"],\r\n  \"resumeUrl\": \"https://example.com/resumes/john-seeker.pdf\",\r\n  \"isEmailVerified\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/create",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "63b8fd26-4cbd-4620-ba4a-6ee5d1ca2784"
+    },
+    {
+      "name": "Ticket",
+      "item": [
+        {
+          "name": "Create Ticket",
+          "id": "1cd29c5c-92c8-471e-8118-3efd4f974d38",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"subject\": \"Contact Form Not Working\",\r\n  \"description\": \"Every time I upload a file it shows 500.\",\r\n  \"category\": \"technical\",\r\n  \"priority\": \"low\",\r\n  \"attachmentUrl\": \"https://example.com/screenshot.png\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/support/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "As user i wanna get all my tickets",
+          "id": "7bbe07ef-350f-4ab1-8121-56504bfd23ac",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "id": "b3d6e6a0-6f98-4521-9c0c-74bd44ded4af"
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "Create Contact",
+          "id": "8d5c3c77-bae9-4149-84e4-9ad07d6bc0aa",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"admin@example.com\",\r\n  \"phone\": \"+15551234567\",\r\n  \"subject\": \"Inquiry about your service plans\",\r\n  \"message\": \"I am interested in learning more about your enterprise-level service options. Could someone contact me soon?\",\r\n  \"inquiryType\": \"sales\",\r\n  \"attachmentUrl\": \"https://example.com/some-optional-file.pdf\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contact",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Contact",
+          "id": "9678b19f-0343-4589-8056-f9ab2b73288f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"admin@example.com\",\r\n  \"phone\": \"+15551234567\",\r\n  \"subject\": \"Inquiry about your service plans\",\r\n  \"message\": \"I am interested in learning more about your enterprise-level service options. Could someone contact me soon?\",\r\n  \"inquiryType\": \"sales\",\r\n  \"attachmentUrl\": \"https://example.com/some-optional-file.pdf\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contact/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update the Inquiry",
+          "id": "a7c7b0af-b389-461a-b458-66a3e443b2c8",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Go Low\",\r\n  \"email\": \"admin@example.com\",\r\n  \"phone\": \"+15551234567\",\r\n  \"subject\": \"Inquiry about your service plans\",\r\n  \"message\": \"I am interested in learning more about your enterprise-level service options. Could someone contact me soon?\",\r\n  \"inquiryType\": \"sales\",\r\n  \"attachmentUrl\": \"https://example.com/some-optional-file.pdf\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contact/693a28a4d1b1eb25e01b8dc9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact",
+                "693a28a4d1b1eb25e01b8dc9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Certain Contact",
+          "id": "c79be25d-0114-4aa1-9306-5bbf3304dd7e",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"admin@example.com\",\r\n  \"phone\": \"+15551234567\",\r\n  \"subject\": \"Inquiry about your service plans\",\r\n  \"message\": \"I am interested in learning more about your enterprise-level service options. Could someone contact me soon?\",\r\n  \"inquiryType\": \"sales\",\r\n  \"attachmentUrl\": \"https://example.com/some-optional-file.pdf\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contact/693a28a4d1b1eb25e01b8dc9",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact",
+                "693a28a4d1b1eb25e01b8dc9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete All",
+          "id": "1daf697b-15f5-44b1-9947-303440cf1c3f",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"admin@example.com\",\r\n  \"phone\": \"+15551234567\",\r\n  \"subject\": \"Inquiry about your service plans\",\r\n  \"message\": \"I am interested in learning more about your enterprise-level service options. Could someone contact me soon?\",\r\n  \"inquiryType\": \"sales\",\r\n  \"attachmentUrl\": \"https://example.com/some-optional-file.pdf\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contact/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7911904c-d70d-467f-9f93-8d319ae524c4"
+    },
+    {
+      "name": "CV Analysis",
+      "item": [
+        {
+          "name": "Upload & Analyze CV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 202) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('analysis_id', jsonData.analysisId);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "9f058686-4ac4-4e83-9dbd-4a6e4a0bd1d3"
+              }
+            }
+          ],
+          "id": "433ca84c-3cdd-47bb-8966-39cc65c0c910",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "cv",
+                  "type": "file",
+                  "src": "/path/to/your/cv.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/cv/analyze",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "analyze"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Analyze CV from URL",
+          "id": "ad21ae2a-b631-4c01-9bba-83050d7f437b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cvUrl\": \"https://example.com/sample-cv.pdf\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cv/analyze",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "analyze"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Analysis Status",
+          "id": "c079cb49-499c-45e7-9082-665767116f3f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cv/analyses/{{analysis_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "analyses",
+                "{{analysis_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Latest Analysis",
+          "id": "4648a874-64ce-48af-9523-2f106143aeac",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cv/analyses/latest",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "analyses",
+                "latest"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List My Analyses",
+          "id": "fb31ea08-13b7-49c7-a02c-11d447f57a96",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cv/analyses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "analyses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List All Analyses (Admin)",
+          "id": "e763d484-067b-4c91-bb37-7c17756537ec",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cv/admin/analyses?page=1&limit=20&status=done",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "admin",
+                "analyses"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "done"
+                },
+                {
+                  "key": "userId",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Analysis (Admin) Copy",
+          "id": "b07ef13a-5188-4a0f-ac88-58b3441896e4",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"done\",\n  \"overallScore\": 90,\n  \"strengths\": [\"Excellent technical skills\", \"Strong communication\"],\n  \"weaknesses\": [\"Could add more certifications\"],\n  \"recommendations\": [\"Consider adding AWS certification\"],\n  \"skillsDetected\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\", \"Docker\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cv/admin/analyses/{{analysis_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "admin",
+                "analyses",
+                "{{analysis_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Analysis (Admin) Copy",
+          "id": "67d49d3f-c8cc-4fd3-8d5e-d0c7b3a09d0d",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cv/admin/analyses/{{analysis_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "cv",
+                "admin",
+                "analyses",
+                "{{analysis_id}}"
+              ]
+            },
+            "description": "Also deletes related job matches"
+          },
+          "response": []
+        }
+      ],
+      "id": "93f7a360-759f-48a9-a16f-46c4f3ceaa3d"
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Create Manual Job (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5d0f9cb9-c83b-4c4b-aef8-41b420eb53a7",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('job_id', jsonData.job._id);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "91f7af21-bf41-40b6-9fb6-ee413243bc72",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{login_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Senior Full Stack Developer\",\n  \"companyName\": \"TechCorp Inc\",\n  \"description\": \"We are looking for an experienced Full Stack Developer to join our team.\",\n  \"location\": \"Kathmandu, Nepal\",\n  \"jobType\": \"full-time\",\n  \"salaryMin\": 80000,\n  \"salaryMax\": 120000,\n  \"experienceLevel\": \"senior\",\n  \"requiredSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"MongoDB\", \"TypeScript\"],\n  \"jobSource\": \"manual\",\n  \"applicationMethod\": \"internal\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/jobs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create External Job (Admin)",
+          "id": "fe6fa23f-90a4-4025-9077-c1d3505f8fc8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Frontend Developer\",\n  \"companyName\": \"StartupXYZ\",\n  \"description\": \"Join our innovative team as a Frontend Developer.\",\n  \"location\": \"Remote\",\n  \"jobType\": \"remote\",\n  \"salaryMin\": 60000,\n  \"salaryMax\": 90000,\n  \"experienceLevel\": \"mid\",\n  \"requiredSkills\": [\"React\", \"CSS\", \"JavaScript\", \"HTML\"],\n  \"jobSource\": \"linkedin\",\n  \"externalUrl\": \"https://linkedin.com/jobs/123456\",\n  \"externalId\": \"linkedin-123456\",\n  \"applicationMethod\": \"external_redirect\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/jobs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List All Jobs",
+          "id": "1814afed-7549-4d9c-90ca-69d070402724",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/jobs?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Jobs",
+          "id": "09848fdf-6f88-4459-991b-c78cc6f10bc5",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/jobs?q=developer&location=kathmandu&type=full-time&experienceLevel=senior",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "developer"
+                },
+                {
+                  "key": "location",
+                  "value": "kathmandu"
+                },
+                {
+                  "key": "type",
+                  "value": "full-time"
+                },
+                {
+                  "key": "experienceLevel",
+                  "value": "senior"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Job Details",
+          "id": "55e76229-84d9-47bb-a041-0dfd41cf5aea",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/jobs/{{job_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs",
+                "{{job_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Recommendations",
+          "id": "622f7e9f-1f67-4ba1-ba70-42ca34c30f0d",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/jobs/recommendations?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs",
+                "recommendations"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Job",
+          "id": "3337ebcf-ee94-4a10-88fc-bbb8554691db",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Senior Full Stack Developer (Updated)\",\n  \"salaryMin\": 90000,\n  \"salaryMax\": 130000\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/jobs/{{job_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs",
+                "{{job_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Job",
+          "id": "545d3376-2a77-4ee3-a520-2e25b4ee85dc",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/jobs/{{job_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "jobs",
+                "{{job_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7096613f-b8da-42e9-a434-87bbfb7c584f"
+    },
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Apply to Internal Job",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.application && response.application._id) {",
+                  "        pm.collectionVariables.set('application_id', response.application._id);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "1c6c4eb5-741a-427d-83e5-45da44e171ff"
+              }
+            }
+          ],
+          "id": "368119bf-111d-4b60-b998-fe7f029eb530",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobId\": \"{{job_id}}\",\n  \"coverLetter\": \"I am very interested in this position. My experience in React and Node.js makes me a great fit for this role. I have successfully delivered multiple full-stack applications and am excited about the opportunity to contribute to your team.\",\n  \"resumeUrl\": \"https://res.cloudinary.com/your-cloud/raw/upload/resume.pdf\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/applications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apply to External Job",
+          "id": "53de495c-85c5-4405-ad42-14537809ecd7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobId\": \"{{job_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/applications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            },
+            "description": "Returns redirect URL for external application"
+          },
+          "response": []
+        },
+        {
+          "name": "List My Applications",
+          "id": "26204d57-da69-4080-ad67-7097653a7dce",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/my-applications?page=1&limit=20&status=pending",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "my-applications"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "pending, under_review, accepted, rejected, interview_scheduled"
+                },
+                {
+                  "key": "applicationType",
+                  "value": "internal",
+                  "description": "internal, external_redirect",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Application by ID",
+          "id": "667c7aa1-019f-4383-ae09-d2d50ca1f53e",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/{{application_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "{{application_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Withdraw Application (Pending Only)",
+          "id": "8f131b14-b09d-4103-b43c-58d6689fffe5",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/{{application_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "{{application_id}}"
+              ]
+            },
+            "description": "Only works if status is 'pending'"
+          },
+          "response": []
+        },
+        {
+          "name": "List Job Applications (Employer)",
+          "id": "dda1f668-5c7a-4d0e-a3ff-fadbd87e9651",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/job/{{job_id}}/applications?page=1&limit=20&status=pending",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "job",
+                "{{job_id}}",
+                "applications"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "pending"
+                }
+              ]
+            },
+            "description": "View all applications for your job posting"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Application Status (Employer)",
+          "id": "3cc4b851-5bed-474a-98db-dd97549436eb",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{employer_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"under_review\",\n  \"notes\": \"Candidate looks promising. Scheduling interview for next week.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/applications/{{application_id}}/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "{{application_id}}",
+                "status"
+              ]
+            },
+            "description": "Valid statuses: pending, under_review, accepted, rejected, interview_scheduled"
+          },
+          "response": []
+        },
+        {
+          "name": "List All Applications (Admin)",
+          "id": "c12a0b65-4dcd-4898-bc9e-9ff3c898387d",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/admin/all?page=1&limit=20&status=pending",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "admin",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "applicationType",
+                  "value": "internal",
+                  "disabled": true
+                },
+                {
+                  "key": "userId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "jobId",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Application (Admin)",
+          "id": "4b1dc3ae-25ed-4a38-82bc-a9fd9f616431",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/applications/admin/{{application_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "applications",
+                "admin",
+                "{{application_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "09af0cb0-39d3-4047-9bde-062543db1bbc"
+    },
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Server Health",
+          "id": "c37bca53-1f27-46d2-8685-a097d3c963f5",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4b83b3d3-8110-42f1-a480-86e85772f3db"
+    },
+    {
+      "name": "User - Create & Manage Tickets Copy",
+      "item": [
+        {
+          "name": "Create Ticket - CV Upload Issue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.ticket && response.ticket._id) {",
+                  "        pm.collectionVariables.set('ticket_id', response.ticket._id);",
+                  "        console.log('✅ Ticket created:', response.ticket.ticketNumber);",
+                  "        console.log('📧 Check emails:');",
+                  "        console.log('   - User confirmation');",
+                  "        console.log('   - All agents notified');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "b53d685b-8e04-4f0b-ba1a-7b13a5c00ac7"
+              }
+            }
+          ],
+          "id": "bd7cb7b1-ee7d-4652-a515-63270f63772e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Unable to upload my CV - Getting Error 500\",\n  \"description\": \"Hi, I'm trying to upload my CV but I keep getting a server error (Error 500). I've tried different PDF files but the same issue persists. This is blocking me from applying to jobs. Please help!\",\n  \"category\": \"technical\",\n  \"priority\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            },
+            "description": "✉️ **Emails Sent:**\n1. User confirmation\n2. Notification to all agents (Sarah, Mike, Emma)\n\n📋 **Ticket Status:** open → pending_assignment"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Ticket - Account Issue",
+          "id": "2786f175-0be1-47c2-b907-e504b831cd03",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user2_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Cannot reset my password\",\n  \"description\": \"I tried to reset my password but didn't receive the reset email. Checked spam folder as well.\",\n  \"category\": \"account\",\n  \"priority\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ]
+            },
+            "description": "Create ticket from different user"
+          },
+          "response": []
+        },
+        {
+          "name": "List My Tickets",
+          "id": "5880e5f3-ff51-4a01-abf0-dee139480919",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/tickets?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "open",
+                  "disabled": true
+                },
+                {
+                  "key": "priority",
+                  "value": "high",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "technical",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get all tickets created by current user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Ticket Details",
+          "id": "edc9ac39-157f-4cf3-a03c-469d89e7bf47",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "Shows ticket + all messages (cached)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Message (Text Only)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    console.log('✅ Message added');",
+                  "    console.log('📧 Email sent to assigned agent(s)');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "2a6e005f-0a6a-4565-bcd5-f23d336e79d5"
+              }
+            }
+          ],
+          "id": "ccb1c007-3d1c-4465-83fc-127536c64f3e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"I've also tried clearing my browser cache and using incognito mode, but still getting the same 500 error. The error appears right after selecting the file.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "✉️ Sends email to assigned agent(s)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Message with Attachments",
+          "id": "fd5c02ab-6166-4f7d-8b4e-1924da2b0e0e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "message",
+                  "value": "Here's a screenshot of the error message I'm getting",
+                  "type": "text"
+                },
+                {
+                  "key": "attachments",
+                  "description": "Select image or PDF (max 5 files, 10MB each)",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "📎 Upload files with message\n✉️ Email includes download links"
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 5 Stars",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('⭐ Ticket rated:', response.ticket.rating, 'stars');",
+                  "    console.log('👤 Agent:', response.agent.firstName, response.agent.lastName);",
+                  "    console.log('📊 Agent avg rating:', response.agent.averageRating);",
+                  "    console.log('📈 Total ratings:', response.agent.totalRatings);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "66203354-378e-4d48-bcd2-bec290ac7280"
+              }
+            }
+          ],
+          "id": "5bc8f20a-0804-4107-9703-3edafda1ae0c",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"feedback\": \"Excellent support! Sarah was very helpful and resolved my issue quickly. She explained the problem clearly and the fix worked perfectly. Highly recommend!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            },
+            "description": "⭐ **Rate Primary Agent (1-5 stars)**\n\n✅ Updates agent's profile:\n- Adds rating to agent.agentRatings[]\n- Recalculates agent.averageRating\n- Increments agent.totalRatings\n\n⚠️ Can only rate resolved/closed tickets\n⚠️ Can only rate once per ticket"
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 4 Stars",
+          "id": "7577bf31-54f4-49fa-a24c-5c22b9dc4f1d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"feedback\": \"Good service. Issue resolved but took a bit longer than expected.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Ticket - 3 Stars",
+          "id": "93d82cf2-9750-4560-86ad-6fb77b2f0790",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 3,\n  \"feedback\": \"Issue eventually fixed but communication could be better.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reopen Ticket",
+          "id": "4593c5cb-f308-491c-a138-1019d0884dec",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{user_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"The issue came back. Getting the same 500 error again when uploading CV.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/reopen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "reopen"
+              ]
+            },
+            "description": "Reopens closed ticket. Increments reopenedCount."
+          },
+          "response": []
+        }
+      ],
+      "id": "2485705b-ea8e-4d11-b2c3-67c76a3d8b60",
+      "description": "User ticket management and rating system"
+    },
+    {
+      "name": "Multi-Agent - Accept/Decline Copy",
+      "item": [
+        {
+          "name": "List Pending Tickets (Agent 1)",
+          "id": "d34f4398-25b6-40c1-94fa-a31d788e9000",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/pending-my-response?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "pending-my-response"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Shows tickets where this agent is in pendingAgents[] list"
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Ticket (Agent 1 - Becomes Primary)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('✅ Ticket accepted');",
+                  "    console.log('👤 Role:', response.role);",
+                  "    console.log('📧 Email sent to customer');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "bc6848d9-8685-4649-9b4a-847c28dc6eb8"
+              }
+            }
+          ],
+          "id": "317cc7ba-fea1-4ce5-ae1b-b3e38c119b31",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/accept",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "accept"
+              ]
+            },
+            "description": "✅ **First agent to accept becomes PRIMARY**\n\n📧 Email sent to customer:\n\"Agent Sarah has been assigned to your ticket\"\n\n📊 Status: pending_assignment → in_progress\n\n👤 Agent added to assignedAgents[] with:\n- status: 'accepted'\n- role: 'primary'"
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Ticket (Agent 2 - Becomes Collaborator)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('✅ Ticket accepted as collaborator');",
+                  "    console.log('👥 Multiple agents on ticket now');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d0ae5e03-ccae-4f76-b244-c82e392b01d0"
+              }
+            }
+          ],
+          "id": "6e754e16-7d62-4535-9ffe-0e04b0fdd4b7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent2_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/accept",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "accept"
+              ]
+            },
+            "description": "✅ **Additional agents become COLLABORATORS**\n\n👥 Allows multiple agents to work together\n\n📊 Agent added to assignedAgents[] with:\n- status: 'accepted'\n- role: 'collaborator'"
+          },
+          "response": []
+        },
+        {
+          "name": "Decline Ticket (Agent)",
+          "id": "0285136c-4122-4671-bd3d-9c231208cc15",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sales_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/decline",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "decline"
+              ]
+            },
+            "description": "❌ Agent declines ticket\n\n- Removed from pendingAgents[]\n- Added to assignedAgents[] with status 'declined'\n- No email sent"
+          },
+          "response": []
+        }
+      ],
+      "id": "d20d7760-674b-4eea-8501-cd9f5c0e80e0",
+      "description": "Multi-agent assignment workflow"
+    },
+    {
+      "name": "Staff - Manage All Tickets Copy",
+      "item": [
+        {
+          "name": "List All Tickets",
+          "id": "acd28498-96a1-4b39-a752-6350a93ad955",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets?page=1&limit=20&status=in_progress",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "in_progress"
+                },
+                {
+                  "key": "priority",
+                  "value": "urgent",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "technical",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "TKT-000001",
+                  "description": "Search by ticket number or subject",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "View all tickets with filters"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Statistics (Global)",
+          "id": "833475a2-20c9-4bc2-bad6-661bc901f3f1",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "stats"
+              ]
+            },
+            "description": "📊 Returns:\n- Tickets by status\n- Tickets by priority\n- Tickets by category\n- Avg response time\n- Avg resolution time\n- Avg rating"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Ticket Status/Priority",
+          "id": "b0b5796c-c91e-424a-a770-2905fdf6d7d7",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"waiting_customer\",\n  \"priority\": \"urgent\",\n  \"tags\": [\"cv-upload\", \"bug\", \"server-error\"],\n  \"internalNotes\": \"Checked server logs. Found CORS issue in upload API. Deploying fix now. ETA: 10 mins.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "Update ticket properties (staff only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add Internal Note (Staff Only)",
+          "id": "3b4d4846-f102-493d-ae6c-e1536de694d3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Checked backend logs. Found CORS issue in CV upload endpoint. Deploying fix. Customer should not see this note.\",\n  \"isInternal\": \"true\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "🔒 Internal notes:\n- NOT visible to customer\n- NOT sent via email\n- Only visible to staff"
+          },
+          "response": []
+        },
+        {
+          "name": "Reply to Customer (Agent)",
+          "id": "e73f933d-a1d1-4aa1-9f1e-aaaf411f7bba",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Hi John! I've identified the issue. It was a CORS configuration problem on our server. I've deployed a fix just now. Can you please try uploading your CV again and let me know if it works? Thanks!\",\n  \"status\": \"waiting_customer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/tickets/{{ticket_id}}/messages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "tickets",
+                "{{ticket_id}}",
+                "messages"
+              ]
+            },
+            "description": "✉️ Sends email to customer with agent's reply"
+          },
+          "response": []
+        },
+        {
+          "name": "Resolve Ticket",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    console.log('✅ Ticket resolved');",
+                  "    console.log('📧 Email sent to customer with satisfaction survey');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "33cbea9d-7324-44ec-a647-1bb385a9f4b0"
+              }
+            }
+          ],
+          "id": "3040ddb1-5602-4a1e-897d-fa300cffda01",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "✅ Marks ticket as resolved\n\n✉️ **Email sent to customer with:**\n- Ticket summary\n- Satisfaction survey (rate 1-5 stars)\n- Option to reopen\n\n📊 Calculates:\n- resolutionTime\n- Sets resolvedAt timestamp"
+          },
+          "response": []
+        },
+        {
+          "name": "Manual Assign to Agent (Admin)",
+          "id": "8914f0d3-0011-4b74-8393-fd52a31f05a7",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agentEmail\": \"sarah@company.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}/assign",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}",
+                "assign"
+              ]
+            },
+            "description": "Admin can manually assign without agent acceptance"
+          },
+          "response": []
+        },
+        {
+          "name": "Bulk Update Tickets",
+          "id": "4e7f47b2-1996-44c7-8ad5-fb9b404d6478",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketIds\": [\"{{ticket_id}}\"],\n  \"updates\": {\n    \"status\": \"resolved\",\n    \"priority\": \"low\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/bulk-update",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "bulk-update"
+              ]
+            },
+            "description": "Update multiple tickets at once"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Ticket (Admin Only)",
+          "id": "7652e159-948b-4edf-96b2-8e114187caa6",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/tickets/{{ticket_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "tickets",
+                "{{ticket_id}}"
+              ]
+            },
+            "description": "⚠️ Deletes ticket + all messages permanently"
+          },
+          "response": []
+        }
+      ],
+      "id": "b09606fe-cf7b-450b-bf98-d426ad76c7b3",
+      "description": "Staff ticket management"
+    },
+    {
+      "name": "Agent Management & Ratings Copy",
+      "item": [
+        {
+          "name": "List All Agents (with Stats)",
+          "id": "7096568e-2252-4544-b8f3-66a9df6b005f",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "role",
+                  "value": "csr",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "sarah",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "📊 Shows all agents with:\n- Total tickets assigned\n- Open/In Progress/Resolved counts\n- Average rating ⭐\n- Total ratings received"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Agents (Autocomplete)",
+          "id": "b2a4ff5b-723b-4882-85ba-9a2d54ac7fe3",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{csr_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/search?q=sarah",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "sarah",
+                  "description": "Min 2 characters"
+                }
+              ]
+            },
+            "description": "Quick search by email/name (for assignment)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Details (Full Profile)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('👤 Agent:', response.agent.firstName, response.agent.lastName);",
+                  "    console.log('⭐ Average Rating:', response.ratings.average);",
+                  "    console.log('📊 Total Ratings:', response.ratings.total);",
+                  "    console.log('📈 Breakdown:');",
+                  "    console.log('   5⭐:', response.ratings.breakdown['5']);",
+                  "    console.log('   4⭐:', response.ratings.breakdown['4']);",
+                  "    console.log('   3⭐:', response.ratings.breakdown['3']);",
+                  "    console.log('   2⭐:', response.ratings.breakdown['2']);",
+                  "    console.log('   1⭐:', response.ratings.breakdown['1']);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d571c359-f48d-4158-82f9-0c0070205bc0"
+              }
+            }
+          ],
+          "id": "589073e9-620a-4fb9-9ed9-0e692b413479",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}"
+              ]
+            },
+            "description": "📊 **Complete Agent Profile:**\n\n**Ticket Stats:**\n- By status (open, in_progress, resolved)\n- By priority (low, medium, high, urgent)\n- By category\n- Avg response time\n- Avg resolution time\n\n**⭐ Rating Stats:**\n- Average rating (1-5)\n- Total ratings received\n- Breakdown (5⭐, 4⭐, 3⭐, 2⭐, 1⭐)\n- Last 10 ratings with:\n  - Rating value\n  - Customer feedback\n  - Ticket number\n  - Date rated\n\n**Recent Tickets:**\n- Last 10 tickets handled"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Reviews (Paginated)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('📝 Total Reviews:', response.meta.total);",
+                  "    console.log('⭐ Agent Rating:', response.agent.averageRating);",
+                  "    response.reviews.forEach((review, i) => {",
+                  "        console.log(`${i+1}. ${review.rating}⭐ - ${review.feedback}`);",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "cdfa76fa-0363-4c5f-bb58-9431701c77d9"
+              }
+            }
+          ],
+          "id": "27c6f7e2-b217-4adc-a5ad-c59d18dc7c14",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}/reviews?page=1&limit=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "rating",
+                  "value": "5",
+                  "description": "Filter: 1, 2, 3, 4, or 5",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "📝 **All Reviews for Agent:**\n\n- Paginated list\n- Filter by rating (1-5)\n- Sorted by most recent\n- Includes:\n  - Rating (1-5 stars)\n  - Customer feedback text\n  - Ticket number & subject\n  - Customer name\n  - Date rated"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Agent Reviews - 5 Stars Only",
+          "id": "c91a7cc0-9909-45e3-a3b5-a0fea81f1484",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/{{agent_id}}/reviews?rating=5&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "{{agent_id}}",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "rating",
+                  "value": "5"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Filter to show only 5-star reviews"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Rating",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    console.log('🏆 Agent Leaderboard (by rating):');",
+                  "    response.leaderboard.forEach((agent, i) => {",
+                  "        console.log(`${i+1}. ${agent.firstName} ${agent.lastName}: ${agent.averageRating}⭐ (${agent.totalRatings} ratings)`);",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "d2d0f6d9-c368-47b8-95fd-bc6c740eb1f0"
+              }
+            }
+          ],
+          "id": "b11fe106-96b4-45c9-b1da-6475539f62f3",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=month&metric=rating",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "month",
+                  "description": "all, today, week, month"
+                },
+                {
+                  "key": "metric",
+                  "value": "rating",
+                  "description": "rating, resolved, response, total"
+                }
+              ]
+            },
+            "description": "🏆 **Performance Leaderboard**\n\n**Sort by:**\n- rating: Average rating (best rated agents)\n- resolved: Most tickets resolved\n- response: Fastest response time\n- total: Most tickets handled\n\n**Period:**\n- all: All time\n- today: Last 24 hours\n- week: Last 7 days\n- month: Last 30 days"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Resolved Tickets",
+          "id": "2b5a763d-fcb6-47a0-84a1-63a6566cf7a2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=week&metric=resolved",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "week"
+                },
+                {
+                  "key": "metric",
+                  "value": "resolved"
+                }
+              ]
+            },
+            "description": "Most productive agents this week"
+          },
+          "response": []
+        },
+        {
+          "name": "Agent Leaderboard - By Response Time",
+          "id": "eddc343e-a410-4914-8ae3-cbb45e1bf6f5",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/support/admin/agents/leaderboard?period=all&metric=response",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support",
+                "admin",
+                "agents",
+                "leaderboard"
+              ],
+              "query": [
+                {
+                  "key": "period",
+                  "value": "all"
+                },
+                {
+                  "key": "metric",
+                  "value": "response"
+                }
+              ]
+            },
+            "description": "Fastest responding agents"
+          },
+          "response": []
+        }
+      ],
+      "id": "3c29b988-0cd7-451a-b3de-b2f2ee4635f8",
+      "description": "Agent profiles, ratings, reviews, and leaderboard"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Pre-request script placeholder"
+        ],
+        "type": "text/javascript",
+        "id": "a1dc5b9e-5b26-4bf4-9c13-f3d7b5cc4647"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Tests placeholder"
+        ],
+        "type": "text/javascript",
+        "id": "3aa77e7c-ec2c-429e-a794-25f78b092d66"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "61ff709f-1ffc-472e-8a4a-0a115d412218",
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "id": "8f04c265-94dc-4617-af03-a60a40c9fff4",
+      "key": "job_id",
+      "value": ""
+    },
+    {
+      "id": "5fcd1668-5c83-4572-97b2-e625fd12803f",
+      "key": "auth_token",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "id": "635f0d39-b261-4dbd-a46a-c8db9deb134b",
+      "key": "analysis_id",
+      "value": ""
+    },
+    {
+      "id": "cf2b31a0-4ea9-4100-8747-1b3482c523ef",
+      "key": "application_id",
+      "value": ""
+    },
+    {
+      "id": "33f3faba-c6a7-4604-b230-35de97d8f3cc",
+      "key": "ticket_id",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "info": {
+    "_postman_id": "b9533c20-de80-433e-ab2c-83df7df958bd",
+    "name": "Individual Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "Get All Notes",
+          "id": "dafcf0d6-028f-49f2-a4fa-f07ebc9f3908",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/notes",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create A Note",
+          "id": "7e11b89c-6e53-44c1-b3ff-13e7505ac647",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\" : \"Adamya Note 1\", \n    \"content\" : \"Test Content that contains a note\", \n    \"photoURL\" : \"Test Photo Url here\",\n    \"status\" : \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/notes",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Note",
+          "id": "bdc013a3-087c-47cc-82a9-da93200b00ee",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\" : \"eef7a528-5890-42a8-a0c9-80448aedbcbf\", \n    \"title\" : \"Adamya Note 1 Updated\", \n    \"content\" : \"Test Updated Content that contains a note\", \n    \"photoURL\" : \"Test UPdated Photo Url here\",\n    \"status\" : \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/notes",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "notes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Photos using Endpoints",
+          "id": "29d5e8eb-cf67-4eb2-b867-176f4f7db8d8",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "id",
+                  "value": "eef7a528-5890-42a8-a0c9-80448aedbcbf",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/home/addy/Desktop/DSA Assignment/Answer_Images/code-snapshot-7-GUI.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/notes/photo",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "notes",
+                "photo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Note",
+          "id": "ff6af092-8074-480e-8cda-a365cb928748",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/notes/5278c378-1c03-40b2-9753-6080bfecf868",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "notes",
+                "5278c378-1c03-40b2-9753-6080bfecf868"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e060e4a9-9499-40a8-99fa-5ccff1afe2c5"
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Get All Contacts",
+          "id": "a9a39b9d-0786-498d-9675-adc43720b078",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "id",
+                  "value": "0b912cfb-1073-47b6-885e-c600a6482bc6",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/contacts",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create A contact",
+          "id": "9b77a16e-b57e-4be6-8f32-8a982a05b8cf",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\" : \"Lionel Messi\",\n    \"email\" : \"messi@gmail.com\", \n    \"title\" : \"Footballer\", \n    \"phone\" : \"123-456-789\", \n    \"address\" : \"Miami, FL\", \n    \"status\" : \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/contacts",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Photos",
+          "id": "04dec676-20c6-4594-b921-1c53f471bbac",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "id ",
+                  "value": "12b803d5-ea3a-4ca2-b727-d84e533a2f07",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/home/addy/Desktop/DSA Assignment/Answer_Images/code-snapshot-7-2.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/contacts/photo",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "contacts",
+                "photo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Contact",
+          "id": "2c840710-9757-4f1b-b762-077eb0583a11",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\" : \"d1aee872-2e66-4cee-ad39-09d523d80a2d\",\n    \"name\" : \"Lionel Messi\",\n    \"email\" : \"messi@lionel.com\", \n    \"title\" : \"Footballer\", \n    \"phone\" : \"123-456-766\", \n    \"address\" : \"Miami, FL, Updated\", \n    \"status\" : \"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "127.0.0.1:8080/contacts",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Contact",
+          "id": "2b2d56e5-ec68-479a-a16f-adcf98ad7e35",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:8080/contacts/12b803d5-ea3a-4ca2-b727-d84e533a2f07",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8080",
+              "path": [
+                "contacts",
+                "12b803d5-ea3a-4ca2-b727-d84e533a2f07"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "9edab29d-a443-4b53-bcb8-be74c44c6537"
+    },
+    {
+      "name": "issues",
+      "item": [
+        {
+          "name": "creaate",
+          "id": "7bd590db-e081-4514-b828-a0fb718f315e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Login page not loading\",\r\n  \"description\": \"The login page takes too long to load and sometimes shows a blank screen.\",\r\n  \"category\": \"Bug\",\r\n  \"priority\": \"High\",\r\n  \"status\": \"Open\",\r\n  \"userName\": \"John Doe\",\r\n  \"userEmail\": \"john@example.com\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/issues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "990b7cf4-1701-466c-95a4-965f14206914",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/issues/id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues",
+                "id"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "c10d6a4b-e9ca-42dd-8996-c2b5e225813c",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/issues/id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues",
+                "id"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read",
+          "id": "303931fd-6118-4437-995d-e8f60545fac4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/issues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1e3a57b0-642f-4c13-8b05-0f0f7d2fa562"
+    },
+    {
+      "name": "User Create",
+      "id": "39111121-90c9-44d9-8bfd-0f1947e5e32c",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"password\": \"secure123\",\r\n  \"phone\": \"+1234567890\",\r\n  \"age\": 28,\r\n  \"bloodType\": \"A+\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update users",
+      "id": "c3cf392d-dfca-4b00-aca4-6ad03bdd40a9",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

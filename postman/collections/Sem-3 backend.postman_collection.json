@@ -1,0 +1,92 @@
+{
+  "info": {
+    "_postman_id": "3b3c7bee-b103-4412-816f-4a35498cb0bd",
+    "name": "Sem-3 backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "login",
+          "id": "43007b1a-e6be-4955-974e-14b3a557ff3e",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "id": "b3f71fa4-48a2-42d2-855b-31b0b9bb28d3"
+    },
+    {
+      "name": "signup",
+      "item": [
+        {
+          "name": "signup",
+          "id": "c0079b9f-f39b-48dd-93f3-3db01ca5e3ae",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \r\n    \"email\":\"hey@gmail.com\",\r\n    \"password\":\"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "a46df400-a84a-4514-af03-9ebbbfa768c0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\":\"sikeee\",\r\n    \"password\":\"sikeee123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://mern-chat-app-ksbl.onrender.com/login",
+              "protocol": "https",
+              "host": [
+                "mern-chat-app-ksbl",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "82822733-b22e-4ff9-af06-f8a7e75dbb84"
+    }
+  ]
+}

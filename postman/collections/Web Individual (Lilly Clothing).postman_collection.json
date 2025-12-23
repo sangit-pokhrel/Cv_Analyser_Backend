@@ -1,0 +1,363 @@
+{
+  "info": {
+    "_postman_id": "e66206e1-9667-447e-b2df-402304cbcd40",
+    "name": "Web Individual (Lilly Clothing)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "Create a Product",
+          "id": "4c5e7f92-feb4-4146-87da-c6e2d476f5d1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Product Number 1\",\n    \"description\": \"Description Number 1\",\n    \"price\": 10000,\n    \"stockQuantity\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/products/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List All Products",
+          "id": "c33609e3-64af-4180-bccb-297a2d3cb6e4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"ayush\",\n  \"password\": \"ayush123\",\n  \"address\": \"Dhapasi\",\n  \"phone\": 9813574259\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/products/getAll",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "getAll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Product",
+          "id": "ee6839fd-77bb-4006-afdb-2ef09db18361",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/products/getById/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "getById",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "id": "4d67ad22-3257-4852-b3ad-cde7d505211e",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Product Number 3 - Updated\",\n    \"description\": \"Description Number 3 - Updated\",\n    \"price\": 10000,\n    \"stockQuantity\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/products/update/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "update",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "id": "7bc715de-48ed-410b-a7e0-a9316b3dc45c",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/products/delete/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ebc2a617-e416-441f-9a3f-83157264e252"
+    },
+    {
+      "name": "Create a User",
+      "id": "25b5ea9d-58ac-421a-8a88-b1a7a9290f91",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"ayush\",\n  \"password\": \"ayush123\",\n  \"address\": \"Dhapasi\",\n  \"phone\": 9813574259\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List All Users",
+      "id": "00c87ea5-9101-4f34-9bf8-f6aeb09d4f6f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/getAll",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "getAll"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Specific User",
+      "id": "dcdacd03-2e8c-4f8a-9d3f-38531b9fcfc7",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/getById/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "getById",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "id": "1a5464d2-786c-48af-924e-ae96cab01270",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"ayush\",\n  \"password\": \"ayush123\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User",
+      "id": "fff0b912-e1d4-40ba-bf81-3b40a0aa0a0b",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"ayush_updated\",\n    \"password\": \"aayush123\",\n    \"address\": \"Kathmandu\",\n    \"phone\": 1234\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/update/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "update",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "id": "f1e92ee3-05ea-423e-813a-0412fd4642d6",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/app_users/delete/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "app_users",
+            "delete",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "9987e040-0231-4bc7-aaca-dcf95488a099",
+    "name": "Lms",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Courses",
+      "item": [
+        {
+          "name": "Add Courses",
+          "id": "8ef6a078-f34c-422a-8352-ee51f79cc6b8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080//api/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "",
+                "api",
+                "courses"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "29997041-9f0d-464d-b47a-17bfe3fc3803"
+    },
+    {
+      "name": "Login Register",
+      "item": [
+        {
+          "name": "Login",
+          "id": "858f0c84-9a02-4965-87f9-4260d54791d3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "id": "f1fd4438-cb1d-40e8-a66f-5027d0832b2d",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"sikeop\",\r\n    \"email\": \"sikeop@example.com\",\r\n    \"password\": \"sikeop123\",\r\n    \"dateOfBirth\": \"2003-11-05\",\r\n    \"firstName\": \"Admin\",\r\n    \"lastName\": \"User\",\r\n    \"phoneNumber\": \"123-456-7890\",\r\n    \"role\": \"Admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "a5420973-6c95-4e13-bbfe-7eb8be3cf5e9",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "id": "d408dc44-b784-42e0-9b35-f39209cbc224"
+    }
+  ]
+}

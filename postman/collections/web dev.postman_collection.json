@@ -1,0 +1,102 @@
+{
+  "info": {
+    "_postman_id": "19df7f1b-8560-417d-9154-45836bb3c702",
+    "name": "web dev",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "put",
+      "id": "0095768b-af48-4fc5-ae15-989a9792586e",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"Prime 5\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/ground/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "ground",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get data",
+      "id": "b8c5af4c-4ada-494d-a20c-d12d4dffa2e4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ground/get",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "ground",
+            "get"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "a2c90371-0720-439e-9129-2401172ef0d5",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": null,\r\n    \"date\" : \"2024/04/15\",\r\n    \"ground_id\": \"1\",\r\n    \"user_id\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://10.1.1.22:8080/book/save",
+          "protocol": "http",
+          "host": [
+            "10",
+            "1",
+            "1",
+            "22"
+          ],
+          "port": "8080",
+          "path": [
+            "book",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "c",
+      "id": "f265e56b-ebec-4a76-a1e1-f997ab93a567",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "9ef00598-31cd-4a67-857d-be515a4f7ea6",
+    "name": "Compu",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "id": "c0d59c98-9bc2-44e9-bde3-dbf202d79c00",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/users/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "id": "1cd91144-3ac0-4645-908f-21d335131167",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"UpdatedFirstName\",\r\n  \"lastName\": \"UpdatedLastName\",\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"admin123\",\r\n  \"phoneNumber\": \"987-654-3210\",\r\n  \"role\": \"Admin\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/users/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "users",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "75d680e8-180d-4c95-83fc-9eab4c383663"
+    },
+    {
+      "name": "cart",
+      "item": [
+        {
+          "name": "Add Cart",
+          "id": "d5ce1ec8-5fea-4998-b960-8dbe94cb9f9e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itemName\": \"Laptop\",\r\n  \"itemImage\": \"laptop.jpg\",\r\n  \"itemDescription\": \"A high-performance laptop with 16GB RAM and 512GB SSD.\",\r\n  \"itemQuantity\": 2,\r\n  \"itemPerPrice\": 1200.00\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/cart",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1ca8f15b-2f57-4eb0-9bdc-ea3d516804e1"
+    },
+    {
+      "name": "itens",
+      "item": [
+        {
+          "name": "add items",
+          "id": "cd1220e5-b67e-4c24-8d23-a0b199b8ee4b",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itemName\": \"Sample Item\",\r\n  \"itemImage\": \"sample-item.jpg\",\r\n  \"itemDescription\": \"This is a description of the sample item.\",\r\n  \"itemQuantity\": 50,\r\n  \"itemPerPrice\": 200\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/items",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2dc49b32-43f0-4444-a34c-bc692745986b"
+    }
+  ]
+}

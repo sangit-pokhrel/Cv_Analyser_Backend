@@ -1,0 +1,590 @@
+{
+  "info": {
+    "_postman_id": "a09a9257-b437-41f0-af6b-b7caae1c2216",
+    "name": "AUTH Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "DOnation",
+      "item": [
+        {
+          "name": "Create",
+          "id": "e65684b5-dd40-4f20-97db-55becd980341",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjYmIzMWE0NjZjNDczN2QxMTdjYyIsImVtYWlsIjoiYWRtaW4yQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzUxOTYwNTA1LCJleHAiOjE3NTIwNDY5MDV9.leQ2f59wXoeoaelneYe3VLY54sqWMCp_tW4DTLLgENs",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": \"686ccbb31a466c4737d117cc\",\r\n  \"bloodType\": \"B-\",\r\n  \"units\": 1,\r\n  \"location\": \"Nepal Red Cross, Kathmandu\",\r\n  \"phone\": \"9868618385\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/donations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "donations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get",
+          "id": "682feb00-351d-4e1b-87e5-9617075689ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjOTNjZjM3YzE1YTBjMzE0NDUxZiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTE5NTk4ODYsImV4cCI6MTc1MjA0NjI4Nn0.8ctyEewpyzBKx9L6c6Ojg58rL1q8pT6jcRU0ZebIP4A",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bloodType\": \"A+\",\r\n  \"units\": 1,\r\n  \"location\": \"Red Cross Kathmandu\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/donations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "donations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2c073030-bbf4-4e2a-a126-4b5fa5336bda"
+    },
+    {
+      "name": "blood requests",
+      "item": [
+        {
+          "name": "create",
+          "id": "5f0566bf-48fc-485e-af7b-4ec55d0e1682",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjZGJkYzlhYWQ2YjMwY2QyYTQzZCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxOTYxMDkwLCJleHAiOjE3NTIwNDc0OTB9.WMcu3xqHp4AnCUXHFFs_M29h_iEpfLhVsCYi0PgBQf0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "key",
+                "value": "880167f876b4e8a5cc5c6a89bc0dc31654d52042",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bloodType\": \"A+\",\r\n  \"quantity\": 20\r\n  \r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/requests/686cce56c9aad6b30cd2a447",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "requests",
+                "686cce56c9aad6b30cd2a447"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6d65e915-671b-44e2-b207-0a302e55ede1"
+    },
+    {
+      "name": "appointments",
+      "item": [
+        {
+          "name": "create",
+          "id": "a8f948f5-e7fb-4137-ba28-02d0c0dcdab8",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjZGJkYzlhYWQ2YjMwY2QyYTQzZCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxOTYxMDkwLCJleHAiOjE3NTIwNDc0OTB9.WMcu3xqHp4AnCUXHFFs_M29h_iEpfLhVsCYi0PgBQf0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": \"686ccdbdc9a43534ad6b30cd2a43d\",\r\n  \"fullName\": \"Sita Kumari\",\r\n  \"email\": \"sita4534@gmail.com\",\r\n  \"phoneNumber\": \"4534534\",\r\n  \"bloodType\": \"O-\",\r\n  \"location\": \"Nepalgunj Camp\",\r\n  \"appointmentDate\": \"2025-07-12T14:00:00Z\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/appointments/686ccdbdc9a43534ad6b30cd2a43d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "appointments",
+                "686ccdbdc9a43534ad6b30cd2a43d"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a08610b7-fa03-494a-bc6b-2100c7116529"
+    },
+    {
+      "name": "camps",
+      "item": [
+        {
+          "name": "create",
+          "id": "6001c328-5e73-4c88-be52-d3270eae28f0",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ODk0M2U5MjQ4OTZhYjU0NTllMzMyYyIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUzODMwODI1LCJleHAiOjE3NTM5MTcyMjV9.KiCWZZMAzmhaMDKYYbhdbpNijNHOqWVje9JNakDul0I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Red Cross Blood Camp 3\",\r\n  \"location\": \"Lalitpur Red Cross Hall 3\",\r\n  \"date\": \"2025-07-20T10:00:00Z\",\r\n  \"organizer\": \"Nepal Red Cross\",\r\n  \"description\": \"Join us to save lives. Free T-shirts for donors.\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/camps/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "camps",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "id": "0aa11bea-20df-40d2-9e50-9047a9251488",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "f9f24c32-da87-468d-8a8c-7a3ec0cd76a4"
+    },
+    {
+      "name": "feedbacks",
+      "item": [
+        {
+          "name": "create",
+          "id": "57f8a9c7-fc4f-4a3a-befb-d2f8b71569eb",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjZGJkYzlhYWQ2YjMwY2QyYTQzZCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxOTYxMDkwLCJleHAiOjE3NTIwNDc0OTB9.WMcu3xqHp4AnCUXHFFs_M29h_iEpfLhVsCYi0PgBQf0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"type\": \"suggestion\",\r\n  \"subject\": \"Add more blood camps\",\r\n  \"message\": \"Please add donation camps in rural districts.\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/feedbacks/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "feedbacks",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "0336f423-5a11-4ae7-956c-846a5b178963"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "New Request",
+          "id": "9b3087b6-1538-4daa-934f-304802ec484e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjZGJkYzlhYWQ2YjMwY2QyYTQzZCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxOTYxMDkwLCJleHAiOjE3NTIwNDc0OTB9.WMcu3xqHp4AnCUXHFFs_M29h_iEpfLhVsCYi0PgBQf0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"type\": \"suggestion\",\r\n  \"subject\": \"Add more blood camps\",\r\n  \"message\": \"Please add donation camps in rural districts.\"\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a95cfddf-8382-4b8e-985b-eb2ca7d52eb0"
+    },
+    {
+      "name": "signup",
+      "id": "786320f4-ed32-4dad-ac21-6241aebc2b9b",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Sangit\",\r\n  \"lastName\": \"Zamora\",\r\n  \"email\": \"admin2@gmail.com\",\r\n  \"password\": \"admin123\",\r\n  \"phone\": \"+1 234 567 8910\",\r\n  \"age\": 28,\r\n  \"bloodType\": \"O+\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "id": "31d88149-93ed-4377-809a-ee59a98ac31b",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "key",
+            "value": "880167f876b4e8a5cc5c6a89bc0dc31654d52042",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin2@gmail.com\",\r\n  \"password\": \"admin123\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "id": "481740d9-b110-4563-84b5-2996e0e0090a",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"sangiit\",\r\n    \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/auth/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "auth",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "email halne",
+      "id": "68ec46d6-0098-4991-bab6-cc7388cf935d",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"email\": \"sangitpokhrel339@gmail.com\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/request-reset",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "request-reset"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "otp halne",
+      "id": "a5412545-dab6-4ee9-9f0f-a66186212a2d",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"email\": \"user@example.com\", \"otp\": \"123456\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/verify-otp",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "verify-otp"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "password halne",
+      "id": "467eb803-9041-449d-be36-0d28443f32a2",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"email\": \"user@example.com\", \"newPassword\": \"NewPass@123\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/reset-password",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "reset-password"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "dashboard",
+      "id": "059e82cc-8503-4189-aee9-c03932b341cf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmNjZGJkYzlhYWQ2YjMwY2QyYTQzZCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUxOTYxMDkwLCJleHAiOjE3NTIwNDc0OTB9.WMcu3xqHp4AnCUXHFFs_M29h_iEpfLhVsCYi0PgBQf0",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"type\": \"suggestion\",\r\n  \"subject\": \"Add more blood camps\",\r\n  \"message\": \"Please add donation camps in rural districts.\"\r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/dashboard",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "dashboard"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "d9790870-53a5-4d38-b14b-cc3bdb63fe21",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}

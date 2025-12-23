@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "eff49d39-0787-42e5-9728-7a0c3c75f62e",
+    "name": "gymfitpro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "create",
+          "id": "9466628e-c2f5-4a69-a37e-c30657cdc30d",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email_address\": \"sangitpokhrel339@gmail.com\",\r\n    \"password\": \"sikeee123\",\r\n    \"firstName\": \"sangit\",\r\n    \"lastName\": \"pokhrel\",\r\n    \"is_admin_user\": true,\r\n    \"is_staff_user\": false,\r\n    \"user_type\": \"Admin\",\r\n    \"time_slot_start\": \"23:48\",\r\n    \"time_slot_end\": \"23:48\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/user/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1a705d29-fc33-435d-aa03-e1ef1f9e7e66"
+    }
+  ]
+}

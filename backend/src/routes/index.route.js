@@ -13,6 +13,7 @@ router.use('/contact', require('./contact.route'));
 router.use('/cv', require('./cv.route'));
 // router.use('/coaching', require('./coaching.route'));
 // router.use('/notifications', require('./notification.route'));
+router.use('/skills', require('./skill.route'));
 router.use('/admin', require('./admin.route'));
 
 module.exports = router;

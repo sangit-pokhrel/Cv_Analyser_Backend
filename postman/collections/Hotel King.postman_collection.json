@@ -1,0 +1,194 @@
+{
+  "info": {
+    "_postman_id": "ba599840-910c-4023-89a7-e73adb583c05",
+    "name": "Hotel King",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User add",
+      "id": "38bda3dc-b584-4a85-a684-9009c75f5e20",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgwZjNmMmMxMmYzN2EyYWYwNjliNTMiLCJpYXQiOjE3MTk3NDg3NjcsImV4cCI6MTcxOTkyMTU2N30.GCvlaLn0vXtOmXKtXjdcvzYex7jWXkblTvVDNT72CGg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{   \r\n    \"name\":\"Sangit Pokhrel\",\r\n    \"email\": \"seikeeeeegmail.com\",\r\n    \"password\": \"sikeee12322132\",\r\n    \"role\":\"Customer\",\r\n    \"isAdmin\":\"false\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/user/add",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "api",
+            "user",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "id": "b32db55f-8dde-46bc-b3b5-d9abce07bcba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"sangit69@gmail.com\",\r\n    \"password\": \"sikeee123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "api",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "id": "d0953735-0c02-4b38-97ae-1b5632a69035",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{   \r\n    \"name\":\"Sangit Pokhrel\",\r\n    \"email\": \"sike@gmail.com\",\r\n    \"password\": \"sikeee12322132\"\r\n    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/user/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "api",
+            "user",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get user",
+      "id": "584dddcd-adc2-45d2-b4e1-9f69b9116ccc",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgwZjNmMmMxMmYzN2EyYWYwNjliNTMiLCJpYXQiOjE3MTk5MjM1MTksImV4cCI6MTcyMDA5NjMxOX0.NK1XgKx9w3WxUjO2vvBAWrATTJPtxMCMhwWS-e0quLk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Beer\",\r\n    \"category\": \"beer\",\r\n    \"price\": \"130\",\r\n    \"description\": \"This is beer\",\r\n    \"image\": []\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/menu/add",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "api",
+            "menu",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add room",
+      "id": "9e7c450f-20f8-4f8c-8dbf-75ac1c92ebcb",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjgwZjNmMmMxMmYzN2EyYWYwNjliNTMiLCJpYXQiOjE3MjA0OTY1NTQsImV4cCI6MTcyMDY2OTM1NH0.12zL56zMDgeUMNsYAEs0FLTIZ3V0VHV0d9GDsTh_bR4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \r\n  \"roomNumber\": 1,\r\n  \"type\": \"AC Room\",\r\n  \"price\": 2345,\r\n  \"isAvailable\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/room/add",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "api",
+            "room",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

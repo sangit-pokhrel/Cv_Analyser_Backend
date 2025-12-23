@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  backend:
+    image: sangit56/cvsync-backend:latest
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/CvSync
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo:6
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:

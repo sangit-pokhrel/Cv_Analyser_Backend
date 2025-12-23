@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "a7dc823b-a70b-453f-a218-6e07d4dff9ad",
+    "name": "CV Analyzer - Saved Jobs API",
+    "description": "Complete collection for testing Saved Jobs endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Save access token to environment",
+                  "if (pm.response.code === 200) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('accessToken', jsonData.accessToken);",
+                  "    pm.environment.set('userId', jsonData.user._id);",
+                  "    console.log('Token saved:', jsonData.accessToken);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "3d18ed21-6f59-4b29-9703-a004e66b8408"
+              }
+            }
+          ],
+          "id": "02541b04-8f23-4c69-ba96-d9afea3b1ab9",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "0804b32e-b3c0-4b83-b81d-f27971c33ea6"
+    }
+  ],
+  "variable": [
+    {
+      "id": "13a504e5-600c-4d65-b39d-3e4897c63c82",
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "id": "d37f1e20-38e5-46bc-bd00-c5f9944ee20c",
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "ebacf6e3-33dc-4ccd-ae40-29e57555f360",
+      "key": "jobId",
+      "value": "694210835deed3e497a5e43d",
+      "type": "string"
+    },
+    {
+      "id": "2679b263-f0b4-4c58-a250-50d3ff7bb6f0",
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "id": "00efaef6-8bba-469c-aa27-91359605ee13",
+      "key": "savedJobId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "5b394ed5-a19f-40c5-ba7b-225c80e224e5",
+    "name": "Sem 3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Department",
+      "item": [
+        {
+          "name": "Create",
+          "id": "853d4339-274e-47b3-a0d0-d6673644e42c",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"doctor_name\": \"Dr. John Doe\",\r\n  \"contact_num\": 1234567890,\r\n  \"specialization\": \"Cardiology\",\r\n  \"schedule\": \"Mon-Fri 9:00 AM - 5:00 PM\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"category\": \"Senior Consultant\",\r\n  \"rate\": 1500,\r\n  \"status\": \"Active\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/doctor/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "doctor",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "id": "ff43f812-d86c-4dfc-b447-65e5a563ff93",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "id": "10a1dc73-e6b0-4653-8dc7-d42bbc12910d",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "id": "867d3200-ac6c-4e2d-8c6f-0c348e3e58b4",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "25e368f2-c2d1-4890-9e31-a9ed4f8ba7c8"
+    }
+  ]
+}

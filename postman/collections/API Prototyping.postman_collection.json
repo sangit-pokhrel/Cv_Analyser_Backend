@@ -1,0 +1,1646 @@
+{
+  "info": {
+    "_postman_id": "96e044a0-e2df-45d7-b138-82f141b0d404",
+    "name": "API Prototyping",
+    "description": "> Prototyping your API in Postman streamlines the development process by enabling you to design and test front- and back-end API-driven functionalities within a shared workspace. \n  \n\n## **🪐 Get started**\n\nThis collection serves as a place for teams from the Intergalactic Bank to collaborate on the design of the soon-to-be-developed Intergalactic Bank API. This prototype collection outlines how the service's requests and responses should function. Stakeholders should provide their thoughts and suggestions before we begin development.\n\n## **🧑‍💻 Setting up a mock server**\n\n<img src=\"https://lh7-us.googleusercontent.com/eNxPYjGNGALmKSzZvdhlMuy_XK3C_iQ3rK7tCDiPvr6nePMyggp9NTIAjcZYs7oIy8PU_NCGFKtcBPRZrfplfPyrKsO5SCMRX6OuBpzsL_HuOHxW2DwA3FH2-o0uFJgAZOr7JaQTiIvkayUSrPdsxQQ\">\n\nThis collection is meant to be used alongside a [<b>Postman Mock Server</b>](https://learning.postman.com/docs/designing-and-developing-your-api/mocking-data/setting-up-mock/)**.** Since we are still in the planning phase of the API, we have included several example responses for each request, laying out how we think each possible response will look. Including these example responses also has the added benefit of powering a mock server. By following the instructions, you can set up your own mock server and simulate the behavior of this API by returning the predefined data.\n\n**To set up a mock server:**\n\n1. Select **Mock collection** from the collection's actions menu.\n2. On the **Create a mock server** page, add a name for your mock server, and select to **Save the mock server URL as a new environment variable.** This will create a new environment with the mock’s URL pre-populated.\n3. Select the **New Environment** from the **Environment** dropdown list.\n4. Complete the process by clicking **Create Mock Server**.\n5. Send the request! You should now see that the `{{url}}` variable is using the mock server you set up previously.\n6. Try editing fields in the mocked responses to see your changes reflected in the mock server.\n    \n\n## **🤔Why include tests?**\n\nEach request in the collection includes tests to check the response structure. These tests check that all of the properties that other systems rely on are present and of the expected data type. Once you have the fully built-out service in place, you can swap the mock server URL for the live URL and test that your implementation follows the same guidelines as your prototype. This gives you confidence that you can start integrating this service into your systems.\n\nIf you are adding a new proposed endpoint for this request, try asking Postbot to generate tests for it.\n\n## **🤝Collaborate with us!**\n\nThe Bank Services team wants your team’s input on our API design. Add an [inline comment](https://learning.postman.com/docs/collaborating-in-postman/working-with-your-team/discussing-your-work/) to this collection with your ideas, questions, and suggestions, or reach out to us on our internal Slack by tagging `@bank-services`.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "List Transactions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var responseData = pm.response.json();",
+                  "",
+                  "// Test to check if the response is an object with a transactions property",
+                  "pm.test(\"Response is an object with transactions property\", function () {",
+                  "    pm.expect(responseData).to.be.an('object').that.has.property('transactions');",
+                  "});",
+                  "",
+                  "// Test to check the structure and data types of the transactions array",
+                  "pm.test(\"Transactions array structure and data types are valid\", function () {",
+                  "    responseData.transactions.forEach(function(transaction) {",
+                  "        pm.expect(transaction).to.be.an('object').that.has.property('id').to.be.a('number');",
+                  "        pm.expect(transaction).to.have.property('createdAt').to.be.a('string');",
+                  "        pm.expect(transaction).to.have.property('fromAccountId').to.be.a('number');",
+                  "        pm.expect(transaction).to.have.property('toAccountId').to.be.a('number');",
+                  "        pm.expect(transaction).to.have.property('currency').to.be.a('string');",
+                  "        pm.expect(transaction).to.have.property('amount').to.be.a('number');",
+                  "    });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "e0c06259-3c01-4c02-85fc-734889a452c9",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/v1/transactions",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "createdAt",
+                  "value": "2024-01-10",
+                  "description": "(Optional) filter for transactions created on or after date (YYYY-MM-DD)",
+                  "disabled": true
+                },
+                {
+                  "key": "toAccountID",
+                  "value": "19",
+                  "description": "(Optional) filter for the account that initiated the transaction",
+                  "disabled": true
+                },
+                {
+                  "key": "fromAccountID",
+                  "value": "17",
+                  "description": "(Optional) filter for the account that received the transaction",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "This endpoint will retrieve transactions for a given account, optionally filtering on the date created (`createdAt`) and the account receiving the transaction (`toAccountId`)."
+          },
+          "response": [
+            {
+              "id": "d6eba960-e5a8-49df-8ee2-0e9477855c4a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAt",
+                      "value": "2024-01-10",
+                      "description": "(Optional) filter for transactions created on or after date (YYYY-MM-DD)",
+                      "disabled": true
+                    },
+                    {
+                      "key": "toAccountId",
+                      "value": "19",
+                      "description": "(Optional) filter for the account that initiated the transaction",
+                      "disabled": true
+                    },
+                    {
+                      "key": "fromAccountId",
+                      "value": "17",
+                      "description": "(Optional) filter for the account that received the transaction",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:47:41 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "759"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"transactions\": [\n        {\n            \"id\": 9,\n            \"createdAt\": \"2024-02-17T13:41:26.000Z\",\n            \"fromAccountId\": 17,\n            \"toAccountId\": 19,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 1000\n        },\n        {\n            \"id\": 8,\n            \"createdAt\": \"2024-02-17T13:39:10.000Z\",\n            \"fromAccountId\": 17,\n            \"toAccountId\": 19,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 1000\n        },\n        {\n            \"id\": 7,\n            \"createdAt\": \"2024-02-17T13:12:40.000Z\",\n            \"fromAccountId\": 22,\n            \"toAccountId\": 23,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 250\n        },\n        {\n            \"id\": 6,\n            \"createdAt\": \"2024-02-17T13:12:10.000Z\",\n            \"fromAccountId\": 18,\n            \"toAccountId\": 19,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 250\n        },\n        {\n            \"id\": 4,\n            \"createdAt\": \"2024-02-16T22:30:32.000Z\",\n            \"fromAccountId\": 17,\n            \"toAccountId\": 19,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 1000\n        },\n        {\n            \"id\": 3,\n            \"createdAt\": \"2024-02-16T22:22:22.000Z\",\n            \"fromAccountId\": 18,\n            \"toAccountId\": 19,\n            \"currency\": \"COSMIC_COINS\",\n            \"amount\": 250\n        }\n    ]\n}"
+            },
+            {
+              "id": "19c4687c-baec-4739-abf5-325a4487f337",
+              "name": "No matching transactions found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions?createdAt=2024-01-10&toAccountID=18974440&fromAccountId=9999999",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAt",
+                      "value": "2024-01-10",
+                      "description": "(Optional) filter for transactions created on or after date (YYYY-MM-DD)"
+                    },
+                    {
+                      "key": "toAccountID",
+                      "value": "18974440",
+                      "description": "(Optional) filter for the account that initiated the transaction"
+                    },
+                    {
+                      "key": "fromAccountId",
+                      "value": "9999999",
+                      "description": "(Optional) filter for the account that initiated the transaction"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"transactions\": []\n}"
+            },
+            {
+              "id": "61b95d0a-3c16-440e-be60-302d53f16ffe",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get a transaction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Test the response body structure and values",
+                  "pm.test(\"Response body structure is valid\", function () {",
+                  "    var responseJSON = pm.response.json();",
+                  "    pm.expect(responseJSON).has.property('transaction');",
+                  "    pm.expect(responseJSON.transaction).to.be.an('object').that.has.all.keys('id', 'createdAt', 'fromAccountId', 'toAccountId', 'currency', 'amount');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "f2aaf996-dc4d-4f81-8cb2-6f50098733e3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/v1/transactions/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transactions",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "4",
+                  "description": "(Required) ID of transaction"
+                }
+              ]
+            },
+            "description": "This endpoint will retrieve details of a specific transaction by providing the transaction ID as a path parameter."
+          },
+          "response": [
+            {
+              "id": "33a8f089-3b1b-4795-8a06-4145c6ae975d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "4",
+                      "description": "(Required) transaction ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:48:21 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "139"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"transaction\": {\n        \"id\": 4,\n        \"createdAt\": \"2024-02-16T22:30:32.000Z\",\n        \"fromAccountId\": 17,\n        \"toAccountId\": 19,\n        \"currency\": \"COSMIC_COINS\",\n        \"amount\": 1000\n    }\n}"
+            },
+            {
+              "id": "de474f7b-1838-4331-b59d-84f7d624da82",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999",
+                      "description": "(Required) transaction id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:33:28 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "67"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"instanceNotFound\",\n    \"message\": \"Transaction does not exist.\"\n}"
+            },
+            {
+              "id": "9221ed45-d9f3-4450-9be5-61a23bffb604",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create New Transaction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var responseJSON = pm.response.json();",
+                  "",
+                  "// Test the response body structure and values",
+                  "pm.test(\"Response body structure is valid\", function () {",
+                  "    pm.expect(responseJSON).to.be.an('object').that.has.property('success', true);",
+                  "    pm.expect(responseJSON).to.have.property('transaction').that.is.an('object').and.has.property('id');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "de656feb-efec-4d82-a913-cc326f4c9b88",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fromAccountId\" : 28,\n    \"toAccountId\" : 27,\n    \"amount\" : 1000,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/transactions",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transactions"
+              ]
+            },
+            "description": "This endpoint will create a new transaction. Funds will be transferred between accounts by providing two account IDs in the `fromAccountId` and `toAccountId` fields.\n\n### Important!\n\nTransactions cannot be edited once created, so use this endpoint with caution."
+          },
+          "response": [
+            {
+              "id": "117ad0f8-50ef-4058-9fa7-ad89e52d66b7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"fromAccountId\" : 28,\n    \"toAccountId\" : 27,\n    \"amount\" : 1000,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"transaction\": {\n        \"id\": 8\n    }\n}"
+            },
+            {
+              "id": "28f647a3-2580-423a-a453-ff4b5c3dc30f",
+              "name": "Insufficient funds",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"fromAccountId\" : 17,\n    \"toAccountId\" : 19,\n    \"amount\" : 1000000000000000000000,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:16:53 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "101"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidBody\",\n    \"message\": \"Insufficient balance in fromAccountId to initiate the transaction.\"\n}"
+            },
+            {
+              "id": "2b958b42-269e-4df0-9281-14305cbb804f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"fromAccountId\" : 1,\n    \"toAccountId\" : 2,\n    \"amount\" : 1000,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/v1/transactions",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        }
+      ],
+      "id": "bf5c4126-0ca7-4163-9c45-beae36156745",
+      "description": "A transaction records money moving in or out of an account. Transactions at the Intergalactic Bank should follow a blockchain-like approach. Once created, they cannot be updated or deleted, so we will have only endpoints to get or create transactions."
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "List Accounts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Test to check the structure of the successful response",
+                  "pm.test(\"Response body structure is valid\", function () {",
+                  "    var responseJSON = pm.response.json();",
+                  "    pm.expect(responseJSON).to.have.property('accounts').that.is.an('array');",
+                  "    if (responseJSON.accounts.length > 0) {",
+                  "        responseJSON.accounts.forEach(function(account) {",
+                  "            pm.expect(account).to.have.property('id');",
+                  "            pm.expect(account).to.have.property('owner');",
+                  "            pm.expect(account).to.have.property('createdAt');",
+                  "            pm.expect(account).to.have.property('balance');",
+                  "            pm.expect(account).to.have.property('currency');",
+                  "        });",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "21525359-88eb-48b6-8e84-3e3ce9d1b0fc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/v1/accounts?createdAt=2023-04-10",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "accounts"
+              ],
+              "query": [
+                {
+                  "key": "owner",
+                  "value": "Nova Newman",
+                  "description": "(Optional) filter by full name of the account owner",
+                  "disabled": true
+                },
+                {
+                  "key": "createdAt",
+                  "value": "2023-04-10",
+                  "description": "(Optional) filter for accounts created on or after date (YYYY-MM-DD)"
+                }
+              ]
+            },
+            "description": "This endpoint will list all accounts that exist at the Intergalactic Bank. Optionally, filter by `owner` (using a full name), or the `createdAt` date (using `YYYY-MM-DD` format)."
+          },
+          "response": [
+            {
+              "id": "000a7c45-70d8-4a4b-b1ea-a083854a0b65",
+              "name": "Successful Response (filter by date)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts?createdAt=2023-04-10",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "Nova Newman",
+                      "disabled": true
+                    },
+                    {
+                      "key": "createdAt",
+                      "value": "2023-04-10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"accounts\": [\n        {\n            \"id\": \"1\",\n            \"owner\": \"Nova Newman\",\n            \"createdAt\": \"2024-01-10T14:54:29.739Z\",\n            \"balance\": 10000,\n            \"currency\" : \"COSMIC_COINS\"\n        },\n        {\n            \"id\": \"2\",\n            \"owner\": \"Gary Galaxy\",\n            \"createdAt\": \"2024-01-10T14:54:29.739Z\",\n            \"balance\": 237,\n            \"currency\" : \"COSMIC_COINS\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "35c319ff-1419-45f8-a052-da5af01f1729",
+              "name": "Successful Response (filter by owner)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts?owner=Nova Newman",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "Nova Newman"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"accounts\": [\n        {\n            \"id\": \"1\",\n            \"owner\": \"Nova Newman\",\n            \"createdAt\": \"2023-04-10\",\n            \"balance\": 10000,\n            \"currency\" : \"COSMIC_COINS\"\n        }\n    ]\n}"
+            },
+            {
+              "id": "2156db83-8203-4232-a5f3-48afc77f5b6b",
+              "name": "No matching accounts found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts?owner=Norman Nobody&createdAt=2023-04-10",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner",
+                      "value": "Norman Nobody"
+                    },
+                    {
+                      "key": "createdAt",
+                      "value": "2023-04-10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"accounts\": []\n}"
+            },
+            {
+              "id": "c5dd25b0-3953-4499-895c-f8a110d60a5c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Test the response body structure and values",
+                  "pm.test(\"Response body structure is valid\", function () {",
+                  "    var responseJSON = pm.response.json();",
+                  "    pm.expect(responseJSON).to.have.property('account').that.is.an('object');",
+                  "    pm.expect(responseJSON.account).to.have.property('id').that.is.a('number');",
+                  "    pm.expect(responseJSON.account).to.have.property('owner').that.is.a('string');",
+                  "    pm.expect(responseJSON.account).to.have.property('balance').that.is.a('number');",
+                  "    pm.expect(responseJSON.account).to.have.property('currency').that.is.a('string');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "7bbb7ad9-1482-490e-9d54-ddae80f4f2a2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/v1/accounts/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "17",
+                  "description": "(Required) ID of account"
+                }
+              ]
+            },
+            "description": "This endpoint will retrieve information about an account by passing the account `id` as a path parameter."
+          },
+          "response": [
+            {
+              "id": "fe31934d-1f27-40a8-94a4-6eed45764d84",
+              "name": "Succesful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "26",
+                      "description": "(Required) ID of account"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 14:46:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "84"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"account\": {\n        \"id\": 26,\n        \"owner\": \"Nova Newman\",\n        \"balance\": 5100,\n        \"currency\": \"COSMIC_COINS\"\n    }\n}"
+            },
+            {
+              "id": "09b7fd55-64dc-4162-a899-bdbee670604b",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:18:51 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"instanceNotFound\",\n    \"message\": \"Account does not exist.\"\n}"
+            },
+            {
+              "id": "236b2bfa-7149-47eb-8cfb-2393f17a617d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "22"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Test to check the structure of the successful response",
+                  "pm.test(\"Successful response has the correct structure\", function () {",
+                  "    var responseData = pm.response.json();",
+                  "",
+                  "    // Check if the response contains the account object",
+                  "    pm.expect(responseData).to.have.property('account');",
+                  "    pm.expect(responseData.account).to.be.an('object');",
+                  "",
+                  "    // Check the properties of the account object",
+                  "    pm.expect(responseData.account).to.have.property('id');",
+                  "    pm.expect(responseData.account).to.have.property('owner');",
+                  "    pm.expect(responseData.account).to.have.property('balance');",
+                  "    pm.expect(responseData.account).to.have.property('currency');",
+                  "    pm.expect(responseData.account).to.have.property('createdAt');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "ac818730-48ca-4856-bf2a-fa7147d23a2e",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"owner\": \"Paul Stars\",\n \t\"balance\" : 57000,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/accounts/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "14"
+                }
+              ]
+            },
+            "description": "This endpoint will update information about an account by passing the `accountId` as a path parameter and additional information through the Request Body.\n\n### Request Body Properties\n\n| **Property Name** | **Data Type** | **Description** | **Required?** |\n| --- | --- | --- | --- |\n| owner | String | Full Name | Yes |\n\n### Important!\n\nOnly Bank Admins have permission to update an account. You may encounter a `403 Forbidden Error` if you try to update an account without the correct permissions."
+          },
+          "response": [
+            {
+              "id": "62d3f46b-6497-46f5-a205-b70182535ddb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"owner\":\"4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"account\": {\n        \"id\": \"2\",\n        \"owner\" : \"Nova Newman\",\n        \"balance\" : 300,\n        \"currency\" : \"COSMIC_COINS\",\n        \"createdAt\" : \"2024-01-10T14:54:29.739Z\"\n    }\n}"
+            },
+            {
+              "id": "6a5962d6-e19a-424a-8381-11e45ffe5022",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:18:51 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"instanceNotFound\",\n    \"message\": \"Account does not exist.\"\n}"
+            },
+            {
+              "id": "e4eae4ca-d301-4752-a584-150a098cb63a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "22"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var response = pm.response.text()",
+                  "",
+                  "// Test the response body structure",
+                  "pm.test(\"Response body to be empty\", function () {",
+                  "    pm.expect(response).to.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "a23daa47-bfe3-4306-9e52-9136efb39e5a",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/v1/accounts/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "22"
+                }
+              ]
+            },
+            "description": "This endpoint will delete an account by passing in the account `id` as a path parameter.\n\n### Important!\n\nOnce an account is deleted, it cannot be restored, so please use this endpoint with caution.\n\nAdditionally, only bank admins have permission to update an account. You may encounter a `403 Forbidden` error if you try to update an account without the correct permissions."
+          },
+          "response": [
+            {
+              "id": "92a72e3c-4a61-4261-b76f-48ccf242cb97",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "22"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "Text",
+              "header": null,
+              "cookie": [],
+              "body": null
+            },
+            {
+              "id": "f55a0959-e6a1-4a14-bb21-4ee386e6893f",
+              "name": "Not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:18:51 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"instanceNotFound\",\n    \"message\": \"Account does not exist.\"\n}"
+            },
+            {
+              "id": "319962dc-2e2f-4e7e-bf1c-b2e262e8a947",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create New Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Test the structure of the successful response",
+                  "pm.test(\"Response body structure is valid\", function () {",
+                  "    var responseData = pm.response.json();",
+                  "    pm.expect(responseData).to.have.property('account');",
+                  "    pm.expect(responseData.account).to.be.an('object').that.has.property('id');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "id": "1ff24479-5e4d-466d-ab15-9e0602c8712e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"owner\": \"{{$randomFirstName}} {{$randomLastName}}\",\n \t\"balance\" : 500,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/accounts",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "accounts"
+              ]
+            },
+            "description": "This endpoint will create a new account at the Intergalactic Bank.\n\n### Request Body Properties\n\n| Property Name | Property Type | **Description** | **Required?** |\n| --- | --- | --- | --- |\n| owner | String | Full name of the person opening this account | Yes |\n| balance | Number | The starting balance of the account | Yes |\n| currency | String - Possible values: `COSMIC_COINS`, `GALAXY_GOLD`, `MOON_BUCKS` | The currency this account will be using for transactions. This cannot be changed once established. | Yes |"
+          },
+          "response": [
+            {
+              "id": "570cbeb0-d7c4-4dcb-b4d6-93cd878bc90a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"owner\": \"Nova Newman\",\n \t\"balance\" : 500,\n    \"currency\" : \"COSMIC_COINS\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "name": "Content-Type",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"account\": {\n        \"id\": \"123\"\n    }\n}"
+            },
+            {
+              "id": "227b52e1-a263-4ad9-9d7d-12644e19dd2f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/api/v1/accounts",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 17 Feb 2024 13:21:35 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "uWebSockets",
+                  "value": "20"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"invalidAuth\",\n    \"message\": \"Please provide a valid API key in the header of the request.\"\n}"
+            }
+          ]
+        }
+      ],
+      "id": "252c22e7-fb95-481b-871c-9b491f59be69",
+      "description": "An Account at the Intergalactic Bank allows you to store funds. Account endpoints return information about accounts and account holders at the Intergalactic Bank. They should not return information about transactions. Instead, all transaction information should be accessed by requests in the `Transactions` folder."
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

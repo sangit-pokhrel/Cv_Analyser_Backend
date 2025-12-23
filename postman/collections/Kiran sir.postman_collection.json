@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "93400d77-d508-4d54-a555-a7c2af27a2ff",
+    "name": "Kiran sir",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "upload image",
+      "id": "edde81ae-7b96-480d-bc22-317f6de30cb6",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/auth/uploadImage",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "uploadImage"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create BAtch",
+      "id": "0b0139ea-3bdc-46ff-b50a-7d62b7b94f46",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"batchName\" : \"34-B\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/batch/createBatch",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "batch",
+            "createBatch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "id": "429e5018-470d-4bff-8bb8-f0b914151403",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"fname\" : \"Sangit\",\r\n    \"lname\" : \"Pokhrel\",\r\n    \"image\" : \"IMG-1749449231929.jpg\",\r\n    \"username\": \"sangit\",\r\n    \"password\": \"sangit123\",\r\n    \"batch\": \"68467abb39a9c15cf61b20a3\",\r\n    \"course\": []\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

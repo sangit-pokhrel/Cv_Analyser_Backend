@@ -1,0 +1,2032 @@
+{
+  "info": {
+    "_postman_id": "d868c445-1f5e-46d5-b976-053190e2d1a1",
+    "name": "albert sir",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Booking",
+      "item": [
+        {
+          "name": "create a booking",
+          "id": "12a58d8c-7c78-44c3-9a53-60730f48646e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64e900f13e5c1d34b2a1a912\",\r\n  \"roomId\": \"64e900f13e5c1d34b2a1a913\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all booking",
+          "id": "edc226fe-8a0c-406e-af19-76c3b4df3a09",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get booking by id",
+          "id": "710ff759-e1e5-4452-88ea-418284e2f782",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/bookings/:bookingId/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings",
+                ":bookingId",
+                "status"
+              ],
+              "variable": [
+                {
+                  "key": "bookingId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update booking",
+          "id": "2cf35e74-d66b-472d-801e-c2926bd26a62",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"approved\",\r\n  \"paymentStatus\": \"paid\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings/686ca086cd3d8000523cc41f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings",
+                "686ca086cd3d8000523cc41f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update booking status",
+          "id": "54b700e2-3a34-4307-b78b-390a90143efa",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"approved\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings/686ca086cd3d8000523cc41f/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings",
+                "686ca086cd3d8000523cc41f",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "mark booking as paid",
+          "id": "fc32a63b-43a9-4909-8ba6-d1537b338d70",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings/686ca086cd3d8000523cc41f/paid",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings",
+                "686ca086cd3d8000523cc41f",
+                "paid"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete booking",
+          "id": "6098f98f-ce47-4bea-9e28-d76c17236e9e",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/bookings/686ca086cd3d8000523cc41f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "bookings",
+                "686ca086cd3d8000523cc41f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "95e684d4-1bb8-4ccf-a043-60777228501d"
+    },
+    {
+      "name": "Visitor",
+      "item": [
+        {
+          "name": "Create",
+          "id": "bf4a93b6-d7a6-462d-befc-af487a1e502f",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64e8f2b4f6a4d23691cfbc8f\",\r\n  \"visitorName\": \"Rajesh Shrestha\",\r\n  \"relation\": \"Brother\",\r\n  \"timeIn\": \"2025-07-08T09:30:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/visitors/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "visitors",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "id": "ee505ea7-0080-44a5-8060-efedd1d4f798",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/visitors/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "visitors",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "patch",
+          "id": "8ef50c20-5370-4020-a733-9c1f258dceb9",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/visitors/64e8f2b4f6a4d23691cfbc8f/verify",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "visitors",
+                "64e8f2b4f6a4d23691cfbc8f",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "put",
+          "id": "ba3450f1-7fdd-4b0a-9bc2-35061d5993d9",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"timeOut\": \"2025-07-08T12:30:00\",\r\n  \"relation\": \"Uncle\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/visitors/64e8f2b4f6a4d23691cfbc8f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "visitors",
+                "64e8f2b4f6a4d23691cfbc8f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fe5a5ba6-b14b-4985-93b7-d79ed83f55b1"
+    },
+    {
+      "name": "Meal",
+      "item": [
+        {
+          "name": "Create Meal Plan",
+          "id": "ef430130-8300-4807-8d13-c02a083397e2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2025-07-09\",\r\n  \"breakfast\": \"Bread & Milk\",\r\n  \"lunch\": \"Rice, Lentils, Veg Curry\",\r\n  \"dinner\": \"Chapati & Beans\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meals/plan",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Meal Plan by Date",
+          "id": "bb00ff26-1e5b-440a-b225-03311f9adef1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/meals/plan/2025-07-09",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "plan",
+                "2025-07-09"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all meals plan",
+          "id": "70cdaab0-0f47-400a-916e-d4647f92b3c2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/meals/plan",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Give Meal Feedback",
+          "id": "8796637e-5709-48e2-97cd-2d310fa10aa4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "attendance",
+          "id": "01a20f2e-64a4-41e7-b418-64ab0f4d0d81",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64fabcde12a67890abcdef12\",\r\n  \"date\": \"2025-07-09\",\r\n  \"mealType\": \"lunch\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meals/attendance",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "attendance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "summit feedback",
+          "id": "dbe9839e-6de2-4a62-abec-9d6f7507017a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64fabcde12a67890abcdef12\",\r\n  \"date\": \"2025-07-09\",\r\n  \"mealType\": \"lunch\"\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meals/feedback",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "feedback"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all",
+          "id": "eaf29575-fe53-4142-a099-33e54828ec58",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put update",
+          "id": "130977b2-20fe-4ec9-a41b-d3516541847a",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"feedback\": \"It was fine today, improved a lot!\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/meals/feedback/686cf04a5f5141df6215f357",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "feedback",
+                "686cf04a5f5141df6215f357"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete feedback",
+          "id": "8873c92b-87a9-43cd-81d9-ef6081fbec08",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/meals/feedback/686cf04a5f5141df6215f357",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "feedback",
+                "686cf04a5f5141df6215f357"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get attendence",
+          "id": "c48c8654-f037-4da2-ae60-075e96da6599",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/meals/attendance/64fabcde12a67890abcdef12",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "meals",
+                "attendance",
+                "64fabcde12a67890abcdef12"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "775797af-104c-407c-a65c-52a559aba15e"
+    },
+    {
+      "name": "complaint",
+      "item": [
+        {
+          "name": "Create Complaint",
+          "id": "9afdbedb-312c-4481-a806-38c335692ad9",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64f7cbe12d1b5f8ad1e88888\",\r\n  \"issueTitle\": \"No electricity in room\",\r\n  \"issueDescription\": \"Power outage in room 204 since last night.\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all complaints",
+          "id": "1dbe6455-8f64-40c0-83b3-0ab5a57e1717",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get single complaints",
+          "id": "e09673b2-a889-419e-8252-7992245eb0f1",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"in-progress\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/686cc91d24941159d0a81807",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "686cc91d24941159d0a81807"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update entire complaints",
+          "id": "5e37f7fd-c00e-4ef3-b763-618134329ae8",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"issueTitle\": \"Fan not working\",\r\n  \"issueDescription\": \"Ceiling fan stopped working suddenly.\",\r\n  \"status\": \"in-progress\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/686cc91d24941159d0a81807",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "686cc91d24941159d0a81807"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update status only",
+          "id": "18d70ecb-3b21-4a47-993d-608840da7768",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"resolved\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/686cc91d24941159d0a81807/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "686cc91d24941159d0a81807",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "assign staff",
+          "id": "9fb31481-ed3b-49a2-91b1-cecb2795cb37",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"staffId\": \"64f7d0c142f1c123a3c12345\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/686cc91d24941159d0a81807/assign",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "686cc91d24941159d0a81807",
+                "assign"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete complaint",
+          "id": "a3a2699b-bb39-4aa2-a945-5e6a85207d07",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/686cc91d24941159d0a81807",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "686cc91d24941159d0a81807"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "631500b7-e8b5-460f-81b9-aae685846cdc"
+    },
+    {
+      "name": "fees",
+      "item": [
+        {
+          "name": "Create invoice",
+          "id": "ddf864ec-9125-4b5d-9ab9-0683a1ebb201",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64fabc1234a6eaa9b2345678\",\r\n  \"month\": \"2025-07\",\r\n  \"rentAmount\": 5000\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fees/invoice",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "invoice"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Fee Payment",
+          "id": "4563da00-944a-405f-b397-7c622a2a7055",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"paidAmount\": 3000\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fees/686cd8d9c371fca9b1698961/pay",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "686cd8d9c371fca9b1698961",
+                "pay"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apply Fine",
+          "id": "99770b98-5715-44be-a444-c399f1f22098",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"fineAmount\": 200\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fees/686cd8d9c371fca9b1698961/fine",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "686cd8d9c371fca9b1698961",
+                "fine"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Fee History by student",
+          "id": "d79a01f8-b9a4-4020-8085-88689ab5efdc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/fees/history/686cd8d9c371fca9b1698961",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "history",
+                "686cd8d9c371fca9b1698961"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all fees",
+          "id": "ccb0c934-5a76-4ed0-bae6-ccf1c13fa728",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/fees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get specific fee record",
+          "id": "7ec3ed10-71b8-43e4-8491-ceed03b63420",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/fees/686cd8d9c371fca9b1698961",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "686cd8d9c371fca9b1698961"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update fee details",
+          "id": "160207d6-9c7f-46c6-acbd-b313d60f22e5",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"rentAmount\": 5500,\r\n  \"fine\": 300\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/fees/686cd8d9c371fca9b1698961",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "686cd8d9c371fca9b1698961"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete a fee record",
+          "id": "5986d3d8-6731-4b2b-b28a-16ed896822c5",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/fees/686cd8d9c371fca9b1698961",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "fees",
+                "686cd8d9c371fca9b1698961"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5b752cfe-297a-40fb-9276-9df408c32cd1"
+    },
+    {
+      "name": "notice",
+      "item": [
+        {
+          "name": "Create Notice",
+          "id": "a45cd6a2-992f-4fb4-8e8e-a97b4badab53",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Holiday on Friday\",\r\n  \"message\": \"Hostel will remain closed on Friday for maintenance.\",\r\n  \"postedBy\": \"64facbe16a7b88a246fe1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notices",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Notices",
+          "id": "2e2bf657-2887-4550-85d8-3c109234f90f",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notices?studentId=64fab8e16f6b1a15c28e9876\n",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices"
+              ],
+              "query": [
+                {
+                  "key": "studentId",
+                  "value": "64fab8e16f6b1a15c28e9876\n"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Notice by ID",
+          "id": "e945c4e3-1874-4bd2-9654-21e9860f6e00",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notices/686e0c0d274a4785b5d52d8e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices",
+                "686e0c0d274a4785b5d52d8e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Notice as Read",
+          "id": "ce5e5076-8bef-4fd8-aecb-2bd96ae2f283",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentId\": \"64fab8e16f6b1a15c28e9876\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notices/686e0c0d274a4785b5d52d8e/read",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices",
+                "686e0c0d274a4785b5d52d8e",
+                "read"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update notice",
+          "id": "d03e261a-ef2f-417e-a925-d06fd561ddc2",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Updated Title: Sunday Clean-Up\",\r\n  \"message\": \"Compulsory hostel clean-up at 9 AM.\",\r\n  \"postedBy\": \"64facbe16a7b88a246fe1234\"\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notices/686e0c0d274a4785b5d52d8e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices",
+                "686e0c0d274a4785b5d52d8e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete notice",
+          "id": "d0d1d565-1c3d-47b9-92fe-4f9ef2fff276",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notices/686e0c0d274a4785b5d52d8e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notices",
+                "686e0c0d274a4785b5d52d8e"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1cfcad94-2b0d-49ff-b518-31ef4af89619"
+    },
+    {
+      "name": "report and anlytics",
+      "item": [
+        {
+          "name": "get occupancy rate",
+          "id": "7ff9d40c-68ed-4079-9295-af16bd843f5a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"success\": true,\r\n  \"data\": {\r\n    \"totalRooms\": 20,\r\n    \"occupiedRooms\": 15,\r\n    \"occupancyRate\": \"75.00%\"\r\n  }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reports/occupancy",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reports",
+                "occupancy"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get due fees",
+          "id": "9e2862b0-d0ae-40f7-b79b-afe3de22acd1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"success\": true,\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"64fc7a7bb100fceee1a12345\",\r\n      \"studentId\": {\r\n        \"_id\": \"64fa8fe2cd123aa5ce123456\",\r\n        \"fullName\": \"Ravi Sharma\",\r\n        \"email\": \"ravi@example.com\"\r\n      },\r\n      \"month\": \"2025-07\",\r\n      \"status\": \"partial\",\r\n      \"dueAmount\": 2000\r\n    }\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reports/due-fees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reports",
+                "due-fees"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get complaint stats",
+          "id": "f7bedb58-5f36-47a8-94ef-ad98befb2328",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"success\": true,\r\n  \"data\": {\r\n    \"total\": 50,\r\n    \"pending\": 20,\r\n    \"inProgress\": 10,\r\n    \"resolved\": 20\r\n  }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reports/complaints",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reports",
+                "complaints"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get room assignments",
+          "id": "659db6e8-e1bc-4bc4-8d5c-45a333bb9a07",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"success\": true,\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"64fd1234ab00ff001234abcd\",\r\n      \"number\": \"101\",\r\n      \"type\": \"double\",\r\n      \"status\": \"occupied\",\r\n      \"assignedStudents\": [\r\n        { \"_id\": \"64f123...\", \"fullName\": \"Amit Lama\", \"email\": \"amit@...\" }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reports/room-assignments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reports",
+                "room-assignments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excel download",
+          "id": "2ed7b804-3862-4f7c-a277-d97208ab0c24",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"success\": true,\r\n  \"message\": \"PDF/Excel export coming soon.\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reports/download",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reports",
+                "download"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "9eb4fa50-3451-4012-829a-f541ea8bf726",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "44e7f155-0c72-4c82-bf54-ed0e8ef9b407"
+    },
+    {
+      "name": "hostel",
+      "item": [
+        {
+          "name": "create hostel",
+          "id": "e183ea39-3458-4f85-ae19-c562c7fca9f8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Everest Boys Hostel\",\r\n  \"address\": \"Maitidevi, Kathmandu\",\r\n  \"warden\": \"Mr. Ramesh Khadka\",\r\n  \"contact\": \"9800000001\",\r\n  \"status\": \"Active\",\r\n  \"numberOfRooms\": 40,\r\n  \"hasParking\": true,\r\n  \"hasCafeteria\": true,\r\n  \"wifiAvailable\": true,\r\n  \"description\": \"Spacious hostel with good facilities and food.\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/hostels",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "hostels"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all hostels",
+          "id": "abcf9c5d-c4b3-4a09-ba5b-8fa4edc79f34",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/hostels",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "hostels"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update hostel",
+          "id": "688d91ed-a79a-482b-a4d4-01898f9101b6",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numberOfRooms\": 50,\r\n  \"wifiAvailable\": false,\r\n  \"status\": \"Renovation\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/hostels/686cdf7bc371fca9b169896e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "hostels",
+                "686cdf7bc371fca9b169896e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete hostel",
+          "id": "2402fd14-8a58-4398-ab18-94f0f7858cbf",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/hostels/686cdf7bc371fca9b169896e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "hostels",
+                "686cdf7bc371fca9b169896e"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "dc8ccddf-fdce-4aa4-885a-c8b402991c3a"
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "create new item",
+          "id": "a0fb727e-7448-4e77-8d97-a8630dbb0c9e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itemName\": \"Study Table\",\r\n  \"quantity\": 10\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/inventory",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all items",
+          "id": "f7708bc1-3852-4629-aa4e-eefdc19f5954",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/inventory",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get single item",
+          "id": "558cf0e4-34f2-4663-8f0a-3ecad90597e5",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/inventory/686ce459772d060e388c701b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory",
+                "686ce459772d060e388c701b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "assign item to room",
+          "id": "795072ea-2b51-4041-b3f9-409e6158fc6f",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"roomId\": \"64fecc34a62fbb9df0a45678\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/inventory/686ce459772d060e388c701b/assign",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory",
+                "686ce459772d060e388c701b",
+                "assign"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "report item as damaged",
+          "id": "3525c2bf-ff5f-40e9-b9e3-34861cf6af58",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"damaged\",\r\n  \"notes\": \"Table surface scratched and broken leg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/inventory/686ce459772d060e388c701b/report",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory",
+                "686ce459772d060e388c701b",
+                "report"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update inventory item",
+          "id": "bb9bb8b2-c13d-489a-b370-7f6dc1f640d0",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itemName\": \"Wooden Study Table\",\r\n  \"quantity\": 12,\r\n  \"notes\": \"Updated item details\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/inventory/686ce459772d060e388c701b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory",
+                "686ce459772d060e388c701b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete item",
+          "id": "c11e165f-789e-4a4c-8c26-f2d2c3ae7ee3",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/inventory/686ce459772d060e388c701b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "inventory",
+                "686ce459772d060e388c701b"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "51befb73-812f-49fd-86e5-e81838c18f1d"
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "w",
+          "id": "a5965851-98fb-44d0-bc59-0645e890171c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Anish Lama\",\r\n  \"email\": \"anish@example.com\",\r\n  \"password\": \"anish123\",\r\n  \"role\": \"Admin\",\r\n  \"status\": \"Active\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all user",
+          "id": "135b715e-1ae5-4dc3-b089-b97f60a175be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"_id\": \"64fbec1234567890abc12345\",\r\n    \"name\": \"Anish Lama\",\r\n    \"email\": \"anish@example.com\",\r\n    \"role\": \"Admin\",\r\n    \"status\": \"Active\",\r\n    \"createdAt\": \"2025-07-09T08:00:00.000Z\"\r\n  }\r\n]\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user",
+          "id": "183a1880-94f0-467d-a0c1-c916ce7dca43",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Anish L.\",\r\n  \"email\": \"anish@example.com\",\r\n  \"password\": \"newpass123\",\r\n  \"role\": \"Staff\",\r\n  \"status\": \"Inactive\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/6866bc2868746ff5adf39624",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "6866bc2868746ff5adf39624"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete user",
+          "id": "1e6663a7-fd54-41a2-830f-435e29d69415",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"message\": \"User deleted successfully\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/6866bc2868746ff5adf39624",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "6866bc2868746ff5adf39624"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "587c678c-fca2-4292-8bb1-bcaba9e23bf5"
+    },
+    {
+      "name": "Create user",
+      "id": "b828a7b1-9802-4e9c-88ab-b5e99160d719",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"johndoe123@example.com\",\r\n  \"password\": \"SecurePass@123\",\r\n  \"role\": \"Admin\",\r\n  \"status\": \"Active\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update user",
+      "id": "fb8a1b86-bc20-4a72-b9f7-bd92e67df3c9",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete user",
+      "id": "3ef143f7-20be-4c97-a77c-29c1ca72a0cf",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all user",
+      "id": "dfef1a6a-d371-438d-ae12-4d2223f82071",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create hostel",
+      "id": "71d2a346-0455-4dc2-8059-4ed51b959647",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all hostel",
+      "id": "2da1242a-b44f-47a9-b7d1-90efa4958099",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update hostel",
+      "id": "fd709d71-ca78-47b4-9c6a-f3b5685e2ca8",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete hostel",
+      "id": "48e76646-ba9d-473e-92f9-853fb3bf7fd1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "regiser",
+      "id": "7d373497-2b1d-442a-8233-5afd24636328",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \r\n  \"email\": \"anish@example.com\",\r\n  \"password\": \"anish123\",\r\n  \r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "599d870f-65f5-4323-b23b-621fd213c1d8",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "9c1f5bf9-b024-4d19-8726-62ac7a98fe3a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "complaint",
+      "id": "ed3e4d61-b2ad-41c1-bd94-4655c3554c0a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "703cbf47-bf14-4116-ae20-c33e1d37e41e",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}

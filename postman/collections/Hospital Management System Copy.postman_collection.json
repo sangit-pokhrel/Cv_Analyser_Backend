@@ -1,0 +1,374 @@
+{
+  "info": {
+    "_postman_id": "be705d09-0bfd-4a7b-8230-cf8afc878964",
+    "name": "Hospital Management System Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Create",
+          "id": "379c518c-f9a8-4a40-b892-70b67e53566d",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"appointment_date\": \"2024-08-06\",\r\n  \"appointment_time\": \"14:00:00\",\r\n  \"appointment_status\": \"Completed\",\r\n  \"appointment_remark\": \"Visit Successfull\",\r\n  \"doctor_name\": \"Sangit Pokhrel\",\r\n  \"patient_name\": \"Sangit\",\r\n  \"doctor_id\": 1,\r\n  \"patient_id\": 321\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "id": "51288616-972a-4e95-88f7-b3c426a3a669",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/appointments/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "appointments",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "72720117-b435-45e5-a11d-29f9bada445a"
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "Create",
+          "id": "c89fa4fc-7349-4621-812a-e748b861c6d7",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaWtlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzE3MzQ5LCJleHAiOjE3MjE4MDM3NDl9.p-2-NAgxp-SuxaeU8H8VPRJtiB318R7IwkaMtTXzQLw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"doctorName\" : \"Adamya Neupane\",\r\n\"doctorEmail\" : \"adamsneupane@gmail.com\",\r\n\"phoneNumber\" : 9861883577, \r\n\"address\" : \"Bhaktapur\",\r\n\"contactNumberEmergency\" : 1123,\r\n \"specialization\" : \"Neuro\",\r\n \"category\" : \"Doctor\",\r\n \"isAvailable\" : \"true\",\r\n \"scheduleTime\" : \"20:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/doctors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "doctors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List",
+          "id": "f4464908-7e08-44af-a9ef-77f8748510c6",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/doctors/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "doctors",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d9ae034b-8b98-4f08-919d-58b92af6fdf9"
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "CRUD",
+          "id": "e21a5ad4-1cf4-4aee-bd26-05dfa104bd1e",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"email_pat\": \"john.doe@example.com\",\r\n    \"contact_num\": 1234567890,\r\n    \"password\": \"securepassword\",\r\n    \"department\": \"Cardiology\",\r\n    \"degree\": \"MD\",\r\n    \"address_1\": \"123 Main St\",\r\n    \"address_2\": \"Apt 4B\",\r\n    \"city\": \"Metropolis\",\r\n    \"state\": \"NY\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/patients",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "patients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Patients",
+          "id": "0ef2564b-b7e1-4336-ad09-ece9f0d549c9",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/patients/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "patients",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "c8421798-694a-4b4a-a770-406e798ac6bc"
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Get",
+          "id": "efa10956-2c3f-49f6-bb50-23a34a15f52f",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/employees/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "88788019-cb36-4b6a-a733-067374a071e2",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"first_name\" : \"Adamya\", \n    \"last_name\": \"Neupane\", \n    \"email\": \"adamsneupane@gmail.com\", \n    \"contact_num\": 981234, \n    \"department\": \"Admin\", \n    \"degree\": \"IT\", \n    \"address_1\": \"123\", \n    \"address_2\": \"Nepal\", \n    \"city\": \"Madhyapur\", \n    \"state\": \"Bagmati\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "023131b1-fc46-4a1e-966a-037f8e2d2e2d"
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Get",
+          "id": "ec984b81-796c-4c52-8b8c-c7486f34eb31",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/inventories/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventories",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "id": "22fe67a1-ff4c-4e9f-9833-838e15929d7f",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"itemName\" : \"Test Item 1 - Updated\",\n    \"dose\"  : \"Test Dosage\",\n    \"quantity\" : 1123\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/inventories/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "inventories",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "97eb84da-aea2-45b0-9a1c-e6b4bd25f955"
+    },
+    {
+      "name": "Lab Reports",
+      "item": [
+        {
+          "name": "Get",
+          "id": "6cbc2c24-b399-4ffc-869e-884b68d8d6d2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/lab-reports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lab-reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "id": "ea9d8355-8013-42fc-a75a-1afe6da3c676",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"report_date\" : \"2024-08-08\",\n    \"lab_details\" : \"Boi got cancer\",\n    \"lab_result\" : \"Cancer\",\n    \"comments\" : \"Sorry\",\n    \"doctor\" : 1,\n    \"patient\" : 1, \n    \"appointment\" : 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/lab-reports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lab-reports"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fb903e73-9072-4259-b45c-b8e1ad2da31d"
+    }
+  ]
+}

@@ -1,0 +1,700 @@
+{
+  "info": {
+    "_postman_id": "96de1d8f-ad94-4a69-a971-e969e941ed34",
+    "name": "MERN_PROJ-5th SEM",
+    "description": "This is the whole testing collection for my Service App backend using the MERN Stack",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "id": "b34d9522-90b6-49aa-aefe-079aac26e946",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"fullname\": \"Sangit Pokhrel\",\r\n  \"email\": \"test1@example.com\",\r\n  \"password\": \"sangit123\",\r\n  \"role\": \"Admin\",\r\n  \"phonenumber\": \"9868618385\",\r\n  \"country\": \"Nepal\",\r\n   \"province\" : \"Bagmati\"\r\n\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37f80a1c-b803-4022-928b-5e0ccdd31fe1",
+              "name": "Register Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fullname\": \"Aayush\",\r\n  \"email\": \"testadmin@gmail.com\",\r\n  \"password\": \"admin123\",\r\n  \"role\": \"Admin\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "362"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16a-+Zecb7Y4kFPeF8H1RuuXcxfIhLs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 17 Apr 2025 14:12:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDEwYzViMGM4ZDZiYTc2N2RiNTVmOSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzQ0ODk5MTYzLCJleHAiOjE3NDQ5ODU1NjN9.XpUgRUpi0_bPS7vtXep8Iyh9YWLn0goQg-Hm0-9OHg4\",\n    \"user\": {\n        \"id\": \"68010c5b0c8d6ba767db55f9\",\n        \"email\": \"testadmin@gmail.com\",\n        \"fullname\": \"Aayush\",\n        \"role\": \"User\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "id": "0eeeef06-5b6c-4ec5-adfd-230d990b96c6",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"Test123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f9056cd8-bed1-471e-937d-8010b03f95fa",
+              "name": "Login response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "349"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"15d-ahikAyXv4guoDtW+W8SNpzROBeI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 17 Apr 2025 14:16:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDEwYjY0Yjc5MGQ5MWM2NjBmMjY1ZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc0NDg5OTM2NSwiZXhwIjoxNzQ0OTg1NzY1fQ.3Bw6A4f_zsA8pTMTQeN8gJkEhV8nVv_H3F2msgYrJRM\",\n    \"user\": {\n        \"id\": \"68010b64b790d91c660f265e\",\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"Aayush\",\n        \"role\": \"Admin\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "reset hanne",
+          "id": "0ba92fca-7e7f-4e0b-b04b-07e0e2cebcc8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": \"68454f30d5908e89a21a03b7\",   // or phone if you sent OTP to phone\r\n  \"newPassword\": \"##$@Ngit339@\",\r\n  \r\n    \"role\" : \"User\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/forgot/reset-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "forgot",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "email halne",
+          "id": "43476dc4-ebe7-4ef7-b672-da235148cf05",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"spokhrel.dev@gmail.com\",\r\n    \"role\": \"User\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/forgot/email",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "forgot",
+                "email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "otp halne",
+          "id": "34034d96-8610-4632-b541-78e639f4d715",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"contact\": \"spokhrel.dev@gmail.com\",\r\n    \"otp\": \"vfbdsv\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/forgot/verify-otp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "forgot",
+                "verify-otp"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "045e87cc-6173-4c21-bd96-f2cdc64583a6"
+    },
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "Create-C",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "4256816c-2caf-4ad5-8f6f-eca1b30cd528",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"userId\": \"USR12345678\",\r\n  \"fullname\": \"Aayush Neupane\",\r\n  \"username\": \"aayushnp\",\r\n  \"email\": \"aayushnp@example.com\",\r\n  \"password\": \"SuperSecurePass123\",\r\n  \"address\": \"Lalitpur-10, Nepal\",\r\n  \"ctznNo\": \"01-01-0001\",\r\n  \"country\": \"Nepal\",\r\n  \"province\": \"Bagmati\",\r\n  \"city\": \"Lalitpur\",\r\n  \"phonenumber\": \"9800000000\",\r\n  \"profilepic\": \"https://example.com/avatar.jpg\",\r\n  \"lastLogin\": \"2024-04-15T06:30:00Z\",\r\n  \"lastLoginIp\": \"192.168.1.101\",\r\n  \"lastLoginLocation\": \"Kathmandu\",\r\n  \"lastLoginDevice\": \"Chrome on Windows 10\",\r\n  \"totalServiceRequests\": 12,\r\n  \"totalServiceCompleted\": 10,\r\n  \"totalServiceCancelled\": 1,\r\n  \"totalServicePending\": 0,\r\n  \"totalServiceInProgress\": 1\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/auth/68568437006b3401ea97febc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "68568437006b3401ea97febc"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "74c39a2e-bf89-49b5-a554-46ccd519e0b6"
+        },
+        {
+          "name": "Read-R",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "6dd2c7e2-0204-46e6-b4d6-a3e2d6dfd9d6",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/auth",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "auth"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "69284a55-82a7-462e-9ced-c00b28cafa24"
+        },
+        {
+          "name": "Update-U",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "3316f379-fcd0-48c6-9bb2-37cdc8f8f325",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"country\": \"India\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/auth/id/68568437006b3401ea97febc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "id",
+                    "68568437006b3401ea97febc"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "6c705bc3-ace9-4161-a537-1fbc0cc76122"
+        },
+        {
+          "name": "Delete-D",
+          "item": [],
+          "id": "ed029435-6662-489a-868c-ddc0a0628893"
+        }
+      ],
+      "id": "2ccfe9b4-8652-445c-afa7-b747cd11af05"
+    },
+    {
+      "name": "Review",
+      "item": [
+        {
+          "name": "Create - C",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "bd509458-808f-4c27-852c-0f586ba0ca3d",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"userId\": \"6612fdb24a9d3640f8d12345\",  \r\n  \"customerName\": \"Ramesh Adhikari\",\r\n  \"rating\": 5,\r\n  \"reviewMessage\": \"Excellent service, very professional and on time.\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "d3b03083-e75a-4b74-8871-43d763dd4b4f"
+        },
+        {
+          "name": "Read - R",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "fd335018-d032-4130-80d8-1d988b943bc1",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "e0104ba7-40b7-4c56-b671-1203bbbbb12d"
+        },
+        {
+          "name": "Update - U",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "c529c5d9-49b5-4863-810c-ee99d9e886ca",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n \r\n  \"customerName\": \"Ramesh Adhikari Ramtel\",\r\n  \r\n  \"reviewMessage\": \"Excellent service, very professional and on time. Data Updated using patch\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6805f5ff84aebb38cf28c08e",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6805f5ff84aebb38cf28c08e"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "New Request",
+              "id": "a45c1f2b-d061-423d-bde0-a3958211cd47",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \r\n  \"customerName\": \"Ramesh Adhikari Giri\",\r\n  \"rating\": 4,\r\n  \"reviewMessage\": \"Excellent service, very professional and on time.\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6612fdb24a9d3640f8d12345",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6612fdb24a9d3640f8d12345"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "3f7764e7-d4cd-42b6-b0bc-ac1e20c617d9"
+        },
+        {
+          "name": "Delete - D",
+          "item": [
+            {
+              "name": "New Request",
+              "id": "2f62b16c-4537-4fa8-86e6-c1aef5152eb1",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/reviews/6805f5ff84aebb38cf28c08e",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "reviews",
+                    "6805f5ff84aebb38cf28c08e"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "e382e4fb-76f2-42b5-95e9-6e158d77a1e1"
+        }
+      ],
+      "id": "679cbefe-96e2-4a23-aed8-58bd65dd5ca1",
+      "description": "This collection is for testing purposes of review after the ride . CRUD"
+    },
+    {
+      "name": "Multer",
+      "item": [
+        {
+          "name": "multerservice",
+          "id": "1cc7cfa0-76de-424f-bf58-dc036a7001f4",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MzI5ZGYxYTM2ZTViNTQ2MmZhZTM5OSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzQ4NTc1OTM4LCJleHAiOjE3NDg2NjIzMzh9.M3mi9ErI72kIM_K7OOJz-3IWjT-aaCBQNVVB1sHPVtg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "profilePic",
+                  "type": "file",
+                  "src": "/C:/Users/heyps/OneDrive/Pictures/20230818_182147.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/upload/profilePic",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "upload",
+                "profilePic"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "bd3f0339-aa78-4f92-85c5-1cdf84dcf6b8"
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "Get All Complaints",
+          "id": "3b9209f6-542c-4157-be29-3f4a1d75e4d4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/complaints",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user by id",
+          "id": "ee0dd888-b477-4bbf-9353-e7c233f3e0ee",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "update complaint",
+          "id": "3a8847fd-a709-4b5f-8219-401963eba262",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"Solved\",\r\n  \"priority\": \"Medium\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/complaints/684fd353f9876843018fc52a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "complaints",
+                "684fd353f9876843018fc52a"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ee8cb360-83ca-4409-a3c7-d256d1785de2"
+    }
+  ]
+}
