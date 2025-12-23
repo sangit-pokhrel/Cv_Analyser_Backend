@@ -71,6 +71,7 @@ const ticketSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  
   pendingAgents: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -93,6 +94,12 @@ const ticketSchema = new mongoose.Schema({
   messageCount: { 
     type: Number, 
     default: 0 
+  },
+
+  lastMessageSender: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User',
+    default: null
   },
   // Customer satisfaction
   rating: { 
