@@ -261,11 +261,196 @@ function ticketResolvedEmail(ticket, user) {
   };
 }
 
+
+/**
+ * Generate plain text email if template not found
+ */
+function generatePlainTextEmail(template, data) {
+  const templates = {
+    'interview-request': `
+      <h2>Interview Assessment Invitation</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>You've been invited to complete an interview assessment by ${data.coachName}.</p>
+      <p><strong>Title:</strong> ${data.title}</p>
+      <p><strong>Type:</strong> ${data.assessmentType}</p>
+      <p><strong>Time Limit:</strong> ${data.timeLimit} minutes</p>
+      <p><strong>Questions:</strong> ${data.questionCount}</p>
+      <p>
+        <a href="${data.link}" style="display:inline-block;background:#4F46E5;color:white;padding:12px 24px;text-decoration:none;border-radius:8px;margin:20px 0;">
+          Start Assessment
+        </a>
+      </p>
+      <p><strong>⚠️ Important:</strong> This link can only be opened once and expires on ${data.expiryDate}</p>
+      <p>Good luck!<br>CV Saathi Team</p>
+    `,
+    
+    'assessment-approved': `
+      <h2>Assessment Approved! 🎉</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>Great news! ${data.coachName} has reviewed your assessment and approved it.</p>
+      <p><strong>Your Score:</strong> ${data.score}%</p>
+      ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
+      <p><strong>Feedback:</strong> ${data.feedback}</p>
+      <p>Your coach will contact you soon to schedule a video interview.</p>
+      <p>Best regards,<br>CV Saathi Team</p>
+    `,
+    
+    'assessment-rejected': `
+      <h2>Assessment Result</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>${data.coachName} has reviewed your assessment.</p>
+      <p><strong>Your Score:</strong> ${data.score}%</p>
+      ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
+      <p><strong>Feedback:</strong> ${data.feedback}</p>
+      <p>Keep improving and don't give up!</p>
+      <p>Best regards,<br>CV Saathi Team</p>
+    `,
+    
+    'interview-scheduled': `
+      <h2>Video Interview Scheduled 📹</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>${data.coachName} has scheduled a video interview with you!</p>
+      <p><strong>Date:</strong> ${data.date}</p>
+      <p><strong>Time:</strong> ${data.time}</p>
+      <p><strong>Duration:</strong> ${data.duration} minutes</p>
+      ${data.notes ? `<p><strong>Notes:</strong> ${data.notes}</p>` : ''}
+      <p>
+        <a href="${data.meetingLink}" style="display:inline-block;background:#10B981;color:white;padding:12px 24px;text-decoration:none;border-radius:8px;margin:20px 0;">
+          Join Video Call
+        </a>
+      </p>
+      <p>You'll receive a reminder 1 day and 1 hour before the interview.</p>
+      <p>Best regards,<br>CV Saathi Team</p>
+    `,
+    
+    'interview-cancelled': `
+      <h2>Interview Cancelled</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>${data.coachName} has cancelled your scheduled interview.</p>
+      ${data.reason ? `<p><strong>Reason:</strong> ${data.reason}</p>` : ''}
+      <p>Your coach will contact you for rescheduling if needed.</p>
+      <p>Best regards,<br>CV Saathi Team</p>
+    `,
+    
+    'new-assignment': `
+      <h2>New Assignment: ${data.title}</h2>
+      <p>Hi ${data.studentName},</p>
+      <p>${data.coachName} has assigned you a new task!</p>
+      <p><strong>Title:</strong> ${data.title}</p>
+      <p><strong>Description:</strong> ${data.description}</p>
+      <p><strong>Due Date:</strong> ${data.dueDate}</p>
+      <p><strong>Points:</strong> ${data.points}</p>
+      <p>
+        <a href="${data.link}" style="display:inline-block;background:#4F46E5;color:white;padding:12px 24px;text-decoration:none;border-radius:8px;margin:20px 0;">
+          View Assignment
+        </a>
+      </p>
+      <p>Good luck!<br>CV Saathi Team</p>
+    `
+  };
+  
+  return templates[template] || `<p>${JSON.stringify(data)}</p>`;
+}
+
+/**
+ * Send interview request email
+ */
+async function sendInterviewRequestEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: `Interview Assessment - ${data.title}`,
+    template: 'interview-request',
+    data
+  });
+}
+
+/**
+ * Send assessment approval email
+ */
+async function sendAssessmentApprovedEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: 'Assessment Approved! 🎉',
+    template: 'assessment-approved',
+    data
+  });
+}
+
+/**
+ * Send assessment rejection email
+ */
+async function sendAssessmentRejectedEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: 'Assessment Result',
+    template: 'assessment-rejected',
+    data
+  });
+}
+
+/**
+ * Send interview scheduled email
+ */
+async function sendInterviewScheduledEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: 'Video Interview Scheduled 📹',
+    template: 'interview-scheduled',
+    data
+  });
+}
+
+/**
+ * Send interview cancelled email
+ */
+async function sendInterviewCancelledEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: 'Interview Cancelled',
+    template: 'interview-cancelled',
+    data
+  });
+}
+
+/**
+ * Send new assignment email
+ */
+async function sendNewAssignmentEmail(to, data) {
+  return sendEmail({
+    to,
+    subject: `New Assignment: ${data.title}`,
+    template: 'new-assignment',
+    data
+  });
+}
+
+/**
+ * Send interview reminder (24h or 1h before)
+ */
+async function sendInterviewReminderEmail(to, data, hoursBefore) {
+  const subject = hoursBefore === 24 
+    ? 'Interview Tomorrow - Reminder'
+    : 'Interview in 1 Hour - Reminder';
+    
+  return sendEmail({
+    to,
+    subject,
+    template: 'interview-reminder',
+    data: { ...data, hoursBefore }
+  });
+}
 module.exports = {
   sendEmail,
   ticketCreatedUserEmail,
   ticketCreatedAgentEmail,
   agentAcceptedEmail,
   newMessageEmail,
-  ticketResolvedEmail
+  ticketResolvedEmail,
+  sendInterviewRequestEmail,
+  sendAssessmentApprovedEmail,
+  sendAssessmentRejectedEmail,
+  sendInterviewScheduledEmail,
+  sendInterviewCancelledEmail,
+  sendNewAssignmentEmail,
+  sendInterviewReminderEmail
 };

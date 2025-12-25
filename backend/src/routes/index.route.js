@@ -16,6 +16,10 @@ router.use('/cv', require('./cv.route'));
 router.use('/skills', require('./skill.route'));
 router.use('/admin', require('./admin.route'));
 router.use('/recommendations', require('./recommendation.route'));
+router.use('/coach', require('./coach.route'));
+router.use('/recruiter', require('./recruiter.route'));
+router.use('/student', require('./student.route'));
+
 
 module.exports = router;
 
