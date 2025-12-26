@@ -71,7 +71,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   firstName: { type: String },
   lastName: { type: String },
-  role: { type: String, enum: ['job_seeker', 'employer', 'admin', 'user', 'csr', 'sales', 'student', 'coach', 'recruiter'], default: 'job_seeker' },
+  role: { type: String, enum: ['job_seeker', 'employer', 'admin', 'user', 'csr', 'sales', 'student', 'career_coach', 'recruiter'], default: 'job_seeker' },
   status: { type: String, enum: ['active', 'pending_verification', 'rejected', 'deactivated', 'verified'], default: 'pending_verification' },
   resumeUrl: { type: String },
   skills: [{ type: String }],
