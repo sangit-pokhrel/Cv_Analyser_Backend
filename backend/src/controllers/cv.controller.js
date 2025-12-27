@@ -275,7 +275,7 @@
 const CVAnalysis = require('../models/cvAnlalysis.model');
 const { uploadBufferToS3 } = require('../../utils/storageS3');
 const cvQueue = require('../queues/cvQueus');
-
+const JobMatch = require('../models/jobMatch.model');
 /**
  * Analyze CV
  * POST /cv/analyze
@@ -635,6 +635,60 @@ async function listAllAnalyses(req, res) {
  * Delete CV analysis (Admin only)
  * DELETE /cv/admin/analyses/:id
  */
+// async function deleteAnalysis(req, res) {
+//   try {
+//     if (!req.user || !req.user._id) {
+//       return res.status(401).json({ 
+//         success: false,
+//         error: 'Unauthorized'
+//       });
+//     }
+
+//     // Admin check
+//     if (req.user.role !== 'admin') {
+//       return res.status(403).json({ 
+//         success: false,
+//         error: 'Forbidden',
+//         message: 'Admin access required'
+//       });
+//     }
+
+//     const doc = await CVAnalysis.findById(req.params.id);
+    
+//     if (!doc) {
+//       return res.status(404).json({ 
+//         success: false,
+//         error: 'Analysis not found'
+//       });
+//     }
+
+//     // Also delete related job matches
+//     await JobMatch.deleteMany({ cvAnalysis: req.params.id });
+
+//     await doc.deleteOne();
+
+//     return res.json({ 
+//       success: true,
+//       message: 'CV analysis and related job matches deleted successfully'
+//     });
+//   } catch (err) {
+//     console.error('❌ Delete Analysis Error:', err);
+    
+//     if (err.name === 'CastError') {
+//       return res.status(400).json({ 
+//         success: false,
+//         error: 'Invalid analysis ID'
+//       });
+//     }
+    
+//     return res.status(500).json({ 
+//       success: false,
+//       error: 'Unable to delete analysis'
+//     });
+//   }
+// }
+
+
 async function deleteAnalysis(req, res) {
   try {
     if (!req.user || !req.user._id) {
@@ -662,7 +716,7 @@ async function deleteAnalysis(req, res) {
       });
     }
 
-    // Also delete related job matches
+    // Delete related job matches (now JobMatch is imported)
     await JobMatch.deleteMany({ cvAnalysis: req.params.id });
 
     await doc.deleteOne();
@@ -687,6 +741,7 @@ async function deleteAnalysis(req, res) {
     });
   }
 }
+
 
 /**
  * Update CV analysis (Admin only)
