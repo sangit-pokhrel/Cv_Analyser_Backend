@@ -64,8 +64,12 @@ router.get('/me', requireAuth, userController.getMe);
  * @desc    Update own profile (LIMITED FIELDS)
  * @access  Private
  */
-router.put('/me', requireAuth, userController.updateProfile);
+// router.put('/me', requireAuth, userController.updateProfile);
+// User routes
+router.put('/me', requireAuth, userController.updateProfile); // Updates own profile
 
+// Admin routes
+router.put('/me/:userId', requireAuth, userController.updateProfile); 
 /**
  * @route   PUT /users/me/change-password
  * @desc    Change own password
@@ -84,9 +88,9 @@ router.delete('/me', requireAuth, userController.deactivateAccount);
 /**
  * @route   GET /users
  * @desc    List all users
- * @access  Admin only
+ * @access  Admin or Career Coach
  */
-router.get('/', requireAuth, permit('admin'), userController.listUsers);
+router.get('/', requireAuth, permit('admin', 'career_coach'), userController.listUsers);
 
 /**
  * @route   GET /users/:id

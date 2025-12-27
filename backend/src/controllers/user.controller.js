@@ -485,11 +485,58 @@ async function getMe(req, res) {
 }
 
 // Update own profile (LIMITED fields)
+// async function updateProfile(req, res) {
+//   try {
+//     const { firstName, lastName, headline, location, phoneNumber, skills } = req.body;
+
+//     const updates = {};
+//     if (firstName !== undefined) updates.firstName = sanitizeHtml(firstName);
+//     if (lastName !== undefined) updates.lastName = sanitizeHtml(lastName);
+//     if (headline !== undefined) updates.headline = sanitizeHtml(headline);
+//     if (location !== undefined) updates.location = sanitizeHtml(location);
+//     if (phoneNumber !== undefined) updates.phoneNumber = sanitizeHtml(phoneNumber);
+//     if (skills !== undefined) {
+//       updates.skills = Array.isArray(skills) 
+//         ? skills.map(s => sanitizeHtml(String(s)))
+//         : [];
+//     }
+
+//     const updatedUser = await User.findByIdAndUpdate(
+//       req.user._id,
+//       updates,
+//       { new: true, runValidators: true }
+//     ).select('-password');
+
+//     if (!updatedUser) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     return res.json({ 
+//       message: "Profile updated successfully",
+//       user: updatedUser 
+//     });
+//   } catch (err) {
+//     console.error("Update profile error:", err);
+//     return res.status(500).json({ error: "Unable to update profile" });
+//   }
+// }
+
+// Update own profile (LIMITED fields) - or any user profile if admin
 async function updateProfile(req, res) {
   try {
-    const { firstName, lastName, headline, location, phoneNumber, skills } = req.body;
+    // Determine which user to update
+    let targetUserId = req.user._id;
+    
+    // If admin is updating another user's profile
+    if (req.user.role === 'admin' && req.params.userId) {
+      targetUserId = req.params.userId;
+    }
+
+    const { firstName, lastName, headline, location, phoneNumber, skills, role, isActive } = req.body;
 
     const updates = {};
+    
+    // Fields any user can update
     if (firstName !== undefined) updates.firstName = sanitizeHtml(firstName);
     if (lastName !== undefined) updates.lastName = sanitizeHtml(lastName);
     if (headline !== undefined) updates.headline = sanitizeHtml(headline);
@@ -501,23 +548,44 @@ async function updateProfile(req, res) {
         : [];
     }
 
+    // Admin-only fields
+    if (req.user.role === 'admin') {
+      if (role !== undefined) updates.role = role;
+      if (isActive !== undefined) updates.isActive = isActive;
+    }
+
     const updatedUser = await User.findByIdAndUpdate(
-      req.user._id,
+      targetUserId,
       updates,
       { new: true, runValidators: true }
     ).select('-password');
 
     if (!updatedUser) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ 
+        success: false,
+        error: "User not found" 
+      });
     }
 
     return res.json({ 
+      success: true,
       message: "Profile updated successfully",
-      user: updatedUser 
+      data: updatedUser 
     });
   } catch (err) {
     console.error("Update profile error:", err);
-    return res.status(500).json({ error: "Unable to update profile" });
+    
+    if (err.name === 'CastError') {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Invalid user ID' 
+      });
+    }
+    
+    return res.status(500).json({ 
+      success: false,
+      error: "Unable to update profile" 
+    });
   }
 }
 
