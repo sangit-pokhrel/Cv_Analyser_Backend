@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "../globals/styles/style.color.css"
-
+import Navabar from "@/globals/navbar";
+import Footer from "@/globals/footer";
 // Removed incorrect import for Metadata
 import HomeLayout from "./(site)/home/layout";
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
@@ -13,9 +14,12 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    
+    <div>
+      <Navabar/>
+      <Homepage_component />
+      <Footer/>
+    </div>
      
-       <Homepage_component />
 
   
   );

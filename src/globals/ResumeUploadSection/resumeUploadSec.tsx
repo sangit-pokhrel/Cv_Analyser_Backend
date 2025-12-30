@@ -61,7 +61,7 @@ const ResumeUploadSec = () => {
             <div className="flex items-center justify-center">
               <button type="submit" className="cursor-pointer flex  justify-center items-center gap-x-4 cta_button text-white py-2 px-4 rounded-xl">
               <BsUpload size={20} />
-              <p className="text-xl">Analyse Cv</p>
+              <p className="text-xl">Analyse Cv {AnalyseResumeMutation .isPending?"...Loading":""}</p>
             </button>
             </div>
           ) : (

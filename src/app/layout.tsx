@@ -5,6 +5,7 @@ import "../globals/styles/style.color.css";
 import ThemeProvider from "@/app/context/ThemeProvider";
 import { ToastContainer } from "react-toastify";
 
+
 import ReactQueryProvider from "./providers/ReactQueryProvider";
 
 const geistSans = Geist({
