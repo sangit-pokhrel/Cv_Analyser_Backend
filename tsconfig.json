@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/globals/signInFunc.js", "src/app/(site)/Jobs"  ],
+, "src/globals/signInFunc.js", "src/app/(site)/Jobs", "src/components/Loginpage_component/api/loginApi.ts"  ],
   "exclude": ["node_modules"]
 }

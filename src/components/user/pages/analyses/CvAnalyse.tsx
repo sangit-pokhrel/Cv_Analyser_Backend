@@ -123,7 +123,7 @@ useEffect(() => {
 
   const interval = setInterval(async () => {
     try {
-      const { data } = await axios.get(`${baseURL}/cv/analysis/${analysisId}`);
+      const { data } = await axios.get(`${baseURL}/cv/analyses/${analysisId}`);
 
       if (data.status === "done") {
         setCompletedAnalysis(data);

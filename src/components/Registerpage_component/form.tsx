@@ -8,8 +8,12 @@ import "@/globals/styles/style.color.css";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
+import { useRegisterMutation } from "./api/registerApi";
 const RegistrationForm = () => {
+    const registerMutation = useRegisterMutation();
   type formdata = {
+    firstName?:string,
+    lastName?:string,
     email: string;
     password: string;
     confirmPassword: string;
@@ -30,19 +34,14 @@ const RegistrationForm = () => {
   };
   const password = watch("password");
 
-  const onSubmit = async (data: formdata) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-
-      toast.success("User Creation Successful!");
-    } catch (error) {
-      toast.error("User creation unsuccessfull");
-    }
-  };
+  const onSubmit = (data: formdata) => {
+    const [firstName,...rest]  = data.fullName.split(" ");
+    const lastName = rest.join(" ");
+    data.firstName = firstName;
+    data.lastName = lastName;
+    registerMutation.mutate(data)
+   
+  }
 
   return (
     <div>

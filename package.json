@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "fast": "cross-env NODE_OPTIONS=--max-old-space-size=6024 next dev"
+    "fast": "cross-env NODE_OPTIONS=--max-old-space-size=4024 next dev"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@tanstack/react-query": "^5.90.12",
     "axios": "^1.13.2",
     "chart.js": "^4.5.1",
     "class-variance-authority": "^0.7.1",

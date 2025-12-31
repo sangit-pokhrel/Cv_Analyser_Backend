@@ -4,6 +4,9 @@ import { HiOutlineBolt } from "react-icons/hi2";
 import { FiTarget } from "react-icons/fi";
 import ResumeUploadSec from "@/globals/ResumeUploadSection/resumeUploadSec";
 import Section from "@/globals/section";
+import "@/globals/styles/style.color.css"
+import LeftSectionPointCard from "./leftSectionPointCard";
+
 const HeroSection = () => {
   return (
     <Section>
@@ -11,11 +14,12 @@ const HeroSection = () => {
       {/* left Section */}
       <div className="flex flex-col  items:center md:items-start justify-center gap-y-10">
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-4xl md:w-[50%]">
-            Transform Your Resume Into Your{" "}
-            <span className="font-extrabold text-blue-500">Dream Job</span>
+          <h1 className="text-4xl md:w-[50%] font-bold">
+            Get Expert CV{" "}
+            <span className="font-extrabold text-blue-500">Analysis {" "}</span>
+            <span>Seconds</span>
           </h1>
-          <p className="font-extralight text-sm text-gray-500 md:w-[50%]">
+          <p className="font-extralight text-sm text-gray-500 ">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
             laboriosam, aperiam praesentium rem, dolorem ea quam laborum id
             magni voluptas voluptate necessitatibus dolore laudantium!
@@ -23,21 +27,19 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* cta buttons  */}
-        <div className="flex">
-          <button className=" flex justify-center items-center cta_button text-white px-2 py-2 rounded-md mr-4">
-            <HiOutlineBolt className="inline mr-1 " size={20} />
-            <p className="md:text-normal text-sm"> Analyse Now - Its's Free</p>
-          </button>
-          <button className="border border-blue-500 text-black px-4 py-2 rounded-md flex justify-center items-center">
-            <FiTarget className="inline mr-1 " size={20} />
-
-            <p className="font-semibold text-gray-400 md:text-normal text-sm"> See How It Works</p>
-          </button>
+        {/* Left Section Points Card  */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+          {Array.from({length:4}).map((_,index)=>{
+            return(
+              <div key={index}>
+                <LeftSectionPointCard/>
+              </div>
+            )
+          })}
         </div>
         {/* Ratings,Resume Analysed, Success Ratio  */}
 
-        <div className="flex bg-white gap-x-1 ">
+        {/* <div className="flex bg-white gap-x-1 ">
           <div className="flex flex-col justify-center primary-bg items-center px-2 py-2 min-w-[100px]">
             <h2 className="text-2xl font-extrabold ">50k+</h2>
             <p className="text-xs font-extralight text-gray-400">
@@ -56,7 +58,7 @@ const HeroSection = () => {
               Success Rate
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Right Section */}
