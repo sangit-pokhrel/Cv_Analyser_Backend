@@ -1,6 +1,6 @@
 'use-client'
 import axios from "axios";
-
+import getCookie from "@/globals/getCookie";
 const fetchCvAnalysis = async (analysisId: string) => {
 
 
@@ -8,7 +8,7 @@ const fetchCvAnalysis = async (analysisId: string) => {
   `http://localhost:5000/api/v1/cv/analyses/${analysisId}`,
   {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTUzNTdkOWIzNzBmMjRjNzY0ZDgzOGYiLCJyb2xlIjoidXNlciIsInRva2VuVmVyc2lvbiI6MCwiaWF0IjoxNzY3MTg5NDkxLCJleHAiOjE3NjcyMDc0OTF9.F-IAvXWaLtBSoyBupEsUv1k7CtTh8399rmXAE6ttvsg`,
+      Authorization: `Bearer ${getCookie('accessToken')}`,
     },
   }
 );

@@ -2,27 +2,21 @@
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-function getCookie(name: string) {
-  return document.cookie
-    .split("; ")
-    .find(row => row.startsWith(name + "="))
-    ?.split("=")[1];
-}
+import getCookie from "@/globals/getCookie";
 
 const ResumeAnlysisMutationFunc =async (data:any)=>{
   // console.log(data.get('cv'));
   const res = await axios.post('http://localhost:5000/api/v1/cv/analyze',data, {
     headers: {
-       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTUzNTdkOWIzNzBmMjRjNzY0ZDgzOGYiLCJyb2xlIjoidXNlciIsInRva2VuVmVyc2lvbiI6MCwiaWF0IjoxNzY3MTg5NDkxLCJleHAiOjE3NjcyMDc0OTF9.F-IAvXWaLtBSoyBupEsUv1k7CtTh8399rmXAE6ttvsg`,
+       Authorization: `Bearer ${getCookie('accessToken')}`,
       "Content-Type": "multipart/form-data",
     },
   });
 
-  console.log(res.data);
   localStorage.setItem('CvAnalysisId',res.data.analysisId)
   return res.data
 
-  // console.log((await auth.currentUser?.getIdTokenResult(true))?.token);
+
 }
 
 export const useResumeAnalysisMutation = () => {
