@@ -84,7 +84,7 @@ const SampleAnalysisReportSection = ()=>{
       <p className="font-extralight text-xs text-center">See the comprehensive insight and actionalble takeaways include in your personalized report.</p>
       </div>
       <div className="bg-white p-8 border border-gray-300 rounded-lg ">
-        <div className="bg-white grid grid-cols-4 gap-x-8 mb-10 ">
+        <div className="bg-white grid grid-cols-2 md:gap-y-0 gap-y-2 md:grid-cols-4 gap-x-8 mb-10 ">
        {Array.from({length:4}).map((_,index)=>{
         return(
           <div key={index}>

@@ -107,12 +107,12 @@ const ResumeUploadSec = () => {
 
   return (
     <div className="w-full">
-      <form className="flex justify-end" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex md:justify-end " onSubmit={handleSubmit(onSubmit)}>
       <motion.div
         initial={{ opacity: 0, scale: 0.95, x: 20 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative w-[70%]"
+        className="relative md:w-[70%] w-full"
       >
         {/* Glow */}
         <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-lg opacity-25" />

@@ -19,8 +19,8 @@ const JobsDetails = ()=>{
     <div>
         <Herosection/>
       </div>
-      <div className="flex items-start justify-between">
-        <div className="w-[55%]">
+      <div className="flex md:flex-row flex-col items-start justify-between">
+        <div className="md:w-[55%]">
           <AboutJobSection/>
         <KeyResponsibilitiesSection/>
         <div className="border border-gray-400 py-5 px-6 rounded-xl bg-white mb-10 ">
@@ -29,7 +29,7 @@ const JobsDetails = ()=>{
         </div>
         <WhatWeOfferSection/>
         </div>
-        <div className="w-[40%]">
+        <div className="md:w-[40%]">
           <VistCompanyCard/>
         </div>
       </div>

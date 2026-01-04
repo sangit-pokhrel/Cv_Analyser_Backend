@@ -1,3 +1,5 @@
+
+
 function getCookie(name: string) {
   return document.cookie
     .split("; ")

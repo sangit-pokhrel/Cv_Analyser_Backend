@@ -4,10 +4,11 @@ import { LoginForm } from "./form"
 import { FcGoogle } from "react-icons/fc"
 import { FaFacebook } from "react-icons/fa"
 import Link from "next/link"
-
+import Container from "@/globals/container"
 export default function LoginPage() {
   return (
-    // FULL VIEWPORT, TRUE CENTER
+    <Container>
+      // FULL VIEWPORT, TRUE CENTER
     <div className="min-h-screen bg-[#F8FCFF] flex items-center justify-center m-auto ">
       
       {/* VISUAL BLOCK */}
@@ -67,6 +68,7 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </Container>
   )
 }
 

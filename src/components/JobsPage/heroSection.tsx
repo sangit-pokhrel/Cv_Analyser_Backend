@@ -13,10 +13,10 @@ const HeroSection = ()=>{
                <h1 className="text-4xl text-center ">
                  Find Your Dream Job Today
                </h1>
-               <p className="font-extralight text-sm text-gray-500">Join thousands of professionals who found their dream jobs</p>
+               <p className="font-extralight text-sm text-gray-500 text-center">Join thousands of professionals who found their dream jobs</p>
              </div>
              <div>
-              <div className="bg-white pl-10 pr-24 py-8 rounded-lg">
+              <div className="bg-white md:pl-10 md:pr-24 px-10 py-8 rounded-lg">
                 <Form/>
               </div>
              </div>

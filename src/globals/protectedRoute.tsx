@@ -8,7 +8,7 @@ import getCookie from "./getCookie";
 
 const ProtectedRoute =({children}:{children:React.ReactNode})=>{
 
-  const token = getCookie('accsessToken');
+  const token = getCookie('accessToken');
   if(token){
     return (<div>
       {children}

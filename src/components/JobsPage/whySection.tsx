@@ -51,8 +51,8 @@ const WhySection =()=>{
      
            <div className="flex flex-col gap-y-8 py-6 ">
               <div className="flex flex-col justify-center items-center gap-y-4" >
-                <h2 className="text-3xl text-white font-bold">Why Job Seekers Love Us</h2>
-                <p className=" text-md md:text-xs text-white text-center">Join thousands of profrssionals who found their dream jobs</p>
+                <h2 className="md:text-3xl text-2xl text-white font-bold text-center">Why Job Seekers Love Us</h2>
+                <p className="text-sm md:text-md md:text-xs text-white text-center">Join thousands of profrssionals who found their dream jobs</p>
               </div>
                {/* Desktop View */}
               <div className=" hidden md:flex justify-center items-center gap-x-10">

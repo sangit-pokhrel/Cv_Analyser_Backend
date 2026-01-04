@@ -7,7 +7,7 @@ const WhatWeOfferSection = () => {
   return(
     <Section>
       <div className=" border border-white py-5 px-6 rounded-xl bg-[#CDEDFF]">
-                <h2 className="text-2xl font-bold mb-2">Requirements</h2>
+                <h2 className="text-2xl font-bold mb-2">What We Offer</h2>
                 <div>
                  {dummyData.map((point,index)=>{
                      return(

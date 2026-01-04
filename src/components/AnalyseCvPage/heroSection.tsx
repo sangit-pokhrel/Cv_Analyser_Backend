@@ -10,7 +10,7 @@ import LeftSectionPointCard from "./leftSectionPointCard";
 const HeroSection = () => {
   return (
     <Section>
-          <div className="grid md:grid-cols-2 grid-cols-1 justify-between palce-items-start ">
+          <div className="grid md:grid-cols-2 grid-cols-1 justify-between palce-items-start md:gap-y-0 gap-y-8 ">
       {/* left Section */}
       <div className="flex flex-col  items:center md:items-start justify-center gap-y-10">
         <div className="flex flex-col gap-y-2">
@@ -37,32 +37,11 @@ const HeroSection = () => {
             )
           })}
         </div>
-        {/* Ratings,Resume Analysed, Success Ratio  */}
-
-        {/* <div className="flex bg-white gap-x-1 ">
-          <div className="flex flex-col justify-center primary-bg items-center px-2 py-2 min-w-[100px]">
-            <h2 className="text-2xl font-extrabold ">50k+</h2>
-            <p className="text-xs font-extralight text-gray-400">
-              Total Resumes Analysed
-            </p>
-          </div>
-
-          <div className="flex flex-col justify-center items-center primary-bg px-2 py-2 min-w-[100px]">
-            <h2 className="text-2xl font-extrabold">4.9/5</h2>
-            <p className="text-xs font-extralight text-gray-400">User Rating</p>
-          </div>
-
-          <div className="flex flex-col justify-center items-center primary-bg px-2 py-2 min-w-[100px]">
-            <h2 className="text-2xl font-extrabold">96%</h2>
-            <p className="text-xs font-extralight text-gray-400">
-              Success Rate
-            </p>
-          </div>
-        </div> */}
+       
       </div>
 
       {/* Right Section */}
-      <div className="flex justify-center items-center">
+      <div className="flex ">
        <ResumeUploadSec/>
       </div>
     </div>
