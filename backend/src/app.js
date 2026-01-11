@@ -15,10 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: process.env.APP_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true
 }));
 
+app.options('*', cors());
 
 
 app.use('/api/v1', apiV1);
