@@ -9,7 +9,7 @@
 // import { toast } from 'react-toastify';
 // import { io, Socket } from 'socket.io-client';
 
-// const baseURL = 'http://localhost:5000/api/v1';
+// const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 
 // interface User {
 //   _id: string;
@@ -765,7 +765,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { io, Socket } from 'socket.io-client';
 
-const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 
 interface User {
   _id: string;

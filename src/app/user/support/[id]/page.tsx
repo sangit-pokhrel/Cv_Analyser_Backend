@@ -602,7 +602,7 @@ import { io, Socket } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import RatingModal from '@/components/user/pages/support/RatingModel';
 
-const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 const SOCKET_URL = 'http://localhost:5000';
 
 interface Ticket {

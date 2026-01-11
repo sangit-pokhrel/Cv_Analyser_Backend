@@ -8,7 +8,7 @@
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 
-// const baseURL = 'http://localhost:5000/api/v1';
+// const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 // export default function UserLoginPage() {
 //   const router = useRouter();
 //   const [email, setEmail] = useState('');
@@ -301,7 +301,7 @@ import { useAuth } from '@/hooks/useAuth';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 
 export default function UserLoginPage() {
   const router = useRouter();

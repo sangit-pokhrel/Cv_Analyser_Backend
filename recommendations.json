@@ -455,7 +455,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:5000/api/v1",
+      "value": "https://cv-analyser-backend.onrender.com/",
       "type": "string"
     },
     {

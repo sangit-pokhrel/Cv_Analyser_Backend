@@ -6,7 +6,7 @@
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 
-// const baseURL = 'http://localhost:5000/api/v1';
+// const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 
 // interface User {
 //   _id: string;
@@ -764,7 +764,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
 
 interface User {
   _id: string;
