@@ -20,7 +20,7 @@ interface FormErrors {
   message?: string;
 }
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = "https://cv-analyser-backend.onrender.com/api/v1";
 
 const faqData = [
   {

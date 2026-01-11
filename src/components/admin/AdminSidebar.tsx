@@ -194,7 +194,7 @@ export default function AdminSidebar() {
 
       if (!token) return;
 
-      const { data } = await axios.get('http://localhost:5000/api/v1/users/me', {
+      const { data } = await axios.get('https://cv-analyser-backend.onrender.com/api/v1/users/me', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setUserRole(data.user?.role || '');

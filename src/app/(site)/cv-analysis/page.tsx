@@ -22,7 +22,7 @@ export default function CVAnalysisPage() {
   const [progress, setProgress] = useState<AnalysisProgress | null>(null);
   const [logs, setLogs] = useState<string[]>([]);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cv-analyser-backend.onrender.com';
 
   // Add log entry
   const addLog = (message: string) => {

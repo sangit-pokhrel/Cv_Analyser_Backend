@@ -14,7 +14,7 @@ import { ThemeContext } from "@/app/context/ThemeProvider";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = "https://cv-analyser-backend.onrender.com/api/v1";
 
 import "./styles/navbar.css";
 

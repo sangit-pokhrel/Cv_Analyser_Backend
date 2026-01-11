@@ -603,7 +603,7 @@ import { toast } from 'react-toastify';
 import RatingModal from '@/components/user/pages/support/RatingModel';
 
 const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = 'https://cv-analyser-backend.onrender.com';
 
 interface Ticket {
   rating: any;

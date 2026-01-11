@@ -63,7 +63,7 @@
     {
       "id": "13a504e5-600c-4d65-b39d-3e4897c63c82",
       "key": "baseUrl",
-      "value": "http://localhost:5000/api/v1",
+      "value": "https://cv-analyser-backend.onrender.com/api/v1",
       "type": "string"
     },
     {

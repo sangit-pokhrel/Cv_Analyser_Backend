@@ -40,7 +40,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/users/register",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/users/register",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -94,7 +94,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/users/login",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/users/login",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -220,7 +220,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/cart",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/cart",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -304,7 +304,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/cart",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/cart",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -417,7 +417,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/cart",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/cart",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -481,7 +481,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/cart/6837da3523ee07d781b9178e",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/cart/6837da3523ee07d781b9178e",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -551,7 +551,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/cart/clear",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/cart/clear",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -629,7 +629,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/wishlist",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/wishlist",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -660,7 +660,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/wishlist/68357b0e79da1b792df1d468",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/wishlist/68357b0e79da1b792df1d468",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -798,7 +798,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/orders/my-orders",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/orders/my-orders",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -830,7 +830,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/orders/invoice/683a811c495cd510830e0c34",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/orders/invoice/683a811c495cd510830e0c34",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -859,7 +859,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/products",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/products",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -890,7 +890,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/products/6837da3523ee07d781b91791",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/products/6837da3523ee07d781b91791",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -968,7 +968,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/categories",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/categories",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1041,7 +1041,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/coupons/SAVE10",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/coupons/SAVE10",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1129,7 +1129,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/otp/send-otp",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/otp/send-otp",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1217,7 +1217,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/otp/verify-otp",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/otp/verify-otp",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1306,7 +1306,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6837da3523ee07d781b91791",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1338,7 +1338,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6837da3523ee07d781b91791",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1370,7 +1370,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/reviews/6837da3523ee07d781b91791/683a909e16e83b5d0c08f685",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6837da3523ee07d781b91791/683a909e16e83b5d0c08f685",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1409,7 +1409,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/payments/esewa/success?oid=683a8ddf16e83b5d0c08f668",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/payments/esewa/success?oid=683a8ddf16e83b5d0c08f668",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1448,7 +1448,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/payments/esewa/failure",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/payments/esewa/failure",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1490,7 +1490,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/payments/khalti/verify",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/payments/khalti/verify",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1529,7 +1529,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/users/profile",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/users/profile",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1570,7 +1570,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/users/profile",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/users/profile",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1656,7 +1656,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/login",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/login",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1694,7 +1694,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/stats",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/stats",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1741,7 +1741,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/products",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/products",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1782,7 +1782,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/products/6838848552c4b34dbd085dcb",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/products/6838848552c4b34dbd085dcb",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1815,7 +1815,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/products/6838848552c4b34dbd085dcb",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/products/6838848552c4b34dbd085dcb",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1863,7 +1863,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/categories/bulk",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/categories/bulk",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1911,7 +1911,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/coupons",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/coupons",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1943,7 +1943,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/admin/coupons/SAVE10",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/admin/coupons/SAVE10",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1982,7 +1982,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/orders/admin/all",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/orders/admin/all",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -2024,7 +2024,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/orders/admin/status",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/orders/admin/status",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -2066,7 +2066,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/orders/admin/mark-paid",
+                  "raw": "https://cv-analyser-backend.onrender.com/api/orders/admin/mark-paid",
                   "protocol": "http",
                   "host": [
                     "localhost"

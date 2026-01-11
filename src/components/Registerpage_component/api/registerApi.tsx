@@ -8,7 +8,7 @@ import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } 
 const registerUser = async (data: any) => {
   try {
 //     const res = await axios.post(
-//   "http://localhost:5000/api/v1/auth/register",
+//   "https://cv-analyser-backend.onrender.com/api/v1/auth/register",
 //   data,
 //   {
 //     headers: {

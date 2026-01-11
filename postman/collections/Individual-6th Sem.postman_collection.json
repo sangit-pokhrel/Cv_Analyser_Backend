@@ -22,7 +22,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/auth/register",
+          "raw": "https://cv-analyser-backend.onrender.com/api/auth/register",
           "protocol": "http",
           "host": [
             "localhost"
@@ -53,7 +53,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/auth/login",
+          "raw": "https://cv-analyser-backend.onrender.com/api/auth/login",
           "protocol": "http",
           "host": [
             "localhost"
@@ -84,7 +84,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/contacts",
+          "raw": "https://cv-analyser-backend.onrender.com/api/contacts",
           "protocol": "http",
           "host": [
             "localhost"
@@ -109,7 +109,7 @@
           "raw": "{\r\n  \"cropData\": {\r\n    \"cropStage\": \"vegetative\",\r\n    \"daysFromGermination\": 45,\r\n    \"soilMoisture\": \"moderate\",\r\n    \"humidity\": 62,\r\n    \"ph\": 6.8,\r\n    \"phosphorus\": 28,\r\n    \"nitrogen\": 40,\r\n    \"organicContent\": 2.5,\r\n    \"waterSource\": \"rainwater\"\r\n  },\r\n  \"location\": {\r\n    \"lat\": 27.7000,\r\n    \"lng\": 85.3333,\r\n    \"name\": \"Kathmandu, Nepal\"\r\n  }\r\n}\r\n"
         },
         "url": {
-          "raw": "http://localhost:5000/api/crop/analysis",
+          "raw": "https://cv-analyser-backend.onrender.com/api/crop/analysis",
           "protocol": "http",
           "host": [
             "localhost"

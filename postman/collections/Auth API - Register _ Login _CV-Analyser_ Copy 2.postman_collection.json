@@ -1472,7 +1472,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/health",
+              "raw": "https://cv-analyser-backend.onrender.com/health",
               "protocol": "http",
               "host": [
                 "localhost"

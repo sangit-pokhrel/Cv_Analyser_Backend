@@ -4033,7 +4033,7 @@
     {
       "id": "efe1970c-3439-4e75-957a-0dbd3d995f92",
       "key": "baseUrl",
-      "value": "http://localhost:5000"
+      "value": "https://cv-analyser-backend.onrender.com"
     },
     {
       "id": "66105c34-18ba-495c-97f6-2178d85b1a2d",

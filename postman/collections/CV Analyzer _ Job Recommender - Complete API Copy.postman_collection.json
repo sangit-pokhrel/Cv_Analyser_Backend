@@ -1322,7 +1322,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/health",
+              "raw": "https://cv-analyser-backend.onrender.com/health",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1343,7 +1343,7 @@
     {
       "id": "493b83dd-8591-43d9-a667-1cab17608044",
       "key": "base_url",
-      "value": "http://localhost:5000/api/v1",
+      "value": "https://cv-analyser-backend.onrender.com/api/v1",
       "type": "string"
     },
     {

@@ -133,7 +133,7 @@
 //     const token = getAccessToken();
 //     if (!token) return;
 
-//     const newSocket = io('http://localhost:5000/tickets', {
+//     const newSocket = io('https://cv-analyser-backend.onrender.com/tickets', {
 //       auth: { token }
 //     });
 
@@ -894,7 +894,7 @@ export default function TicketDetail() {
 
     console.log('🔌 Initializing Socket.IO connection...');
 
-    const newSocket = io('http://localhost:5000/tickets', {
+    const newSocket = io('https://cv-analyser-backend.onrender.com/tickets', {
       auth: { token },
       reconnection: true,
       reconnectionDelay: 1000,

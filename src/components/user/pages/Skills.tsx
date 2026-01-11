@@ -28,7 +28,7 @@ export default function Skills() {
 
 
   // Check current user
-fetch('http://localhost:5000/api/v1/users/me', {
+fetch('https://cv-analyser-backend.onrender.com/api/v1/users/me', {
   headers: {
     'Authorization': 'Bearer ' + document.cookie.split('accessToken=')[1].split(';')[0]
   }
@@ -37,7 +37,7 @@ fetch('http://localhost:5000/api/v1/users/me', {
 .then(d => console.log('Current user:', d.user._id));
 
 // Check saved jobs
-fetch('http://localhost:5000/api/v1/saved-jobs', {
+fetch('https://cv-analyser-backend.onrender.com/api/v1/saved-jobs', {
   headers: {
     'Authorization': 'Bearer ' + document.cookie.split('accessToken=')[1].split(';')[0]
   }

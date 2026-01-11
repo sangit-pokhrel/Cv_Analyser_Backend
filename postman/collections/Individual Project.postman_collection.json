@@ -339,7 +339,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/issues",
+              "raw": "https://cv-analyser-backend.onrender.com/api/issues",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -360,7 +360,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/issues/id",
+              "raw": "https://cv-analyser-backend.onrender.com/api/issues/id",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -382,7 +382,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/issues/id",
+              "raw": "https://cv-analyser-backend.onrender.com/api/issues/id",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -404,7 +404,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/issues",
+              "raw": "https://cv-analyser-backend.onrender.com/api/issues",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -437,7 +437,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/users",
+          "raw": "https://cv-analyser-backend.onrender.com/api/users",
           "protocol": "http",
           "host": [
             "localhost"

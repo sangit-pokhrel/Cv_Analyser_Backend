@@ -30,7 +30,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/recommend",
+          "raw": "https://cv-analyser-backend.onrender.com/recommend",
           "protocol": "http",
           "host": [
             "localhost"
@@ -68,7 +68,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/complete-outfits",
+          "raw": "https://cv-analyser-backend.onrender.com/complete-outfits",
           "protocol": "http",
           "host": [
             "localhost"
