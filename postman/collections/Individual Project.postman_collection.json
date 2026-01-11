@@ -339,7 +339,7 @@
               }
             },
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/issues",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/issues",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -360,7 +360,7 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/issues/id",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/issues/id",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -382,7 +382,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/issues/id",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/issues/id",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -404,7 +404,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/issues",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/issues",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -437,7 +437,7 @@
           }
         },
         "url": {
-          "raw": "https://cv-analyser-backend.onrender.com/api/users",
+          "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/users",
           "protocol": "http",
           "host": [
             "localhost"

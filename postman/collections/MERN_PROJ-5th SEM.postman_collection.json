@@ -55,7 +55,7 @@
                   }
                 },
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/auth/register",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/register",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -152,7 +152,7 @@
                   }
                 },
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/auth/login",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/login",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -434,7 +434,7 @@
                   }
                 },
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/reviews/",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -462,7 +462,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/reviews/",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -499,7 +499,7 @@
                   }
                 },
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6805f5ff84aebb38cf28c08e",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/reviews/6805f5ff84aebb38cf28c08e",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -530,7 +530,7 @@
                   }
                 },
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6612fdb24a9d3640f8d12345",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/reviews/6612fdb24a9d3640f8d12345",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -558,7 +558,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "https://cv-analyser-backend.onrender.com/api/reviews/6805f5ff84aebb38cf28c08e",
+                  "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/reviews/6805f5ff84aebb38cf28c08e",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -610,7 +610,7 @@
               ]
             },
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/auth/upload/profilePic",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/upload/profilePic",
               "protocol": "http",
               "host": [
                 "localhost"

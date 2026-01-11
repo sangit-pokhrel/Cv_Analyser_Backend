@@ -34,7 +34,7 @@ export default function AnalysisResultPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cv-analyser-backend.onrender.com';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app';
 
   useEffect(() => {
     fetchResults();

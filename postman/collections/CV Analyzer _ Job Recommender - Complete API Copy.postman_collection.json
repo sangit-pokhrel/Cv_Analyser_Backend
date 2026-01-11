@@ -1322,7 +1322,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/health",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.apphealth",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1343,7 +1343,7 @@
     {
       "id": "493b83dd-8591-43d9-a667-1cab17608044",
       "key": "base_url",
-      "value": "https://cv-analyser-backend.onrender.com/api/v1",
+      "value": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1",
       "type": "string"
     },
     {

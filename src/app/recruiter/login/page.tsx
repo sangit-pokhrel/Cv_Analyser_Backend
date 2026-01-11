@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://cv-analyser-backend.onrender.com/api/v1';
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
 
 export default function RecruiterLoginPage() {
   const router = useRouter();

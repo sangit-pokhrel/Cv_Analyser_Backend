@@ -30,7 +30,7 @@
           }
         },
         "url": {
-          "raw": "https://cv-analyser-backend.onrender.com/recommend",
+          "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.apprecommend",
           "protocol": "http",
           "host": [
             "localhost"
@@ -68,7 +68,7 @@
           }
         },
         "url": {
-          "raw": "https://cv-analyser-backend.onrender.com/complete-outfits",
+          "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appcomplete-outfits",
           "protocol": "http",
           "host": [
             "localhost"

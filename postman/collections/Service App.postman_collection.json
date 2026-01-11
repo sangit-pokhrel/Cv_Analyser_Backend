@@ -24,7 +24,7 @@
               }
             },
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/auth/register",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/register",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -55,7 +55,7 @@
               }
             },
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/auth/login",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/login",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -87,7 +87,7 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/api/auth/logout",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/auth/logout",
               "protocol": "http",
               "host": [
                 "localhost"

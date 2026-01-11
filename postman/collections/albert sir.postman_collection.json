@@ -1856,7 +1856,7 @@
           }
         },
         "url": {
-          "raw": "https://cv-analyser-backend.onrender.com/api/users",
+          "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/users",
           "protocol": "http",
           "host": [
             "localhost"

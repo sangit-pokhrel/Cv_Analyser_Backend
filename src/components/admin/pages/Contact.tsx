@@ -165,7 +165,7 @@
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 
-// const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
+// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
 
 // interface Contact {
 //   _id: string;
@@ -1188,7 +1188,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
 
 interface Contact {
   _id: string;

@@ -9,7 +9,7 @@
 // import { toast } from 'react-toastify';
 // import { io, Socket } from 'socket.io-client';
 
-// const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
+// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
 
 // interface User {
 //   _id: string;
@@ -133,7 +133,7 @@
 //     const token = getAccessToken();
 //     if (!token) return;
 
-//     const newSocket = io('https://cv-analyser-backend.onrender.com/tickets', {
+//     const newSocket = io('https://amused-celinka-nothingname-3b1ecdef.koyeb.apptickets', {
 //       auth: { token }
 //     });
 
@@ -765,7 +765,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { io, Socket } from 'socket.io-client';
 
-const baseURL = 'https://cv-analyser-backend.onrender.com/api/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
 
 interface User {
   _id: string;
@@ -894,7 +894,7 @@ export default function TicketDetail() {
 
     console.log('🔌 Initializing Socket.IO connection...');
 
-    const newSocket = io('https://cv-analyser-backend.onrender.com/tickets', {
+    const newSocket = io('https://amused-celinka-nothingname-3b1ecdef.koyeb.apptickets', {
       auth: { token },
       reconnection: true,
       reconnectionDelay: 1000,

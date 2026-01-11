@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cv-analyser-backend.onrender.com';
+const SOCKET_URL = process.env.NEXT_PUBLIC_API_URL || 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app';
 
 interface Message {
   _id: string;

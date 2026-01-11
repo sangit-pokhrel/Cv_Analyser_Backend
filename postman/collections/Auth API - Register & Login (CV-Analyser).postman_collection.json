@@ -1676,7 +1676,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://cv-analyser-backend.onrender.com/health",
+              "raw": "https://amused-celinka-nothingname-3b1ecdef.koyeb.apphealth",
               "protocol": "http",
               "host": [
                 "localhost"

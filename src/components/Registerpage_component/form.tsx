@@ -8,7 +8,7 @@
 // import { toast } from "sonner";
 // import Link from "next/link";
 
-// const BASE_URL = "https://cv-analyser-backend.onrender.com/api/v1";
+// const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1";
 
 // type FormData = {
 //   firstName?: string;
@@ -379,7 +379,7 @@ import { useForm } from "react-hook-form";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
 import { toast } from "sonner";
 
-const BASE_URL = "https://cv-analyser-backend.onrender.com/api/v1";
+const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1";
 
 type FormData = {
   firstName?: string;
