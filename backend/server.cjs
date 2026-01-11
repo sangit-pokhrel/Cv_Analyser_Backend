@@ -102,7 +102,7 @@
 //     // 5. Start Server
 //     server.listen(PORT,'0.0.0.0', () => {
 //       console.log(`Server listening on port ${PORT} (pid ${process.pid})`);
-//       console.log(`API Ready at: http://localhost:${PORT}/api/v1`);
+//       console.log(`API Ready at: http://localhost:${PORT}//api/v1`);
 //       console.log(`Health Check: http://localhost:${PORT}/health`);
 //       console.log(`WebSocket: ws://localhost:${PORT}`);
 //       console.log(`Ticket Socket: ws://localhost:${PORT}/tickets\n`);
@@ -310,7 +310,7 @@ async function start() {
     // 5. Start Server
     server.listen(PORT,'0.0.0.0', () => {
       console.log(`Server listening on port ${PORT} (pid ${process.pid})`);
-      console.log(`API Ready at: http://localhost:${PORT}/api/v1`);
+      console.log(`API Ready at: http://localhost:${PORT}//api/v1`);
       console.log(`Health Check: http://localhost:${PORT}/health`);
       console.log(`WebSocket: ws://localhost:${PORT}`);
       console.log(`Ticket Socket: ws://localhost:${PORT}/tickets\n`);

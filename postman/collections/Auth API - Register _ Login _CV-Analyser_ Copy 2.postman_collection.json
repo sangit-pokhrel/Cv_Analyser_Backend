@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "e31f2724-9d68-45a7-a849-7f0c0f00442b",
     "name": "Auth API - Register & Login (CV-Analyser) Copy 2",
-    "description": "Postman collection for /api/v1/auth register and login endpoints with sample payloads.",
+    "description": "Postman collection for //api/v1/auth register and login endpoints with sample payloads.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [

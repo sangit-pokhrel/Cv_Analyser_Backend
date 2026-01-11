@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 
-const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1";
+const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1";
 
 export default function VerifyOTPPage() {
   const router = useRouter();

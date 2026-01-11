@@ -410,7 +410,7 @@ async function analyzeCV(req, res) {
       analysisId: record._id,
       status: 'queued',
       estimatedTime: '30-60 seconds',
-      checkStatusUrl: `/api/v1/cv/analyses/${record._id}`
+      checkStatusUrl: `//api/v1/cv/analyses/${record._id}`
     });
     
   } catch (err) {

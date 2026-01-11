@@ -8,7 +8,7 @@
 // import axios from 'axios';
 // import { toast } from 'react-toastify';
 
-// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 // export default function UserLoginPage() {
 //   const router = useRouter();
 //   const [email, setEmail] = useState('');
@@ -301,7 +301,7 @@ import { useAuth } from '@/hooks/useAuth';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 
 export default function UserLoginPage() {
   const router = useRouter();

@@ -6,7 +6,7 @@ import getCookie from "@/globals/getCookie";
 
 const ResumeAnlysisMutationFunc =async (data:any)=>{
   // console.log(data.get('cv'));
-  const res = await axios.post('https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1/cv/analyze',data, {
+  const res = await axios.post('https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1/cv/analyze',data, {
     headers: {
        Authorization: `Bearer ${getCookie('accessToken')}`,
       "Content-Type": "multipart/form-data",

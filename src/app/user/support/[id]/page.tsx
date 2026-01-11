@@ -602,7 +602,7 @@ import { io, Socket } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import RatingModal from '@/components/user/pages/support/RatingModel';
 
-const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 const SOCKET_URL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app';
 
 interface Ticket {

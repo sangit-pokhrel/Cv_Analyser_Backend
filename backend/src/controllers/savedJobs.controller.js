@@ -23,7 +23,7 @@
 // const Job = require('../models/job.model');
 // const mongoose = require('mongoose');
 
-// // POST /api/v1/saved-jobs/:jobId - Save a job
+// // POST //api/v1/saved-jobs/:jobId - Save a job
 // async function saveJob(req, res) {
 //   try {
 //     const { jobId } = req.params;
@@ -75,7 +75,7 @@
 //   }
 // }
 
-// // GET /api/v1/saved-jobs - Get all saved jobs for user
+// // GET //api/v1/saved-jobs - Get all saved jobs for user
 // async function listSaved(req, res) {
 //   try {
 //     const userId = req.user._id;
@@ -116,7 +116,7 @@
 //   }
 // }
 
-// // DELETE /api/v1/saved-jobs/:jobId - Remove saved job
+// // DELETE //api/v1/saved-jobs/:jobId - Remove saved job
 // async function removeSaved(req, res) {
 //   try {
 //     const { jobId } = req.params;
@@ -147,7 +147,7 @@
 //   }
 // }
 
-// // GET /api/v1/saved-jobs/check/:jobId - Check if job is saved
+// // GET //api/v1/saved-jobs/check/:jobId - Check if job is saved
 // async function checkIfSaved(req, res) {
 //   try {
 //     const { jobId } = req.params;
@@ -186,7 +186,7 @@ const SavedJob = require('../models/savedJobs.model');
 const Job = require('../models/job.model');
 const mongoose = require('mongoose');
 
-// POST /api/v1/saved-jobs/:jobId - Save a job
+// POST //api/v1/saved-jobs/:jobId - Save a job
 async function saveJob(req, res) {
   try {
     const { jobId } = req.params;
@@ -241,7 +241,7 @@ async function saveJob(req, res) {
   }
 }
 
-// GET /api/v1/saved-jobs - Get all saved jobs for user
+// GET //api/v1/saved-jobs - Get all saved jobs for user
 async function listSaved(req, res) {
   try {
     const userId = req.user._id || req.user.id;
@@ -282,7 +282,7 @@ async function listSaved(req, res) {
   }
 }
 
-// DELETE /api/v1/saved-jobs/:jobId - Remove saved job
+// DELETE //api/v1/saved-jobs/:jobId - Remove saved job
 async function removeSaved(req, res) {
   try {
     const { jobId } = req.params;

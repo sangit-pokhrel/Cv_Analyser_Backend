@@ -6,13 +6,13 @@
 // // // All routes require authentication
 // // router.use(authenticate);
 
-// // // POST /api/v1/saved-jobs/:jobId - Save a job
+// // // POST //api/v1/saved-jobs/:jobId - Save a job
 // // router.post('/:jobId', ctrl.saveJob);
 
-// // // GET /api/v1/saved-jobs - Get all saved jobs
+// // // GET //api/v1/saved-jobs - Get all saved jobs
 // // router.get('/', ctrl.listSaved);
 
-// // // DELETE /api/v1/saved-jobs/:jobId - Remove saved job
+// // // DELETE //api/v1/saved-jobs/:jobId - Remove saved job
 // // router.delete('/:jobId', ctrl.removeSaved);
 
 // // module.exports = router;
@@ -44,13 +44,13 @@
 // // All routes require authentication
 // router.use(authenticate);
 
-// // POST /api/v1/saved-jobs/:jobId - Save a job
+// // POST //api/v1/saved-jobs/:jobId - Save a job
 // router.post('/:jobId', ctrl.saveJob);
 
-// // GET /api/v1/saved-jobs - Get all saved jobs
+// // GET //api/v1/saved-jobs - Get all saved jobs
 // router.get('/', ctrl.listSaved);
 
-// // DELETE /api/v1/saved-jobs/:jobId - Remove saved job
+// // DELETE //api/v1/saved-jobs/:jobId - Remove saved job
 // router.delete('/:jobId', ctrl.removeSaved);
 
 // module.exports = router;
@@ -63,13 +63,13 @@ const { requireAuth } = require('../middlewares/auth.middleware');
 // All routes require authentication
 router.use(requireAuth);
 
-// POST /api/v1/saved-jobs/:jobId - Save a job
+// POST //api/v1/saved-jobs/:jobId - Save a job
 router.post('/:jobId', ctrl.saveJob);
 
-// GET /api/v1/saved-jobs - Get all saved jobs
+// GET //api/v1/saved-jobs - Get all saved jobs
 router.get('/', ctrl.listSaved);
 
-// DELETE /api/v1/saved-jobs/:jobId - Remove saved job
+// DELETE //api/v1/saved-jobs/:jobId - Remove saved job
 router.delete('/:jobId', ctrl.removeSaved);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const ApiError = require('../../utils/Apierror');
 const ApiResponse = require('../../utils/Apiresponse');
 
 // @desc    Get all skills for logged-in user
-// @route   GET /api/v1/skills
+// @route   GET //api/v1/skills
 // @access  Private
 exports.getMySkills = asyncHandler(async (req, res) => {
   const skills = await Skill.find({ user: req.user._id }).sort({ createdAt: -1 });
@@ -15,7 +15,7 @@ exports.getMySkills = asyncHandler(async (req, res) => {
 });
 
 // @desc    Add a new skill
-// @route   POST /api/v1/skills
+// @route   POST //api/v1/skills
 // @access  Private
 exports.addSkill = asyncHandler(async (req, res) => {
   const { name, experienceLevel } = req.body;
@@ -46,7 +46,7 @@ exports.addSkill = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update a skill
-// @route   PUT /api/v1/skills/:id
+// @route   PUT //api/v1/skills/:id
 // @access  Private
 exports.updateSkill = asyncHandler(async (req, res) => {
   const { name, experienceLevel } = req.body;
@@ -71,7 +71,7 @@ exports.updateSkill = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete a skill
-// @route   DELETE /api/v1/skills/:id
+// @route   DELETE //api/v1/skills/:id
 // @access  Private
 exports.deleteSkill = asyncHandler(async (req, res) => {
   const skill = await Skill.findOne({
@@ -91,7 +91,7 @@ exports.deleteSkill = asyncHandler(async (req, res) => {
 });
 
 // @desc    Endorse a skill (increment endorsement count)
-// @route   POST /api/v1/skills/:id/endorse
+// @route   POST //api/v1/skills/:id/endorse
 // @access  Private
 exports.endorseSkill = asyncHandler(async (req, res) => {
   const skill = await Skill.findById(req.params.id);

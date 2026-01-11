@@ -9,7 +9,7 @@
 // import { toast } from 'react-toastify';
 // import { io, Socket } from 'socket.io-client';
 
-// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+// const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 
 // interface User {
 //   _id: string;
@@ -765,7 +765,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { io, Socket } from 'socket.io-client';
 
-const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 
 interface User {
   _id: string;

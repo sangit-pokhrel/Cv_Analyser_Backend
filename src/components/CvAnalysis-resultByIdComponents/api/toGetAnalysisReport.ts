@@ -5,7 +5,7 @@ const fetchCvAnalysis = async (analysisId: string) => {
 
 
  const res = await axios.get(
-  `https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1/cv/analyses/${analysisId}`,
+  `https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1/cv/analyses/${analysisId}`,
   {
     headers: {
       Authorization: `Bearer ${getCookie('accessToken')}`,

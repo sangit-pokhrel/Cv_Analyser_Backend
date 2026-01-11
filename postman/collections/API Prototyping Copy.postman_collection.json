@@ -45,7 +45,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{url}}/api/v1/transactions",
+              "raw": "{{url}}//api/v1/transactions",
               "host": [
                 "{{url}}"
               ],
@@ -85,7 +85,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions",
+                  "raw": "{{url}}//api/v1/transactions",
                   "host": [
                     "{{url}}"
                   ],
@@ -151,7 +151,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions?createdAt=2024-01-10&toAccountID=18974440&fromAccountId=9999999",
+                  "raw": "{{url}}//api/v1/transactions?createdAt=2024-01-10&toAccountID=18974440&fromAccountId=9999999",
                   "host": [
                     "{{url}}"
                   ],
@@ -201,7 +201,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions",
+                  "raw": "{{url}}//api/v1/transactions",
                   "host": [
                     "{{url}}"
                   ],
@@ -266,7 +266,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{url}}/api/v1/transactions/:id",
+              "raw": "{{url}}//api/v1/transactions/:id",
               "host": [
                 "{{url}}"
               ],
@@ -294,7 +294,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "raw": "{{url}}//api/v1/transactions/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -348,7 +348,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "raw": "{{url}}//api/v1/transactions/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -402,7 +402,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions/:id",
+                  "raw": "{{url}}//api/v1/transactions/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -484,7 +484,7 @@
               }
             },
             "url": {
-              "raw": "{{url}}/api/v1/transactions",
+              "raw": "{{url}}//api/v1/transactions",
               "host": [
                 "{{url}}"
               ],
@@ -513,7 +513,7 @@
                   }
                 },
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions",
+                  "raw": "{{url}}//api/v1/transactions",
                   "host": [
                     "{{url}}"
                   ],
@@ -555,7 +555,7 @@
                   }
                 },
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions",
+                  "raw": "{{url}}//api/v1/transactions",
                   "host": [
                     "{{url}}"
                   ],
@@ -610,7 +610,7 @@
                   }
                 },
                 "url": {
-                  "raw": "{{url}}/api/v1/transactions",
+                  "raw": "{{url}}//api/v1/transactions",
                   "host": [
                     "{{url}}"
                   ],
@@ -677,7 +677,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{url}}/api/v1/accounts?createdAt=2023-04-10",
+              "raw": "{{url}}//api/v1/accounts?createdAt=2023-04-10",
               "host": [
                 "{{url}}"
               ],
@@ -710,7 +710,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts?createdAt=2023-04-10",
+                  "raw": "{{url}}//api/v1/accounts?createdAt=2023-04-10",
                   "host": [
                     "{{url}}"
                   ],
@@ -754,7 +754,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts?owner=Nova Newman",
+                  "raw": "{{url}}//api/v1/accounts?owner=Nova Newman",
                   "host": [
                     "{{url}}"
                   ],
@@ -793,7 +793,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts?owner=Norman Nobody&createdAt=2023-04-10",
+                  "raw": "{{url}}//api/v1/accounts?owner=Norman Nobody&createdAt=2023-04-10",
                   "host": [
                     "{{url}}"
                   ],
@@ -836,7 +836,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts",
+                  "raw": "{{url}}//api/v1/accounts",
                   "host": [
                     "{{url}}"
                   ],
@@ -904,7 +904,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{url}}/api/v1/accounts/:id",
+              "raw": "{{url}}//api/v1/accounts/:id",
               "host": [
                 "{{url}}"
               ],
@@ -932,7 +932,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -986,7 +986,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1039,7 +1039,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1129,7 +1129,7 @@
               }
             },
             "url": {
-              "raw": "{{url}}/api/v1/accounts/:id",
+              "raw": "{{url}}//api/v1/accounts/:id",
               "host": [
                 "{{url}}"
               ],
@@ -1165,7 +1165,7 @@
                   }
                 },
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1205,7 +1205,7 @@
                 "method": "PATCH",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1258,7 +1258,7 @@
                 "method": "PATCH",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1330,7 +1330,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{url}}/api/v1/accounts/:id",
+              "raw": "{{url}}//api/v1/accounts/:id",
               "host": [
                 "{{url}}"
               ],
@@ -1357,7 +1357,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1389,7 +1389,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1442,7 +1442,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts/:id",
+                  "raw": "{{url}}//api/v1/accounts/:id",
                   "host": [
                     "{{url}}"
                   ],
@@ -1523,7 +1523,7 @@
               }
             },
             "url": {
-              "raw": "{{url}}/api/v1/accounts",
+              "raw": "{{url}}//api/v1/accounts",
               "host": [
                 "{{url}}"
               ],
@@ -1552,7 +1552,7 @@
                   }
                 },
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts",
+                  "raw": "{{url}}//api/v1/accounts",
                   "host": [
                     "{{url}}"
                   ],
@@ -1585,7 +1585,7 @@
                 "method": "POST",
                 "header": [],
                 "url": {
-                  "raw": "{{url}}/api/v1/accounts",
+                  "raw": "{{url}}//api/v1/accounts",
                   "host": [
                     "{{url}}"
                   ],

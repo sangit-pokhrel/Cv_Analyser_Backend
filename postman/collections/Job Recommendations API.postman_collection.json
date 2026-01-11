@@ -363,7 +363,7 @@
     {
       "id": "ccb95d12-9648-4672-95f1-043e0cce5ee3",
       "key": "base_url",
-      "value": "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1",
+      "value": "https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1",
       "type": "string"
     },
     {

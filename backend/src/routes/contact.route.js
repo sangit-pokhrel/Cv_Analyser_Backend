@@ -104,50 +104,50 @@ const optionalAuth = (req, res, next) => {
 
 // ==================== PUBLIC ROUTES ====================
 
-// POST /api/v1/contact - Create new contact inquiry (NO AUTH REQUIRED)
+// POST //api/v1/contact - Create new contact inquiry (NO AUTH REQUIRED)
 // Rate limited by IP: max 3 per day, 5 min cooldown between requests
 router.post('/', createContact);
 
 // ==================== USER ROUTES (Auth Required) ====================
 
-// GET /api/v1/contact/my - Get user's own inquiries
+// GET //api/v1/contact/my - Get user's own inquiries
 router.get('/my', requireAuth, getMyInquiries);
 
-// GET /api/v1/contact/my/:id - Get specific inquiry (user's own)
+// GET //api/v1/contact/my/:id - Get specific inquiry (user's own)
 router.get('/my/:id', requireAuth, getMyInquiry);
 
-// DELETE /api/v1/contact/my/:id - Delete user's own inquiry
+// DELETE //api/v1/contact/my/:id - Delete user's own inquiry
 router.delete('/my/:id', requireAuth, deleteMyInquiry);
 
 // ==================== ADMIN ROUTES ====================
 
-// GET /api/v1/contact/admin - Get all inquiries (admin only)
+// GET //api/v1/contact/admin - Get all inquiries (admin only)
 router.get('/admin', requireAuth, permit("admin"), adminGetAllInquiries);
 
-// GET /api/v1/contact/admin/:id - Get specific inquiry (admin only)
+// GET //api/v1/contact/admin/:id - Get specific inquiry (admin only)
 router.get('/admin/:id', requireAuth, permit("admin"), adminGetInquiry);
 
-// PUT /api/v1/contact/admin/:id - Update inquiry (admin only)
+// PUT //api/v1/contact/admin/:id - Update inquiry (admin only)
 router.put('/admin/:id', requireAuth, permit("admin"), adminUpdateInquiry);
 
-// DELETE /api/v1/contact/admin/:id - Delete inquiry (admin only)
+// DELETE //api/v1/contact/admin/:id - Delete inquiry (admin only)
 router.delete('/admin/:id', requireAuth, permit("admin"), adminDeleteInquiry);
 
-// DELETE /api/v1/contact/admin - Delete all inquiries (admin only, requires confirmation)
+// DELETE //api/v1/contact/admin - Delete all inquiries (admin only, requires confirmation)
 router.delete('/admin', requireAuth, permit("admin"), adminDeleteAllInquiries);
 
 // ==================== ADMIN IP MANAGEMENT ROUTES ====================
 
-// GET /api/v1/contact/admin/blocked-ips - Get all blocked IPs
+// GET //api/v1/contact/admin/blocked-ips - Get all blocked IPs
 router.get('/admin/blocked-ips', requireAuth, permit("admin"), adminGetBlockedIPs);
 
-// POST /api/v1/contact/admin/block-ip - Block an IP
+// POST //api/v1/contact/admin/block-ip - Block an IP
 router.post('/admin/block-ip', requireAuth, permit("admin"), adminBlockIP);
 
-// DELETE /api/v1/contact/admin/unblock-ip/:ip - Unblock an IP
+// DELETE //api/v1/contact/admin/unblock-ip/:ip - Unblock an IP
 router.delete('/admin/unblock-ip/:ip', requireAuth, permit("admin"), adminUnblockIP);
 
-// GET /api/v1/contact/admin/ip-stats/:ip - Get rate limit stats for an IP
+// GET //api/v1/contact/admin/ip-stats/:ip - Get rate limit stats for an IP
 router.get('/admin/ip-stats/:ip', requireAuth, permit("admin"), adminGetIPStats);
 
 module.exports = router;

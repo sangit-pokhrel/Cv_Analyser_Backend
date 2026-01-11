@@ -50,7 +50,7 @@ export default function AnalysisResultPage() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/v1/cv/analyses/${analysisId}`, {
+      const res = await fetch(`${API_URL}//api/v1/cv/analyses/${analysisId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

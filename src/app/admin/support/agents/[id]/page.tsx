@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1';
+const baseURL = 'https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1';
 
 interface Review {
   _id: string;

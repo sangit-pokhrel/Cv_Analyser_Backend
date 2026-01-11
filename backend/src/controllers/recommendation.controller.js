@@ -14,7 +14,7 @@ const JobMatch = require('../models/jobMatch.model');
 
 /**
  * Generate recommendations for current user
- * POST /api/v1/recommendations/generate
+ * POST //api/v1/recommendations/generate
  */
 async function generateRecommendations(req, res) {
   try {
@@ -55,7 +55,7 @@ async function generateRecommendations(req, res) {
 
 /**
  * Get user's recommendations
- * GET /api/v1/recommendations
+ * GET //api/v1/recommendations
  * Query params: status (recommended|viewed|applied|dismissed), limit
  */
 async function getRecommendations(req, res) {
@@ -85,7 +85,7 @@ async function getRecommendations(req, res) {
 
 /**
  * Get single recommendation with details
- * GET /api/v1/recommendations/:id
+ * GET //api/v1/recommendations/:id
  */
 async function getRecommendation(req, res) {
   try {
@@ -124,7 +124,7 @@ async function getRecommendation(req, res) {
 
 /**
  * Mark recommendation as viewed
- * PUT /api/v1/recommendations/:id/view
+ * PUT //api/v1/recommendations/:id/view
  */
 async function markAsViewed(req, res) {
   try {
@@ -150,7 +150,7 @@ async function markAsViewed(req, res) {
 
 /**
  * Dismiss recommendation
- * PUT /api/v1/recommendations/:id/dismiss
+ * PUT //api/v1/recommendations/:id/dismiss
  */
 async function dismissRecommendation(req, res) {
   try {
@@ -176,7 +176,7 @@ async function dismissRecommendation(req, res) {
 
 /**
  * Clear all recommendations for user
- * DELETE /api/v1/recommendations
+ * DELETE //api/v1/recommendations
  */
 async function clearRecommendations(req, res) {
   try {
@@ -200,7 +200,7 @@ async function clearRecommendations(req, res) {
 
 /**
  * Get recommendation stats for user
- * GET /api/v1/recommendations/stats
+ * GET //api/v1/recommendations/stats
  */
 async function getRecommendationStats(req, res) {
   try {

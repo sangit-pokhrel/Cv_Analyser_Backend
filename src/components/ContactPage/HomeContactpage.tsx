@@ -20,7 +20,7 @@ interface FormErrors {
   message?: string;
 }
 
-const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1";
+const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1";
 
 const faqData = [
   {

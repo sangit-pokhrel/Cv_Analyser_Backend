@@ -108,7 +108,7 @@ export default function CVAnalysisPage() {
     formData.append('cv', selectedFile);
 
     try {
-      const res = await fetch(`${API_URL}/api/v1/cv/analyze`, {
+      const res = await fetch(`${API_URL}//api/v1/cv/analyze`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

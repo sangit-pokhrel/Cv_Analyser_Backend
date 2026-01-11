@@ -194,7 +194,7 @@ export default function AdminSidebar() {
 
       if (!token) return;
 
-      const { data } = await axios.get('https://amused-celinka-nothingname-3b1ecdef.koyeb.appapi/v1/users/me', {
+      const { data } = await axios.get('https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1/users/me', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setUserRole(data.user?.role || '');
