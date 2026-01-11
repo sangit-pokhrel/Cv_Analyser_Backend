@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Inquiries - CV Saathi User",
+  title: "Contact Inquiries - Career Sync User",
   description: "Manage contact inquiries and support tickets",
 };
 

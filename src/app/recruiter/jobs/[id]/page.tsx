@@ -112,7 +112,7 @@ export default function JobDetailsPage() {
             <div>
               <label className="text-sm text-gray-500">Salary Range</label>
               <p className="text-lg font-bold">
-                ${job.salaryMin.toLocaleString()} - ${job.salaryMax.toLocaleString()}
+               ₹toLocaleString()} - ${job.salaryMax.toLocaleString()}
               </p>
             </div>
           )}

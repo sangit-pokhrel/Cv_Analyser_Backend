@@ -2,7 +2,7 @@
 import type {Metadata} from "next";
 
 export const metadata: Metadata = {
-  title: "Settings - CV Saathi Admin",
+  title: "Settings - Career Sync Admin",
   description: "View and manage users settings",
 };
 

@@ -165,7 +165,7 @@
 //             <span className="text-4xl text-white">👨‍💼</span>
 //           </div>
 //           <h1 className="text-2xl font-bold mb-2">Admin Login</h1>
-//           <p className="text-sm text-gray-500">CV Saathi Administration</p>
+//           <p className="text-sm text-gray-500">Career Sync Administration</p>
 //         </div>
 
 //         <form onSubmit={handleLogin} className="space-y-4">
@@ -474,7 +474,7 @@ export default function AdminLoginPage() {
             <span className="text-4xl text-white">👨‍💼</span>
           </div>
           <h1 className="text-2xl font-bold mb-2">Admin Login</h1>
-          <p className="text-sm text-gray-500">CV Saathi Administration</p>
+          <p className="text-sm text-gray-500">Career Sync Administration</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">

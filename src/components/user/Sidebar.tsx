@@ -161,7 +161,7 @@
 //                 <span className="text-2xl">📄</span>
 //               </div>
 //               <div>
-//                 <h2 className="font-bold text-xl">CV Saathi</h2>
+//                 <h2 className="font-bold text-xl">Career Sync</h2>
 //                 <p className="text-xs text-gray-500">Together We Grow, Together We Improve</p>
 //               </div>
 //             </div>
@@ -494,7 +494,7 @@ export default function UserSidebar() {
                 <span className="text-2xl">📄</span>
               </div>
               <div>
-                <h2 className="font-bold text-xl">CV Saathi</h2>
+                <h2 className="font-bold text-xl">Career Sync</h2>
                 <p className="text-xs text-gray-500">Together We Grow, Together We Improve</p>
               </div>
             </div>

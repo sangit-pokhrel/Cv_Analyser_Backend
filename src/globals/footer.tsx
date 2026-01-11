@@ -32,7 +32,7 @@ const Footer = () => {
       <div className=" grid grid-cols-2 md:grid-cols-4 items-start justify-evenly footer_bg w-full px-10 pt-10">
         <div>
           <div className="flex flex-col items-start    col-span-2">
-            <h1 className="text-white text-xl mb-1 font-semibold">Cv Saathi</h1>
+            <h1 className="text-white text-xl mb-1 font-semibold">Career Sync</h1>
             <p className="text-xs text-white w-[55%]">
               Transform your resume with AI-powered analysis and land our dream
               job faster.
@@ -139,7 +139,7 @@ const Footer = () => {
       <div>
         <hr className="text-white" />
         <h1 className="text-white text-xs  p-5 footer_bg">
-          © 2025 Cv Saathi Pvt Ltd. All Rights Reserved.
+          © 2025 Career Sync Pvt Ltd. All Rights Reserved.
         </h1>
         <hr className="text-white" />
         <div className="footer_bg h-10">

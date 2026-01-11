@@ -23,7 +23,7 @@
 // //       <div className=" h-full ">
 // //             <div>
 // //               <h1 className="font-semibold text-3xl">Create An Account</h1>
-// //             <p className="font-thin text-gray-500 text-sm mt-0">New to the site ? No worries registration is easy as finding job on Cv Saathi !</p>
+// //             <p className="font-thin text-gray-500 text-sm mt-0">New to the site ? No worries registration is easy as finding job on Career Sync !</p>
 // //             </div>
 // //             <RegistrationForm/>
 // //             <div className="flex justify-center items-center">
@@ -102,7 +102,7 @@
 //                 Create An Account
 //               </h1>
 //               <p className="text-sm text-gray-500">
-//                 New to the site? No worries, registration is easy as finding a job on Cv Saathi!
+//                 New to the site? No worries, registration is easy as finding a job on Career Sync!
 //               </p>
 //             </div>
 
@@ -196,7 +196,7 @@ const RegisterPage = () => {
               </h1>
               <p className="text-gray-500 text-sm">
                 New to the site? No worries! Registration is easy as finding
-                jobs on CV Saathi! 😊
+                jobs on Career Sync! 😊
               </p>
             </div>
 

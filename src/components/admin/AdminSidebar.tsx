@@ -66,7 +66,7 @@
 //             </div>
 //             {!isSidebarCollapsed && (
 //               <div>
-//                 <h2 className="font-bold text-xl">CV Saathi</h2>
+//                 <h2 className="font-bold text-xl">Career Sync</h2>
 //               </div>
 //             )}
 //           </div>
@@ -247,7 +247,7 @@ export default function AdminSidebar() {
             </div>
             {!isSidebarCollapsed && (
               <div>
-                <h2 className="font-bold text-xl">CV Saathi</h2>
+                <h2 className="font-bold text-xl">Career Sync</h2>
               </div>
             )}
           </div>

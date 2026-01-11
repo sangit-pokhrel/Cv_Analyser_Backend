@@ -55,7 +55,7 @@
      
 //            <div className="flex flex-col gap-y-8 py-6 w-full">
 //               <div className="flex flex-col justify-center items-center gap-y-4" >
-//                 <h2 className="text-3xl text-white text-center font-bold">Why Choose Cv Saathi ?</h2>
+//                 <h2 className="text-3xl text-white text-center font-bold">Why Choose Career Sync ?</h2>
 //                 <p className=" text-md md:text-xs text-white  text-center">Our AI-powered platform provides comprehensive analysis to help land your dream job</p>
 //               </div>
 //                {/* Desktop View */}
@@ -279,7 +279,7 @@ const WhyChooseSection = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Why Choose{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              CV Saathi
+              Career Sync
             </span>
             ?
           </h2>

@@ -458,7 +458,7 @@ const ms = (str) => {
 // ==================== EMAIL TEMPLATES ====================
 const otpEmailTemplate = ({ user, otp }) => ({
   to: user.email,
-  subject: 'Verify Your Email - CV Saathi',
+  subject: 'Verify Your Email - Career Sync',
   html: `
     <!DOCTYPE html>
     <html>
@@ -475,7 +475,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
               <!-- Header -->
               <tr>
                 <td style="padding: 40px 40px 20px; text-align: center; background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%); border-radius: 16px 16px 0 0;">
-                  <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">CV Saathi</h1>
+                  <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">Career Sync</h1>
                   <p style="margin: 10px 0 0; color: rgba(255,255,255,0.9); font-size: 16px;">Email Verification</p>
                 </td>
               </tr>
@@ -487,7 +487,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
                     Hello${user.firstName ? ` ${user.firstName}` : ''}! 👋
                   </h2>
                   <p style="margin: 0 0 20px; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                    Thank you for registering with CV Saathi. To complete your registration and verify your email address, please use the following OTP code:
+                    Thank you for registering with Career Sync. To complete your registration and verify your email address, please use the following OTP code:
                   </p>
                   
                   <!-- OTP Box -->
@@ -502,7 +502,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
                     ⏰ This code will expire in <strong>${OTP_EXPIRY_MINUTES} minutes</strong>.
                   </p>
                   <p style="margin: 0 0 20px; color: #4b5563; font-size: 14px; line-height: 1.6;">
-                    🔒 If you didn't create an account with CV Saathi, please ignore this email.
+                    🔒 If you didn't create an account with Career Sync, please ignore this email.
                   </p>
                   
                   <!-- Security Note -->
@@ -521,7 +521,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
                     Need help? Contact us at <a href="mailto:support@cvsaathi.com" style="color: #0891b2; text-decoration: none;">support@cvsaathi.com</a>
                   </p>
                   <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-                    © ${new Date().getFullYear()} CV Saathi. All rights reserved.
+                    © ${new Date().getFullYear()} Career Sync. All rights reserved.
                   </p>
                 </td>
               </tr>
@@ -535,7 +535,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
   text: `
     Hello${user.firstName ? ` ${user.firstName}` : ''}!
     
-    Thank you for registering with CV Saathi.
+    Thank you for registering with Career Sync.
     
     Your verification code is: ${otp}
     
@@ -543,7 +543,7 @@ const otpEmailTemplate = ({ user, otp }) => ({
     
     If you didn't create an account, please ignore this email.
     
-    - CV Saathi Team
+    - Career Sync Team
   `
 });
 

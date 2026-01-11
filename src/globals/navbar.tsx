@@ -13,10 +13,11 @@ import { useContext } from "react";
 import { ThemeContext } from "@/app/context/ThemeProvider";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
-
+import logo from "../../public/log.png"
 const BASE_URL = "https://amused-celinka-nothingname-3b1ecdef.koyeb.app/api/v1";
 
 import "./styles/navbar.css";
+import Image from "next/image";
 
 interface User {
   _id: string;
@@ -76,11 +77,11 @@ const Navbar = () => {
         return;
       }
 
-      const response = await fetch(`${BASE_URL}/users/me`, {
+      const response = await fetch(`₹{BASE_URL}/users/me`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ₹{accessToken}`,
         },
         credentials: "include",
       });
@@ -144,11 +145,11 @@ const Navbar = () => {
       }
 
       // Verify token and get current user data
-      const response = await fetch(`${BASE_URL}/users/me`, {
+      const response = await fetch(`₹{BASE_URL}/users/me`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ₹{accessToken}`,
         },
         credentials: "include",
       });
@@ -184,7 +185,7 @@ const Navbar = () => {
       const userRole = verifiedUser.role || "user";
       const dashboardRoute = DASHBOARD_ROUTES[userRole] || "/user";
 
-      console.log(`Navigating to ${dashboardRoute} for role: ${userRole}`);
+      console.log(`Navigating to ₹{dashboardRoute} for role: ₹{userRole}`);
       
       // Navigate to role-specific dashboard
       router.push(dashboardRoute);
@@ -201,10 +202,10 @@ const Navbar = () => {
     try {
       const accessToken = Cookies.get("accessToken");
 
-      await fetch(`${BASE_URL}/auth/logout`, {
+      await fetch(`₹{BASE_URL}/auth/logout`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ₹{accessToken}`,
         },
         credentials: "include",
       });
@@ -242,12 +243,12 @@ const Navbar = () => {
   const getUserInitials = () => {
     if (!user) return "U";
     if (user.firstName && user.lastName) {
-      return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase();
+      return `₹{user.firstName[0]}₹{user.lastName[0]}`.toUpperCase();
     }
     if (user.fullName) {
       const parts = user.fullName.split(" ");
       return parts.length > 1
-        ? `${parts[0][0]}${parts[1][0]}`.toUpperCase()
+        ? `₹{parts[0][0]}₹{parts[1][0]}`.toUpperCase()
         : parts[0][0].toUpperCase();
     }
     return user.email[0].toUpperCase();
@@ -318,23 +319,12 @@ const Navbar = () => {
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center shadow-md">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
+             
+            <Image src={logo} alt="Logo" width={30} height={2} />
+
+              
               <span className="font-semibold text-gray-800 dark:text-white text-lg">
-                CV Saathi
+                Career Sync
               </span>
             </Link>
 
@@ -406,14 +396,14 @@ const Navbar = () => {
                         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                           <p className="text-sm font-semibold text-gray-800 dark:text-white truncate">
                             {user.fullName ||
-                              `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+                              `₹{user.firstName || ""} ₹{user.lastName || ""}`.trim() ||
                               "User"}
                           </p>
                           <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                             {user.email}
                           </p>
                           <span
-                            className={`inline-block mt-1 px-2 py-0.5 text-xs rounded-full ${getRoleBadgeColor()}`}
+                            className={`inline-block mt-1 px-2 py-0.5 text-xs rounded-full ₹{getRoleBadgeColor()}`}
                           >
                             {formatRole(user.role)}
                           </span>
@@ -561,7 +551,7 @@ const Navbar = () => {
                     </svg>
                   </div>
                   <span className="font-semibold text-gray-800 dark:text-white text-xl">
-                    CV Saathi
+                    Career Sync
                   </span>
                 </Link>
               </div>
@@ -584,14 +574,14 @@ const Navbar = () => {
                     <div>
                       <p className="font-semibold text-gray-800 dark:text-white">
                         {user.fullName ||
-                          `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+                          `₹{user.firstName || ""} ₹{user.lastName || ""}`.trim() ||
                           "User"}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[150px]">
                         {user.email}
                       </p>
                       <span
-                        className={`inline-block mt-1 px-2 py-0.5 text-xs rounded-full ${getRoleBadgeColor()}`}
+                        className={`inline-block mt-1 px-2 py-0.5 text-xs rounded-full ₹{getRoleBadgeColor()}`}
                       >
                         {formatRole(user.role)}
                       </span>

@@ -4,7 +4,7 @@ export const jobs: Job[] = [
   {
     id: "1",
     title: "Senior Frontend Developer",
-    company: "Cv Saathi Pvt Ltd",
+    company: "Career Sync Pvt Ltd",
     category: "Development",
     location: "Ghattekulo",
     experienceYears: 5,
@@ -26,7 +26,7 @@ export const jobs: Job[] = [
     experienceLabel: "3+ years",
     positionType: "Full-Time",
     isOnsite: false,
-    salary: "₹80,000 - ₹100,000 / month",
+    salary: "₹80,000 - 100,000 / month",
     openings: 2,
     deadline: "2025-12-15",
     postedDate: "2025-11-20",

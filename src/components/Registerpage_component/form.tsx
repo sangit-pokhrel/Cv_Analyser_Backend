@@ -121,7 +121,7 @@
 //               Create Account
 //             </h1>
 //             <p className="text-gray-500 text-sm">
-//               Join CV Saathi and land your dream job
+//               Join Career Sync and land your dream job
 //             </p>
 //           </div>
 

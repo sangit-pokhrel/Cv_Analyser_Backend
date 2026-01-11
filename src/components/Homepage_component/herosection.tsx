@@ -110,7 +110,7 @@ const HeroSection = () => {
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-full text-sm font-medium shadow-lg shadow-cyan-600/25">
                 <BsStars className="text-yellow-300" />
-                1000+ Jobs Available
+                100+ Jobs Available
               </span>
             </motion.div>
 

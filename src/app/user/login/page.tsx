@@ -237,7 +237,7 @@
 //           <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
 //             <span className="text-4xl">📄</span>
 //           </div>
-//           <h1 className="text-2xl font-bold mb-2">CV Saathi</h1>
+//           <h1 className="text-2xl font-bold mb-2">Career Sync</h1>
 //           <p className="text-sm text-gray-500">Together We Grow, Together We Improve</p>
 //         </div>
 
@@ -508,7 +508,7 @@ export default function UserLoginPage() {
           <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-4xl">📄</span>
           </div>
-          <h1 className="text-2xl font-bold mb-2">CV Saathi</h1>
+          <h1 className="text-2xl font-bold mb-2">Career Sync</h1>
           <p className="text-sm text-gray-500">Together We Grow, Together We Improve</p>
         </div>
 

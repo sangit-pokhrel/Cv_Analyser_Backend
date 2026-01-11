@@ -281,7 +281,7 @@
 //         </a>
 //       </p>
 //       <p><strong>⚠️ Important:</strong> This link can only be opened once and expires on ${data.expiryDate}</p>
-//       <p>Good luck!<br>CV Saathi Team</p>
+//       <p>Good luck!<br>Career Sync Team</p>
 //     `,
     
 //     'assessment-approved': `
@@ -292,7 +292,7 @@
 //       ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
 //       <p><strong>Feedback:</strong> ${data.feedback}</p>
 //       <p>Your coach will contact you soon to schedule a video interview.</p>
-//       <p>Best regards,<br>CV Saathi Team</p>
+//       <p>Best regards,<br>Career Sync Team</p>
 //     `,
     
 //     'assessment-rejected': `
@@ -303,7 +303,7 @@
 //       ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
 //       <p><strong>Feedback:</strong> ${data.feedback}</p>
 //       <p>Keep improving and don't give up!</p>
-//       <p>Best regards,<br>CV Saathi Team</p>
+//       <p>Best regards,<br>Career Sync Team</p>
 //     `,
     
 //     'interview-scheduled': `
@@ -320,7 +320,7 @@
 //         </a>
 //       </p>
 //       <p>You'll receive a reminder 1 day and 1 hour before the interview.</p>
-//       <p>Best regards,<br>CV Saathi Team</p>
+//       <p>Best regards,<br>Career Sync Team</p>
 //     `,
     
 //     'interview-cancelled': `
@@ -329,7 +329,7 @@
 //       <p>${data.coachName} has cancelled your scheduled interview.</p>
 //       ${data.reason ? `<p><strong>Reason:</strong> ${data.reason}</p>` : ''}
 //       <p>Your coach will contact you for rescheduling if needed.</p>
-//       <p>Best regards,<br>CV Saathi Team</p>
+//       <p>Best regards,<br>Career Sync Team</p>
 //     `,
     
 //     'new-assignment': `
@@ -345,7 +345,7 @@
 //           View Assignment
 //         </a>
 //       </p>
-//       <p>Good luck!<br>CV Saathi Team</p>
+//       <p>Good luck!<br>Career Sync Team</p>
 //     `
 //   };
   
@@ -760,7 +760,7 @@ function generatePlainTextEmail(template, data) {
         </a>
       </p>
       <p><strong>⚠️ Important:</strong> This link can only be opened once and expires on ${data.expiryDate}</p>
-      <p>Good luck!<br>CV Saathi Team</p>
+      <p>Good luck!<br>Career Sync Team</p>
     `,
     
     'assessment-approved': `
@@ -771,7 +771,7 @@ function generatePlainTextEmail(template, data) {
       ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
       <p><strong>Feedback:</strong> ${data.feedback}</p>
       <p>Your coach will contact you soon to schedule a video interview.</p>
-      <p>Best regards,<br>CV Saathi Team</p>
+      <p>Best regards,<br>Career Sync Team</p>
     `,
     
     'assessment-rejected': `
@@ -782,7 +782,7 @@ function generatePlainTextEmail(template, data) {
       ${data.mcqScore ? `<p><strong>MCQ Score:</strong> ${data.mcqScore}%</p>` : ''}
       <p><strong>Feedback:</strong> ${data.feedback}</p>
       <p>Keep improving and don't give up!</p>
-      <p>Best regards,<br>CV Saathi Team</p>
+      <p>Best regards,<br>Career Sync Team</p>
     `,
     
     'interview-scheduled': `
@@ -799,7 +799,7 @@ function generatePlainTextEmail(template, data) {
         </a>
       </p>
       <p>You'll receive a reminder 1 day and 1 hour before the interview.</p>
-      <p>Best regards,<br>CV Saathi Team</p>
+      <p>Best regards,<br>Career Sync Team</p>
     `,
     
     'interview-cancelled': `
@@ -808,7 +808,7 @@ function generatePlainTextEmail(template, data) {
       <p>${data.coachName} has cancelled your scheduled interview.</p>
       ${data.reason ? `<p><strong>Reason:</strong> ${data.reason}</p>` : ''}
       <p>Your coach will contact you for rescheduling if needed.</p>
-      <p>Best regards,<br>CV Saathi Team</p>
+      <p>Best regards,<br>Career Sync Team</p>
     `,
     
     'new-assignment': `
@@ -824,7 +824,7 @@ function generatePlainTextEmail(template, data) {
           View Assignment
         </a>
       </p>
-      <p>Good luck!<br>CV Saathi Team</p>
+      <p>Good luck!<br>Career Sync Team</p>
     `
   };
   
