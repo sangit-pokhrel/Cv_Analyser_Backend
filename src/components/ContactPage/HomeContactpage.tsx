@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
+import getCookie from "@/globals/getCookie";
+import Container from "@/globals/container";
 interface FormData {
   name: string;
   email: string;
@@ -151,6 +152,8 @@ export default function ContactPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+           Authorization: `Bearer ${getCookie("accessToken")}`
+
         },
         body: JSON.stringify(formData),
       });
@@ -211,7 +214,8 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-cyan-50 via-white to-cyan-50 mt-12">
+    <Container>
+      <div className="bg-linear-to-b from-cyan-50 via-white to-cyan-50 mt-12">
       {/* Hero Section */}
       <section className="py-12 text-center">
         <div className="inline-block bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
@@ -751,5 +755,6 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    </Container>
   );
 }

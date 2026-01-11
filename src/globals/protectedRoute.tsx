@@ -1,19 +1,14 @@
 'use client'
 
 import React from "react";
-function getCookie(name: string) {
-  return document.cookie
-    .split("; ")
-    .find(row => row.startsWith(name + "="))
-    ?.split("=")[1];
-}
+import getCookie from "./getCookie";
 
 
 
 
 const ProtectedRoute =({children}:{children:React.ReactNode})=>{
 
-  const token = getCookie('Token');
+  const token = getCookie('accessToken');
   if(token){
     return (<div>
       {children}

@@ -22,7 +22,7 @@ const Herosection = ()=>{
   return(
     <Section>
       <div className="border border-gray-400 bg-white py-5 px-6 flex flex-col gap-y-4 rounded-xl ">
-      <div className="flex items-center justify-between">
+      <div className="flex md:flex-row flex-col items-center justify-between md:gap-y-0 gap-y-4">
         <div className="flex items-center gap-x-4">
             <div>
                 <FaPlaystation size={50} />
@@ -79,8 +79,8 @@ const Herosection = ()=>{
       </div>
       </div>
       <hr className=" text-gray-400 " />
-      <div className="flex  justify-between">
-        <div className="flex  gap-x-8 ">
+      <div className="flex md:flex-row flex-col  justify-between">
+        <div className="grid grid-cols-2 md:grid-cols-3  gap-x-8 md:gap-y-0 gap-y-4 ">
         <div className="flex items-start gap-x-2 ">
           <PiMoney size={25}/>
           <div>

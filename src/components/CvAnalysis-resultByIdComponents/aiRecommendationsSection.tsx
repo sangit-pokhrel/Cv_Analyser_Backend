@@ -6,7 +6,7 @@ import Section from "@/globals/section";
 
 
 type AiRecommendationsSectionProps = {
- recommendations: string[];
+ recommendations: string[] ;
 };
 
 const AiRecommendationsSection = ({
@@ -15,7 +15,7 @@ const AiRecommendationsSection = ({
   return (
     <Section>
       <div className="flex flex-col gap-y-4">
-        {recommendations.map((recommendation,index)=>{
+        {recommendations?.map((recommendation,index)=>{
         return(
           <div key={index} className="flex flex-col  gap-x-5 gap-y-4  bg-white rounded-2xl p-8 shadow-[-6px_0_0px_rgba(23,174,255,1)] border-2 border-gray-300 border-l-0">
         <div className="flex flex-col">

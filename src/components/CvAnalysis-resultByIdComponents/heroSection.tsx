@@ -1,6 +1,7 @@
 "use client";
 import Section from "@/globals/section";
 import '@/globals/styles/style.color.css'
+import { motion } from "framer-motion";
 type ATSScoreProps = {
   overall_Score: number; // 0 - 100
 };

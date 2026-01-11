@@ -8,6 +8,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiUploadCloud, FiFile, FiX } from "react-icons/fi";
 import { BsFiletypePdf, BsFileWord, BsStars } from "react-icons/bs";
 import { HiSparkles } from "react-icons/hi2";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+function getCookie(name: string) {
+  return document.cookie
+    .split("; ")
+    .find(row => row.startsWith(name + "="))
+    ?.split("=")[1];
+}
 
 type ResumeForm = {
   cv: File | null;
@@ -19,6 +26,10 @@ const ResumeUploadSec = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isDragActive, setIsDragActive] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const { setValue, handleSubmit } = useForm<ResumeForm>({
     defaultValues: { cv: null },
@@ -78,6 +89,16 @@ const ResumeUploadSec = () => {
 
   /* -------------------- Submit -------------------- */
   const onSubmit = (data: any) => {
+    
+    const token =getCookie("accessToken");
+    if(!token){
+        // current full path (including query params)
+      const currentUrl =
+        pathname + (searchParams.toString() ? `?${searchParams}` : "");
+
+      router.push(`/login?redirect=${encodeURIComponent(currentUrl)}`);
+      return;
+    }
     if (!data.cv) return;
     const formData = new FormData();
     formData.append("cv", data.cv);
@@ -85,20 +106,21 @@ const ResumeUploadSec = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="w-full">
+      <form className="flex md:justify-end " onSubmit={handleSubmit(onSubmit)}>
       <motion.div
         initial={{ opacity: 0, scale: 0.95, x: 20 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative w-full max-w-sm"
+        className="relative md:w-[70%] w-full"
       >
         {/* Glow */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-lg opacity-25" />
+        <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-lg opacity-25" />
 
         {/* Card */}
         <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 flex items-center">
+          <div className="bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-3 flex items-center">
             <span className="text-white text-sm font-medium">Resume Analyzer</span>
             <HiSparkles className="ml-auto text-yellow-300" />
           </div>
@@ -172,7 +194,7 @@ const ResumeUploadSec = () => {
                       </div>
                       <div className="h-2 bg-gray-100 rounded">
                         <div
-                          className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded"
+                          className="h-full bg-linear-to-r from-cyan-500 to-blue-600 rounded"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -182,8 +204,9 @@ const ResumeUploadSec = () => {
                   {/* Submit */}
                   {progress === 100 && (
                     <button
+                    disabled={AnalyseResumeMutation.isPending}
                       type="submit"
-                      className="w-full mt-2 bg-cyan-600 text-white py-2 rounded-lg"
+                      className="w-full mt-2 bg-cyan-600 text-white py-2 rounded-lg cursor-pointer"
                     >
                       {AnalyseResumeMutation.isPending?"Just a Moment...":"View Analysis"}
                     </button>
@@ -204,6 +227,7 @@ const ResumeUploadSec = () => {
         </motion.div>
       </motion.div>
     </form>
+    </div>
   );
 };
 

@@ -1,10 +1,10 @@
-import ProtectRoute from "@/globals/toProtectRoute";
+import ProtectedRoute from "@/globals/protectedRoute";
 
 const JobsByIdLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ProtectRoute>
+    <ProtectedRoute>
       {children}
-    </ProtectRoute>
+    </ProtectedRoute>
   )
 }
 export default JobsByIdLayout ;

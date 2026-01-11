@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import LoginMutation, { useLoginMutation } from "./api/loginApi"
+import { useRouter, useSearchParams } from "next/navigation";
 
 type LoginFormValues = {
   email: string
@@ -15,6 +16,9 @@ type LoginFormValues = {
 
 export function LoginForm() {
   const loginMutation =useLoginMutation();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+    const redirectPath = searchParams.get("redirect") || "/";
 
   const [showPassword, setShowPassword] = useState(false)
 
@@ -26,7 +30,7 @@ export function LoginForm() {
 
   const onSubmit = (data: LoginFormValues) => {
         loginMutation.mutate(data);
-        // console.log(data);
+       router.replace(redirectPath);
   }
 
   return (
