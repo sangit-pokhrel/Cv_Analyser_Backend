@@ -403,17 +403,35 @@ export default function AnalyticsManagement() {
     filterAndSortAnalyses();
   }, [searchQuery, analyses, sortField, sortOrder, scoreFilter]);
 
+  // const fetchAnalyses = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await api.get('/cv/admin/analyses');
+  //     setAnalyses(data.analyses);
+  //   } catch (error) {
+  //     console.error('Error fetching analyses:', error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
   const fetchAnalyses = async () => {
-    try {
-      setLoading(true);
-      const { data } = await api.get('/cv/admin/analyses');
-      setAnalyses(data.analyses);
-    } catch (error) {
-      console.error('Error fetching analyses:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    const { data } = await api.get('/cv/admin/analyses');
+
+    setAnalyses(Array.isArray(data?.analyses) ? data.analyses : []);
+
+    
+  } catch (error) {
+    console.error('Error fetching analyses:', error);
+    setAnalyses([]);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const filterAndSortAnalyses = () => {
     let filtered = [...analyses];
@@ -600,7 +618,7 @@ export default function AnalyticsManagement() {
             <span className="text-2xl">💼</span>
           </div>
           <p className="text-3xl font-bold">
-            {analyses.reduce((sum, a) => sum + a.recommendations, 0)}
+            {(analyses ?? []).reduce((sum, a) => sum + a.recommendations, 0)}
           </p>
           <p className="text-sm text-gray-500 mt-1">Recommended</p>
         </div>
@@ -611,7 +629,8 @@ export default function AnalyticsManagement() {
             <span className="text-2xl">📝</span>
           </div>
           <p className="text-3xl font-bold">
-            {analyses.reduce((sum, a) => sum + a.appliedJobs, 0)}
+            {(analyses ?? []).reduce((sum, a) => sum + a.appliedJobs, 0)}
+
           </p>
           <p className="text-sm text-gray-500 mt-1">Submitted</p>
         </div>
