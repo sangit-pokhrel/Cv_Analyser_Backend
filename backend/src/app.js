@@ -42,7 +42,7 @@ app.use(cors({
 
 
 
-app.use('//api/v1', apiV1);
+app.use('/api/v1', apiV1);
 
 
 const { requireAuth } = require('./middlewares/auth.middleware');
